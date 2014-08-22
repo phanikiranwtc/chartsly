@@ -3,4 +3,4 @@ Contains various Stock related charts.
 Indicators
 ==========
 
-# William %R
+1 William %R
