@@ -2,7 +2,11 @@
  * @class Chartsly.sprite.indicator.WilliamPctR
  * @extends Ext.chart.series.sprite.Line
  *
- * William %R series sprite.
+ * William %R series sprite. This does the following:
+ * 1) Draws and fills the oversold area
+ * 2) Draws and fills the overbought area
+ * 3) Draws horizontal lines for overbought level, oversold level and 50
+ * 4) Draws the line graph
  */
 Ext.define('Chartsly.sprite.indicator.WilliamPctR', {
     alias: 'sprite.williamSeries',
@@ -21,6 +25,14 @@ Ext.define('Chartsly.sprite.indicator.WilliamPctR', {
 
     list: null,
 
+    /**
+     * @private
+     * Draws overbought area and fills it with the specified style
+     * @param ctx SVG or Canvas context
+     * @param list list containing the transformed co-ordinates
+     * @param osLevel oversold level(e.g. -20) transfromed to the ctx co-ordinates
+     * @return
+     */
     drawOverBought: function (ctx, list, obLevel) {
         var attr = this.attr,
             i, x, y, x0, y0, obx = 0, oby = obLevel, obStart = false, obEnd = false;
@@ -86,6 +98,14 @@ Ext.define('Chartsly.sprite.indicator.WilliamPctR', {
         }
     },
 
+    /**
+     * @private
+     * Draws oversold area and fills it with the specified style
+     * @param ctx SVG or Canvas context
+     * @param list list containing the transformed co-ordinates
+     * @param osLevel oversold level(e.g. -20) transfromed to the ctx co-ordinates
+     * @return
+     */
     drawOverSold: function (ctx, list, osLevel) {
         var attr = this.attr,
             i, x, y, x0, y0, osx = 0, osStart = false, osEnd = false, osy = osLevel;
@@ -151,6 +171,9 @@ Ext.define('Chartsly.sprite.indicator.WilliamPctR', {
         }
     },
 
+    /**
+     * @private Override {@link Ext.chart.series.sprite.Line#renderAggregates}
+     */
     renderAggregates: function (aggregates, start, end, surface, ctx, clip, rect) {
         var me = this,
             attr = me.attr,
@@ -222,7 +245,11 @@ Ext.define('Chartsly.sprite.indicator.WilliamPctR', {
 
     /**
      * @private
-     * Draws a line parallel to x-axis
+     * Draws a line parallel to X-axis
+     * @param ctx SVG or Canvas context
+     * @param x length of the line
+     * @param y ordinate where the line needs to be drawn
+     * @return 
      */
     drawYLine: function(ctx, x, y, dashed) {
         ctx.beginPath();

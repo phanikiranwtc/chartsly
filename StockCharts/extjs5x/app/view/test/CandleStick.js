@@ -1,3 +1,6 @@
+/**
+ * Class to add CandleStick chart to the test charts. It is used in the Main view.
+ */
 Ext.define("Chartsly.view.test.CandleStick", {
     extend: 'Ext.chart.CartesianChart',
     xtype: 'candlestick-test-chart',

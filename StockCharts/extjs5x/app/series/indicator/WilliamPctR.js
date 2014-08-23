@@ -1,3 +1,12 @@
+/**
+ * @class Chartsly.series.indicator.WilliamPctR
+ * @extends Ext.chart.series.Cartesian
+ *
+ * William %R series that iterates the store records and calculates the %R value based on the below formula:
+ * %R = (Highest High - Close)/(Highest High - Lowest Low) * -100
+ * 
+ * The calculated %R value is set a "pctr" field on the record
+ */
 Ext.define('Chartsly.series.indicator.WilliamPctR', {
     extend: 'Ext.chart.series.Cartesian',
     alias: 'series.williampctr',
@@ -5,15 +14,36 @@ Ext.define('Chartsly.series.indicator.WilliamPctR', {
     seriesType: 'williamSeries',
 
     config: {
-
+        /*
+         * Overbought level. Defaults to -20
+         */
         overboughtLevel: -20,
+        /*
+         * Oversold level. Defaults to -80
+         */
         oversoldLevel: -80,
+        /*
+         * Data field containing the high value. Defaults to "high"
+         */
         highField: "high",
+        /*
+         * Data field containing the low value. Defaults to "low"
+         */
         lowField: "low",
+        /*
+         * Data field containing the close value. Defaults to "close"
+         */
         closeField: "close",
+        /*
+         * Look-back period (in days) to calculate William %R. Defaults to 14 days
+         */
         lookBackPeriod: 14
     },
 
+    /*
+     * Creats a William %R series
+     * @param {Object} [config] Configuration
+     */
     constructor: function (config) {
 
         var me = this;
@@ -32,13 +62,13 @@ Ext.define('Chartsly.series.indicator.WilliamPctR', {
             }
 
             //get highest high of last 14 days
-            var max14High = Ext.Array.max(Ext.Array.slice(highs, index - lpPeriod, index + 1));
+            var maxHigh = Ext.Array.max(Ext.Array.slice(highs, index - lpPeriod, index + 1));
 
             //get lowest low of last 14 days
-            var min14High = Ext.Array.min(Ext.Array.slice(lows, index - lpPeriod, index + 1));
+            var minHigh = Ext.Array.min(Ext.Array.slice(lows, index - lpPeriod, index + 1));
 
             //calculate %R and set it on the record
-            var pctr = ((max14High - item.data[config.closeField])/(max14High - min14High)) * -100
+            var pctr = ((maxHigh - item.data[config.closeField])/(maxHigh - minHigh)) * -100
             item.data.pctr = pctr;
         });
 
@@ -47,6 +77,10 @@ Ext.define('Chartsly.series.indicator.WilliamPctR', {
 
     /**
      * @private Override {@link Ext.chart.series.Series#getDefaultSpriteConfig}
+     * It gets the cartesian series config by calling the parent and then applies
+     * the William %R specific configs so that they are available to the WilliamPctR
+     * series
+     * @return {Object} sprite config object
      */
     getDefaultSpriteConfig: function () {
         var me = this,

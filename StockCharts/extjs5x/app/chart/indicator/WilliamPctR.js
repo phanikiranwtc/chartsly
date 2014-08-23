@@ -1,3 +1,13 @@
+/**
+ * @class Chartsly.chart.indicator.WilliamPctR
+ * @extends Ext.chart.CartesianChart
+ *
+ * William %R chart that looks for numeric axis and adds William %R specific configuration
+ * such as fields, maximum, and minimum. fields is defaulted to ['pctr'] as this field is added by the
+ * WilliamPctR series to the records.
+ * 
+ * The calculated %R value is set a "pctr" field on the record
+ */
 Ext.define("Chartsly.chart.indicator.WilliamPctR", {
     extend: 'Ext.chart.CartesianChart',
     requires: ['Chartsly.series.indicator.WilliamPctR', 'Chartsly.sprite.indicator.WilliamPctR'],

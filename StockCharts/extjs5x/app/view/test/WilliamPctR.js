@@ -1,3 +1,6 @@
+/**
+ * Class to test William %R chart
+ */
 Ext.define("Chartsly.view.test.WilliamPctR", {
     extend: 'Ext.Panel',
     requires: [
