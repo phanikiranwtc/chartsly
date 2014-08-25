@@ -1,4 +1,4 @@
-Contains various Stock related charts for Ext JS 5.x
+Contains various Stock related charts for Ext JS 5.x. Current version uses Ext JS 5.0.1
 
 Indicators
 ==========
