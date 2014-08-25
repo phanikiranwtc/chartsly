@@ -9,7 +9,7 @@
  * 4) Draws the line graph
  */
 Ext.define('Chartsly.sprite.indicator.WilliamPctR', {
-    alias: 'sprite.williamSeries',
+    alias: 'sprite.williampctr',
     extend: 'Ext.chart.series.sprite.Line',
 
     inheritableStatics: {

@@ -10,8 +10,7 @@
 Ext.define('Chartsly.series.indicator.WilliamPctR', {
     extend: 'Ext.chart.series.Cartesian',
     alias: 'series.williampctr',
-    type: 'williampctr',
-    seriesType: 'williamSeries',
+    seriesType: 'williampctr',  //sprite type for this series
 
     config: {
         /*
