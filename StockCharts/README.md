@@ -1,6 +1,8 @@
-Contains various Stock related charts.
+Contains various Sencha Touch related charts.
 
-Indicators
-==========
+# Stock Charts
+Chartsly package contains the following Stock related charts for Sencha Touch:
 
-1 William %R
+## Indicators
+
+1. William %R
