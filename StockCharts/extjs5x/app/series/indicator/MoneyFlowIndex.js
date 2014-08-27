@@ -5,7 +5,8 @@
  * MoneyFlowIndex  series that iterates the store records and calculates the MoneyFlowIndex value based on the below formula:
  *   MoneyFlowIndex     = (100 - 100/(1 + MoneyFlowRatio));
  *   MoneyFlowRatio    =  fourteendayPostiveMoneyFlow / fourteendayNegativeMoneyFlow ;
- * 
+ *   Here, 14-days is the LookBackPeriod.
+ *
  * The calculated MoneyFlowIndex value is set a "mfi" field on the record
  */
 Ext.define('Chartsly.series.indicator.MoneyFlowIndex', {
@@ -15,11 +16,11 @@ Ext.define('Chartsly.series.indicator.MoneyFlowIndex', {
 
     config: {
         /*
-         * Overbought level. Defaults to -20
+         * Overbought level. Defaults to 80
          */
         overboughtLevel: 80,
         /*
-         * Oversold level. Defaults to -80
+         * Oversold level. Defaults to 20
          */
         oversoldLevel: 20,
         /*
@@ -48,30 +49,40 @@ Ext.define('Chartsly.series.indicator.MoneyFlowIndex', {
 
         var me = this;
         var st = Ext.data.StoreManager.lookup(config.store);
-       
-
         var lpPeriod = config.lookBackPeriod - 1;
+
+        // Defining Array to store postiveMoneyFlow values.
 	var postiveMoneyFlow  = [];
+	
+	//Defining Array to store negativeMoneyFLow values.
 	var negativeMoneyFlow = [];
 
-        st.each(function (item, index, length) { 
-         
 
+        st.each(function (item, index, length) { 
+
+	   // Calculating typicalPrice as per the formula, for the current record.
            var currentTypicalPrice =  (item.get("high") + item.get("low") + item.get("close") )/3;
 	
+	   // Calculating rawMoneyFlow as per the formula, for the current record.
 	   var rawMoneyFlow =  (currentTypicalPrice * item.get("volume")) ;
 			
-	   
+	  
+
+	   // Enters the condition from second record.
 	   if(index > 0) {
 		   items = item.store.data.items;
 		   
+		   // Calculating typicalPrice as per the formula, for the previous record. 	
 		   var previousTypicalPrice = (items[index-1].get("high") + items[index-1].get("low") + items[index-1].get("close"))/3;	
 	
+		   
+                   //Storing values in postiveMoneyFlow array.
 		   if(currentTypicalPrice > previousTypicalPrice) {
 			postiveMoneyFlow[index]  = rawMoneyFlow;	
 			negativeMoneyFlow[index] = 0;	
 		    }
-		
+
+		  //Storing values in negativeMoneyFlow array.			
 		  else{
 			negativeMoneyFlow[index] = rawMoneyFlow;
 			postiveMoneyFlow[index]  = 0;
@@ -81,9 +92,13 @@ Ext.define('Chartsly.series.indicator.MoneyFlowIndex', {
 	
 		
 
-
-	    if (index > lpPeriod) { debugger;
+            // Getting 14day-postive and negative money flow values, and hence calculating MoneyFlowIndex.
+	    if (index > lpPeriod) { 
+                    
+		    // Calculating 14day-PostiveMoneyFLow value.	
 		    fourteendayPostiveMoneyFlow   =	Ext.Array.sum(Ext.Array.slice(postiveMoneyFlow, index - lpPeriod, index + 1));
+
+		    // Calculating 14day-NegativeMoneyFlow value.
 		    fourteendayNegativeMoneyFlow  =	Ext.Array.sum(Ext.Array.slice(negativeMoneyFlow, index - lpPeriod, index + 1));
 
 		    //calculate Money Flow Index and set it on the record

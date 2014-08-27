@@ -25,13 +25,14 @@ Ext.define("Chartsly.chart.indicator.MoneyFlowIndex", {
                     fields: ['mfi'],
                     maximum: 100,
                     minimum: 0,
-                    renderer: function (value, layoutContext, lastValue) {
-                        if (value == osLevel || value == 50 || value == obLevel){
-                            return value;
-                        } else {
-                            return "";
-                        }
-                    }
+		    majorTickSteps: 20,	
+                    renderer: function (value, layoutContext, lastValue) { 
+		                if (value == osLevel || value == (osLevel+obLevel)/2 || value == obLevel){
+		                    return value;
+		                } else {
+		                    return "";
+		                }
+                    } 
                 });
             }
         });
