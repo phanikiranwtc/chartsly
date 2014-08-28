@@ -6,3 +6,4 @@ Chartsly package contains the following Stock related charts for Sencha Touch:
 ## Indicators
 
 1. William %R
+2. Accumulation Distribution Line (ADL)

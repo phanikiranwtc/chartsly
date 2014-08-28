@@ -3,4 +3,5 @@ Contains various Stock related charts for Ext JS 5.x. Current version uses Ext J
 Indicators
 ==========
 
-1 William %R
+1. William %R
+2. Accumulation Distribution Line (ADL)
