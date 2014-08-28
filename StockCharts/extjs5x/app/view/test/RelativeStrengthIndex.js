@@ -1,20 +1,20 @@
 /**
  * Class to test Relative Strength Index chart
  */
-Ext.define("Chartsly.view.test.RsiChart", {
+Ext.define("Chartsly.view.test.RelativeStrengthIndex", {
     extend: 'Ext.Panel',
     requires: [
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
-        'Chartsly.chart.indicator.RsiChart',
+        'Chartsly.chart.indicator.RelativeStrengthIndex',
         'Chartsly.model.Stock', 
-        'Chartsly.store.RSI'
+        'Chartsly.store.Apple'
     ],
     config: {
         items: [
             {
-                xclass: 'Chartsly.chart.indicator.RsiChart',
+                xclass: 'Chartsly.chart.indicator.RelativeStrengthIndex',
                 height: 250,
                 insetPadding: {
                     top: 10,
@@ -25,12 +25,11 @@ Ext.define("Chartsly.view.test.RsiChart", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.RSI', {}), //'Apple',
-                        type: 'rsichart',
+                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        type: 'relativestrengthindex',
                         xField: 'date',
                         yField: 'rsi',
-                        highField: "high",
-                        lowField: "low",
+                        closeField: "close",
                         overboughtLevel: 80,
                         oversoldLevel: 30,
                         lookBackPeriod: 14,  //in days

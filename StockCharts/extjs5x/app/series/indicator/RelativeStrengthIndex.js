@@ -1,5 +1,5 @@
 /**
- * @class Chartsly.series.indicator.RsiChart
+ * @class Chartsly.series.indicator.RelativeStrengthIndex
  * @extends Ext.chart.series.Cartesian
  *
  * Relative Strength Index series that iterates the store records and calculates the RSI value based on the below formula:
@@ -7,11 +7,10 @@
  * 
  * The calculated RSI value is set a "rsi" field on the record
  */
-Ext.define('Chartsly.series.indicator.RsiChart', {
+Ext.define('Chartsly.series.indicator.RelativeStrengthIndex', {
     extend: 'Ext.chart.series.Cartesian',
-    alias: 'series.rsichart',
-    type: 'rsichart',
-    seriesType: 'rsiSeries',
+    alias: 'series.relativestrengthindex',
+    seriesType: 'relativestrengthindexSeries',
 
     config: {
         /*
@@ -23,13 +22,9 @@ Ext.define('Chartsly.series.indicator.RsiChart', {
          */
         oversoldLevel: 30,
         /*
-         * Data field containing the high value. Defaults to "high"
+         * Data field containing the close value. Defaults to "close"
          */
-        highField: "high",
-        /*
-         * Data field containing the low value. Defaults to "low"
-         */
-        lowField: "low",
+        closeField: "close",
         /*
          * Look-back period (in days) to calculate RSI. Defaults to 14 days
          */
@@ -46,58 +41,49 @@ Ext.define('Chartsly.series.indicator.RsiChart', {
 
         var st = Ext.data.StoreManager.lookup(config.store);
         var recs = st.getRange();
-        var highs = Ext.Array.pluck(Ext.Array.pluck(recs, "data"), config.highField);
-        var lows = Ext.Array.pluck(Ext.Array.pluck(recs, "data"), config.lowField);
+        var closes = Ext.Array.pluck(Ext.Array.pluck(recs, "data"), config.closeField);
 
         var lpPeriod = config.lookBackPeriod - 1;
+
+	var gainArray = [];
+	var lossArray = [];
 
         st.each(function (item, index, length) {
             if (index < lpPeriod) {
                 item["rsi"] = "";
                 return;
             }
-
-	var highSum = 0;
-	var lowSum = 0;
-
-	//get high of last 14 days
-	var highArray = Ext.Array.slice(highs, index - lpPeriod, index + 1);
-
-	//get low of last 14 days
-	var lowArray = Ext.Array.slice(lows, index - lpPeriod, index + 1);
-
-	for(i=0;i<highArray.length;i++) {
-
-		//get sum of high of last 14 days
-		highSum = highSum+highArray[i];
-
-		//get sum of low of last 14 days
-		lowSum = lowSum+lowArray[i];
+            
+	//get the changes of close price ~ difference of current and previous
+	var changes = Ext.Array.slice(closes, (index - lpPeriod)+1,(index - lpPeriod)+2)-Ext.Array.slice(closes, (index - lpPeriod)+0,(index - lpPeriod)+1);
+			
+	if(changes > 0) {
+	
+		gainArray.push(changes);
+		
+	} else {
+		
+		lossArray.push(changes*(-1));
+		
 	}
 
-	//get Average of high of last 14 days
-	var firstHighAvg = highSum/highArray.length;
+	//gain sum
+	var gainSum = Ext.Array.sum(gainArray);
+	
+	//loss sum
+	var lossSum = Ext.Array.sum(lossArray);
+	
+	//gain average
+	var gainAvg = gainSum/config.lookBackPeriod;
+	
+	//loss average
+	var lossAvg = lossSum/config.lookBackPeriod;
 
-	//get Average of low of last 14 days
-	var firstLowAvg = lowSum/lowArray.length;
-
-	//get Current high of last 14 days
-	var currentHigh = highArray[highArray.length-1];
-
-	//get Current low of last 14 days
-	var currentLow = lowArray[lowArray.length-1];
-
-	//Average of High
-	var highAvg = ((firstHighAvg*(highArray.length-1))+currentHigh)/highArray.length;
-
-	//Average of Low
-	var lowAvg = ((firstLowAvg*(lowArray.length-1))+currentLow)/lowArray.length;
-
-	var rs = highAvg/lowAvg;
+	var rs = gainAvg/lossAvg;
 
             //calculate Relative Strength Index and set it on the record
             var rsi = 100-(100/(1+rs));
-	    rsi = Ext.util.Format.number(rsi,"0.00");
+	    rsi = Ext.util.Format.number(rsi,"0.00");	    
             item.data.rsi = rsi;
         });
 
@@ -107,7 +93,7 @@ Ext.define('Chartsly.series.indicator.RsiChart', {
     /**
      * @private Override {@link Ext.chart.series.Series#getDefaultSpriteConfig}
      * It gets the cartesian series config by calling the parent and then applies
-     * the Relative Strength Index specific configs so that they are available to the RsiChart
+     * the Relative Strength Index specific configs so that they are available to the RelativeStrengthIndex
      * series
      * @return {Object} sprite config object
      */
