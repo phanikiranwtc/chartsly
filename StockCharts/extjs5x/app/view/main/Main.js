@@ -8,7 +8,10 @@
 Ext.define('Chartsly.view.main.Main', {
     extend: 'Ext.container.Container',
 
-    requires: ['Chartsly.view.test.WilliamPctR'],
+    requires: [
+    // 'Chartsly.view.test.WilliamPctR'
+    'Chartsly.view.test.AccumulationDistributionLine'
+    ],
 
     xtype: 'app-main',
     
@@ -22,6 +25,7 @@ Ext.define('Chartsly.view.main.Main', {
     },
 
     items: [{
-        xclass: 'Chartsly.view.test.WilliamPctR'
+        // xclass: 'Chartsly.view.test.WilliamPctR'
+        xclass: 'Chartsly.view.test.AccumulationDistributionLine'
     }]
 });
