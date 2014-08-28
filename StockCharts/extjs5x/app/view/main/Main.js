@@ -10,7 +10,8 @@ Ext.define('Chartsly.view.main.Main', {
 
     requires: [
     // 'Chartsly.view.test.WilliamPctR'
-    'Chartsly.view.test.AccumulationDistributionLine'
+    // 'Chartsly.view.test.AccumulationDistributionLine'
+    'Chartsly.view.test.AverageTrueRange'
     ],
 
     xtype: 'app-main',
@@ -26,6 +27,7 @@ Ext.define('Chartsly.view.main.Main', {
 
     items: [{
         // xclass: 'Chartsly.view.test.WilliamPctR'
-        xclass: 'Chartsly.view.test.AccumulationDistributionLine'
+        // xclass: 'Chartsly.view.test.AccumulationDistributionLine'
+        xclass: 'Chartsly.view.test.AverageTrueRange'
     }]
 });

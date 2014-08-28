@@ -5,3 +5,4 @@ Indicators
 
 1. William %R
 2. Accumulation Distribution Line (ADL)
+3. Average True Range (ATR)
