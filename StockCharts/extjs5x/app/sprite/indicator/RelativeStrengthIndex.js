@@ -1,5 +1,15 @@
-Ext.define('Chartsly.sprite.indicator.RsiChart', {
-    alias: 'sprite.rsiSeries',
+/**
+ * @class Chartsly.sprite.indicator.RelativeStrengthIndex
+ * @extends Ext.chart.series.sprite.Line
+ *
+ * Relative Strength Index series sprite. This does the following:
+ * 1) Draws and fills the oversold area
+ * 2) Draws and fills the overbought area
+ * 3) Draws horizontal lines for overbought level, oversold level and 50
+ * 4) Draws the line graph
+ */
+Ext.define('Chartsly.sprite.indicator.RelativeStrengthIndex', {
+    alias: 'sprite.relativestrengthindexSeries',
     extend: 'Ext.chart.series.sprite.Line',
 
     inheritableStatics: {
@@ -26,29 +36,10 @@ Ext.define('Chartsly.sprite.indicator.RsiChart', {
         y0 = list[1];
 
         var tx = x0, ty = y0;
-	var highestPoint = [];
-	
-	var overboughtImg = new Image();
-    	overboughtImg.src =  "resources/images/overbought.png";  
-    	ctx.drawImage(overboughtImg, obx+100, oby+10);
 
         for (i = 3 * lbPeriod; i < list.length; i += 3) {
             x = list[i];
             y = list[i + 1];
-
-	    if(y > oby) {
-	    	   
-	    	if(highestPoint.indexOf(y)==-1) { 
-	    	   
-		    	//displaying an arrow on above an overbought level
-			var img = new Image();
-			img.src = "resources/images/red-arrow.png";
-			ctx.drawImage(img, x-8, y);
-			highestPoint.push(y);
-		
-		}
-		 
-	    }
 
             //detect if the ob starts
             if (ty <= y && ty <= oby && y >= oby) {
@@ -101,6 +92,7 @@ Ext.define('Chartsly.sprite.indicator.RsiChart', {
     },
 
     drawOverSold: function (ctx, list, osLevel) {
+    
         var attr = this.attr,
             i, x, y, x0, y0, osx = 0, osStart = false, osEnd = false, osy = osLevel;
 
@@ -110,30 +102,10 @@ Ext.define('Chartsly.sprite.indicator.RsiChart', {
         y0 = list[1];
 
         var tx = x0, ty = y0;
-	var lowestPoint = [];
-	
-	var oversoldImg = new Image();
-	oversoldImg.src =  "resources/images/oversold.png";  
-	ctx.drawImage(oversoldImg, osx+100, osy-50);
 
         for (i = 3 * lbPeriod; i < list.length; i += 3) {
             x = list[i];
             y = list[i + 1];
-            
-            if(y < osy) {
-	    	   
-	    	if(lowestPoint.indexOf(y)==-1) { 
-	    	   
-		    	//displaying an arrow below an oversold level
-			var img = new Image();
-			img.src = "resources/images/green-up3.png";
-			ctx.drawImage(img, x-8, y-20);
-			lowestPoint.push(y);
-		
-		}
-		 
-	    }
-
 
             //detect if the os starts
             if (ty >= y && ty >= osy && y <= osy) {
@@ -189,6 +161,7 @@ Ext.define('Chartsly.sprite.indicator.RsiChart', {
      * @private Override {@link Ext.chart.series.sprite.Line#renderAggregates}
      */
     renderAggregates: function (aggregates, start, end, surface, ctx, clip, rect) {
+
         var me = this,
             attr = me.attr,
             dataX = attr.dataX,
