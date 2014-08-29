@@ -7,3 +7,4 @@ Indicators
 2. Accumulation Distribution Line (ADL)
 3. Average True Range (ATR)
 4. On Balance Volume (OBV)
+5. Rate Of Change (ROC)

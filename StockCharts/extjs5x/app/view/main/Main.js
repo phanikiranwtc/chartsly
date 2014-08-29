@@ -13,7 +13,8 @@ Ext.define('Chartsly.view.main.Main', {
     // 'Chartsly.view.test.AccumulationDistributionLine'
     // 'Chartsly.view.test.AverageTrueRange'
     // 'Chartsly.view.test.CommodityChannelIndex'
-    'Chartsly.view.test.OnBalanceVolume'
+    // 'Chartsly.view.test.OnBalanceVolume'
+    'Chartsly.view.test.RateOfChange'
     ],
 
     xtype: 'app-main',
@@ -32,6 +33,7 @@ Ext.define('Chartsly.view.main.Main', {
         // xclass: 'Chartsly.view.test.AccumulationDistributionLine'
         // xclass: 'Chartsly.view.test.AverageTrueRange'
         // xclass: 'Chartsly.view.test.CommodityChannelIndex'
-        xclass: 'Chartsly.view.test.OnBalanceVolume'
+        // xclass: 'Chartsly.view.test.OnBalanceVolume'
+        xclass: 'Chartsly.view.test.RateOfChange'
     }]
 });
