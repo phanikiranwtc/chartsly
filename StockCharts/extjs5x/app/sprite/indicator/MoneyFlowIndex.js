@@ -5,7 +5,7 @@
  * MoneyFlowIndex series sprite. This does the following:
  * 1) Draws and fills the oversold area
  * 2) Draws and fills the overbought area
- * 3) Draws horizontal lines for overbought level, oversold level, and middle point of both overbought level and oversold level.
+ * 3) Draws horizontal lines for overbought level, oversold level, 50.
  * 4) Draws the line graph
  */
 Ext.define('Chartsly.sprite.indicator.MoneyFlowIndex', {
@@ -32,6 +32,8 @@ Ext.define('Chartsly.sprite.indicator.MoneyFlowIndex', {
      * @param list list containing the transformed co-ordinates
      * @param osLevel oversold level(e.g. 20) transfromed to the ctx co-ordinates
      * @return
+     *
+     * Note: This logic is same as WilliamPtcr, but works fine for MoneyFlowIndex chart as well.  		
      */
     drawOverBought: function (ctx, list, obLevel) {
         var attr = this.attr,
@@ -105,6 +107,8 @@ Ext.define('Chartsly.sprite.indicator.MoneyFlowIndex', {
      * @param list list containing the transformed co-ordinates
      * @param osLevel oversold level(e.g. 20) transfromed to the ctx co-ordinates
      * @return
+     *	
+     * Note: This logic is same as WilliamPtcr, but works fine for MoneyFlowIndex chart as well.	
      */
     drawOverSold: function (ctx, list, osLevel) {
         var attr = this.attr,
@@ -221,12 +225,12 @@ Ext.define('Chartsly.sprite.indicator.MoneyFlowIndex', {
 
         var obLevel = Math.round(attr.overboughtLevel * yy + dy) - pixelAdjust;
         var osLevel = Math.round(attr.oversoldLevel * yy + dy) - pixelAdjust;
-        var midLevel = Math.round( ((attr.overboughtLevel +attr.oversoldLevel)/2)  * yy + dy) - pixelAdjust;
+        var midLevel = Math.round( 50 * yy + dy) - pixelAdjust;
 
         if (list.length) {
             var xLen = rect[2];
 
-            //Draw overbought, oversold and, mid-off (overbought and oversold)  mark lines
+            //Draw overbought, oversold and, 50  mark lines
             me.drawYLine(ctx, xLen, obLevel);
             me.drawYLine(ctx, xLen, osLevel);
             me.drawYLine(ctx, xLen, midLevel, true);

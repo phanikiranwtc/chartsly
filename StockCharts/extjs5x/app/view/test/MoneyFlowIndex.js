@@ -37,6 +37,7 @@ Ext.define("Chartsly.view.test.MoneyFlowIndex", {
                         highField: "high",
                         lowField: "low",
                         closeField: "close",
+			volumeField: "volume",
                         overboughtLevel: 80,
                         oversoldLevel: 20,
                         lookBackPeriod: 14,  //in days

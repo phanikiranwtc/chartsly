@@ -25,9 +25,11 @@ Ext.define("Chartsly.chart.indicator.MoneyFlowIndex", {
                     fields: ['mfi'],
                     maximum: 100,
                     minimum: 0,
+		    // Added majorTickSteps = 20, so that logic works for all multiples of five, between 0 to 100.		
 		    majorTickSteps: 20,	
+
                     renderer: function (value, layoutContext, lastValue) { 
-		                if (value == osLevel || value == (osLevel+obLevel)/2 || value == obLevel){
+		                if (value == osLevel || value == 50 || value == obLevel){
 		                    return value;
 		                } else {
 		                    return "";
