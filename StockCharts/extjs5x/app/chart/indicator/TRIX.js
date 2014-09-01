@@ -23,10 +23,10 @@ Ext.define("Chartsly.chart.indicator.TRIX", {
             }
         });
 
-        //TODO: Find a better solution for preparing the config and drawing PMO signal line.
+        //TODO: Find a better solution for preparing the config and drawing TRIX signal line.
         //Will re-visit this in the next iteration.
         
-        //add a line series for PMO Signal line
+        //add a line series for TRIX Signal line
         config.series.push({
             store: config.series[0].store,
             type: 'trix',

@@ -11,3 +11,5 @@ Indicators
 6. Commodity Channel Index (CCI)
 7. Price Momentum Oscillator (PMO)
 8. TRIX
+9. Relative Vigor Index (RVI)
+10. Moving Average Convergence Divergence (MACD)
