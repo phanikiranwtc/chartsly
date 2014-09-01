@@ -16,7 +16,8 @@ Ext.define('Chartsly.view.main.Main', {
     // 'Chartsly.view.test.OnBalanceVolume'
     // 'Chartsly.view.test.RateOfChange'
     // 'Chartsly.view.test.PriceMomentumOscillator'
-    'Chartsly.view.test.TRIX'
+    // 'Chartsly.view.test.TRIX'
+    'Chartsly.view.test.MovingAverageConvergenceDivergence'
     ],
 
     xtype: 'app-main',
@@ -38,6 +39,7 @@ Ext.define('Chartsly.view.main.Main', {
         // xclass: 'Chartsly.view.test.OnBalanceVolume'
         // xclass: 'Chartsly.view.test.RateOfChange'
         // xclass: 'Chartsly.view.test.PriceMomentumOscillator'
-        xclass: 'Chartsly.view.test.TRIX'
+        // xclass: 'Chartsly.view.test.TRIX'
+        xclass: 'Chartsly.view.test.MovingAverageConvergenceDivergence'
     }]
 });
