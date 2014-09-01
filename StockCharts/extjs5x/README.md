@@ -13,3 +13,5 @@ Indicators
 8. TRIX
 9. Relative Vigor Index (RVI)
 10. Moving Average Convergence Divergence (MACD)
+11. Money Flow Index (MFI)
+12. Relative Strength Index (RSI)
