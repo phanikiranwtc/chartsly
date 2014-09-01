@@ -35,9 +35,9 @@ Ext.define("Chartsly.chart.indicator.PriceMomentumOscillator", {
             xField: 'date',
             yField: 'sigpmo',
             closeField: "close",
-            emaPeriod1: 35,
-            emaPeriod2: 20,
-            emaSignalPeriod: 10,
+            period1: config.period1,
+            period2: config.period2,
+            signalPeriod: config.signalPeriod,
             // smooth: true,
             style: {
                 stroke: 'rgba(255,102,102,0.75)',
