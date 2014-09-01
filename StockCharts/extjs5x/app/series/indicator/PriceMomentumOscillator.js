@@ -25,15 +25,15 @@ Ext.define('Chartsly.series.indicator.PriceMomentumOscillator', {
         /*
          * First custom EMA period. Defaults to 35 periods
          */
-        emaPeriod1: 35,
+        period1: 35,
         /*
          * Second custom EMA period. Defaults to 20 periods
          */
-        emaPeriod2: 20,
+        period2: 20,
         /*
          * EMA period for PMO signal. Defaults to 10 periods
          */
-        emaSignalPeriod: 10
+        signalPeriod: 10
     },
 
     /*
@@ -51,9 +51,9 @@ Ext.define('Chartsly.series.indicator.PriceMomentumOscillator', {
 
         var recs = st.getRange(period);
 
-        var p1 = config.emaPeriod1;
-        var p2 = config.emaPeriod2;
-        var sigP = config.emaSignalPeriod;
+        var p1 = config.period1;
+        var p2 = config.period2;
+        var sigP = config.signalPeriod;
 
         var customSmoothingContant1 = 2/p1;
         var customSmoothingContant2 = 2/p2;
@@ -79,7 +79,7 @@ Ext.define('Chartsly.series.indicator.PriceMomentumOscillator', {
                 return;
             }
 
-            //calculate 10*custom EMA of ROC based on emaPeriod1
+            //calculate 10*custom EMA of ROC based on period1
             if (index == p1) {
                 emaROC = Ext.Array.mean(rocArr);
             } else {
@@ -88,7 +88,7 @@ Ext.define('Chartsly.series.indicator.PriceMomentumOscillator', {
 
             emaROCArr.push(emaROC);
 
-            //calculate custom EMA based on emaPeriod2
+            //calculate custom EMA based on period2
             if (index >= (p1 + p2)) {
                 if (index == (p1 + p2)) {
                     pmo = Ext.Array.mean(Ext.Array.slice(emaROCArr, 1));
