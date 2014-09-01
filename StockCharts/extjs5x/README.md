@@ -8,3 +8,6 @@ Indicators
 3. Average True Range (ATR)
 4. On Balance Volume (OBV)
 5. Rate Of Change (ROC)
+6. Commodity Channel Index (CCI)
+7. Price Momentum Oscillator (PMO)
+8. TRIX
