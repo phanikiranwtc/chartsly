@@ -20,72 +20,33 @@ Ext.define("Chartsly.view.test.OnBalanceVolume", {
             },
             {
                 xtype: 'cartesian',
-                height: 200,
-                store: Ext.create('Chartsly.store.Apple', {}),
+                height: 250,
+                background: 'white',
+                store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
                 axes: [{
                     type: 'numeric',
                     position: 'left',
-                    fields: ['volume'],
                     title: {
                         text: 'Volume',
                         fontSize: 15
                     },
-                    renderer: function() {
-                        return "";
-                    }
-                },
-                {
-                    type: 'time',
-                    fields: ['date'],
+                    fields: 'volume'
+                }, {
+                    type: 'category',
                     position: 'bottom',
-                    background: {
-                        fill: 'gray'
+                    title: {
+                        text: 'Date',
+                        fontSize: 15
                     },
-                    visibleRange: [0.5, 0.9],
-                    style: {
-                        axisLine: false,
-                        strokeStyle: '#888',
-                        textPadding: 10
-                    },
-                    label: {
-                        fontWeight: '700',
-                        fillStyle: '#666'
-                    },
-                    renderer: function (value, layoutContext, lastValue) {
-                        var month, day;
-                        switch (layoutContext.majorTicks.unit) {
-                            case Ext.Date.YEAR:
-                                return Ext.Date.format(value, 'Y');
-                            case Ext.Date.MONTH:
-                                month = Ext.Date.format(value, 'M');
-                                if (month === 'Jan') {
-                                    return Ext.Date.format(value, 'Y');
-                                } else {
-                                    return month;
-                                }
-                                break;
-                            case Ext.Date.DAY:
-                                day = Ext.Date.format(value, 'j');
-                                if (lastValue && value.getMonth() !== lastValue.getMonth()) {
-                                    month = Ext.Date.format(value, 'M');
-                                    if (month === 'Jan') {
-                                        return Ext.Date.format(value, 'M j y');
-                                    } else {
-                                        return Ext.Date.format(value, 'M j');
-                                    }
-                                } else {
-                                    return day;
-                                }
-                                break;
-                            default:
-                                return Ext.Date.format(value, 'h:i:s');
-                        }
-                    }
+                    fields: 'date'
                 }],
                 series: {
-                    type: 'area',
+                    type: 'bar',
                     xField: 'date',
-                    yField: 'volume'
+                    yField: 'volume',
+                    style: {
+                        fill: 'blue'
+                    }
                 }
             },
             {

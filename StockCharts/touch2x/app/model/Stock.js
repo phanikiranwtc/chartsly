@@ -1,6 +1,6 @@
 Ext.define("Chartsly.model.Stock", {
     extend: 'Ext.data.Model',
-    // config: {
+    config: {
         fields: [
             'date',
             "open",
@@ -10,5 +10,5 @@ Ext.define("Chartsly.model.Stock", {
             "volume",
             "adjClose"
         ]
-    // }
+    }
 });
