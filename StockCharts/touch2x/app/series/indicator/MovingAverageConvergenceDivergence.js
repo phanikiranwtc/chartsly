@@ -6,16 +6,17 @@
  * calculates the MACD and its signal value based on the below formula:
  * 1. MACD Line: (12-day EMA - 26-day EMA) 
  * 2. Signal Line: 9-day EMA of MACD Line
+ * 3. MACD Histogram: MACD - Signal Line
  * 
  * The calculated MACD value is set as "macd" field on the record and the signal value is
- * set as "sigmacd" on the record
+ * set as "sigmacd" on the record. To draw the MACD Histogram, it calculates and sets 'histmacd'
+ * field on the record.
  *
- * TODO: Draw the Histogram
  */
 Ext.define('Chartsly.series.indicator.MovingAverageConvergenceDivergence', {
     extend: 'Ext.chart.series.Cartesian',
     alias: 'series.macd',
-    seriesType: 'lineSeries',  //sprite type for this series
+    seriesType: 'macd',  //sprite type for this series
 
     config: {
         /*
@@ -86,8 +87,6 @@ Ext.define('Chartsly.series.indicator.MovingAverageConvergenceDivergence', {
                 macd = ema1 - ema2;
                 item.data.macd = macd;
                 macdArr.push(macd);
-
-                // console.log('MACD: ' + item.data.macd);
             }
 
             //Calculate MACD Signal line
@@ -105,12 +104,31 @@ Ext.define('Chartsly.series.indicator.MovingAverageConvergenceDivergence', {
                 prevEma3 = ema3;
 
                 item.data.sigmacd = ema3;
+
+                //calculate diff for MACD histogram
+                //MACD less MACD signal line
+                item.data.histmacd = macd - ema3;
             }
 
 
         });
 
         this.callParent(arguments);
-    }
+    },
 
+    /**
+     * @private Override {@link Ext.chart.series.Series#getDefaultSpriteConfig}
+     * It gets the cartesian series config by calling the parent and then applies
+     * the William %R specific configs so that they are available to the WilliamPctR
+     * series
+     * @return {Object} sprite config object
+     */
+    getDefaultSpriteConfig: function () {
+        var me = this,
+            parentStyleConfig = me.callParent(arguments);
+
+        return Ext.apply(parentStyleConfig, {
+            // smooth: me.config.smooth
+        });
+    }
 });

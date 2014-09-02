@@ -1,5 +1,5 @@
 /**
- * Class to test TRIX chart
+ * Class to test MACD chart
  */
 Ext.define("Chartsly.view.test.MovingAverageConvergenceDivergence", {
     extend: 'Ext.Panel',
@@ -32,7 +32,7 @@ Ext.define("Chartsly.view.test.MovingAverageConvergenceDivergence", {
                         period1: 12,
                         period2: 26,
                         signalPeriod: 9,
-                        // smooth: true,
+                        smooth: true,
                         style: {
                             stroke: 'rgba(67,174,175,0.75)',
                             miterLimit: 1
@@ -45,7 +45,7 @@ Ext.define("Chartsly.view.test.MovingAverageConvergenceDivergence", {
                         position: 'left'
                     },
                     {
-                        type: 'time',
+                        type: 'category',   //FIXME: Bar series does not render for 'time' type. SDK seems to have an issue
                         position: 'bottom',
                         fields: ['date'],
                         style: {
