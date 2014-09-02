@@ -62,7 +62,9 @@ Ext.define('Chartsly.series.indicator.FastStochasticOscillator', {
         var closes = Ext.Array.pluck(Ext.Array.pluck(recs, "data"), config.closeField);
 
         var lpPeriod = config.lookBackPeriod - 1;
-        var smaPeriod = config.smaDays - 1;
+	var initialValue = 0;
+	var finalValue = config.smaDays;
+	var ptckArray = [];
 
         st.each(function (item, index, length) {
             if (index < lpPeriod) {
@@ -74,19 +76,21 @@ Ext.define('Chartsly.series.indicator.FastStochasticOscillator', {
             var maxHigh = Ext.Array.max(Ext.Array.slice(highs, index - lpPeriod, index + 1));
 
             //get lowest low of last 14 days
-            var minHigh = Ext.Array.min(Ext.Array.slice(lows, index - lpPeriod, index + 1));
-            
+            var minHigh = Ext.Array.min(Ext.Array.slice(lows, index - lpPeriod, index + 1));            
 
             //calculate %K and set it on the record
             var pctk = ((item.data[config.closeField]-minHigh)/(maxHigh-minHigh))*100;
+            ptckArray.push(pctk);
 
-            //get Simple Moving Average
-            var SMA = Ext.Array.mean(Ext.Array.slice(closes, index - lpPeriod, index - 10));
+            if(ptckArray.length > config.smaDays)
+	    {
+	    	//calculate %D and set it on the record
+		var pctd = Ext.Array.mean(Ext.Array.slice(ptckArray, initialValue, finalValue));
+		initialValue++;	
+		finalValue++; 
+	    }
 
             item.data.pctk = pctk;
-
-            //calculate %D and set it on the record
-            var pctd = SMA*(pctk/100);
             item.data.pctd = pctd;
         });
 

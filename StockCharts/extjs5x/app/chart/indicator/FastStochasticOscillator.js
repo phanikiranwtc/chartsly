@@ -23,7 +23,7 @@ Ext.define("Chartsly.chart.indicator.FastStochasticOscillator", {
             if (axis.type === 'numeric') {
 
                 Ext.apply(axis, {
-                    fields: ['pctd'],
+                    fields: ['pctd','pctk'],
                     maximum: 100,
                     minimum: 0,
                     renderer: function (value, layoutContext, lastValue) {
@@ -49,7 +49,7 @@ Ext.define("Chartsly.chart.indicator.FastStochasticOscillator", {
                 overboughtLevel: 80,
                 oversoldLevel: 30,
                 lookBackPeriod: 14,  //in days
-                smaDays: 3,
+                smaDays: 3,	//in days
 		smooth: true,
                 style: {
                      stroke: 'black',
