@@ -2,10 +2,10 @@
  * @class Chartsly.series.indicator.FastStochasticOscillator
  * @extends Ext.chart.series.Cartesian
  *
- * Fast Stochastic Oscillator series that iterates the store records and calculates the %D value based on the below formula:
+ * Fast Stochastic Oscillator series that iterates the store records and calculates the %K and %D value based on the below formula:
  * 
  * 
- * The calculated %D value is set a "%D" field on the record
+ * The calculated %K and %D value is set a "pctk" and "pctd" field respectively on the record
  */
 Ext.define('Chartsly.series.indicator.FastStochasticOscillator', {
     extend: 'Ext.chart.series.Cartesian',
