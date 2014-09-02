@@ -10,8 +10,8 @@ Ext.define('Chartsly.view.Main', {
         // 'Chartsly.view.test.RateOfChange'
         // 'Chartsly.view.test.PriceMomentumOscillator'
         // 'Chartsly.view.test.TRIX'
-        // 'Chartsly.view.test.MovingAverageConvergenceDivergence'
-        'Chartsly.view.test.RelativeVigorIndex'
+        'Chartsly.view.test.MovingAverageConvergenceDivergence'
+        // 'Chartsly.view.test.RelativeVigorIndex'
     ],
     config: {
 
@@ -24,8 +24,8 @@ Ext.define('Chartsly.view.Main', {
             // xclass: 'Chartsly.view.test.RateOfChange'
             // xclass: 'Chartsly.view.test.PriceMomentumOscillator'
             // xclass: 'Chartsly.view.test.TRIX'
-            // xclass: 'Chartsly.view.test.MovingAverageConvergenceDivergence'
-            xclass: 'Chartsly.view.test.RelativeVigorIndex'
+            xclass: 'Chartsly.view.test.MovingAverageConvergenceDivergence'
+            // xclass: 'Chartsly.view.test.RelativeVigorIndex'
         }]
     }
 });

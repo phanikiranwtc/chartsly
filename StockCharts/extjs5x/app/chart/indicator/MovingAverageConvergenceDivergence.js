@@ -10,7 +10,8 @@
  */
 Ext.define("Chartsly.chart.indicator.MovingAverageConvergenceDivergence", {
     extend: 'Ext.chart.CartesianChart',
-    requires: ['Chartsly.series.indicator.MovingAverageConvergenceDivergence'],
+    requires: ['Chartsly.series.indicator.MovingAverageConvergenceDivergence', 
+                'Chartsly.sprite.indicator.MovingAverageConvergenceDivergence'],
 
     alternateClassName: ['Chartsly.chart.indicator.MACD', 'Chartsly.chart.MACD'],
 
@@ -21,7 +22,7 @@ Ext.define("Chartsly.chart.indicator.MovingAverageConvergenceDivergence", {
         Ext.Array.each(config.axes, function(axis, index, recs) {
             if (axis.type === 'numeric') {
                 Ext.apply(axis, {
-                    fields: ['macd', 'sigmacd']
+                    fields: ['macd', 'sigmacd', 'histmacd']
                 });
             }
         });
@@ -29,7 +30,7 @@ Ext.define("Chartsly.chart.indicator.MovingAverageConvergenceDivergence", {
         //TODO: Find a better solution for preparing the config and drawing MACD signal line.
         //Will re-visit this in the next iteration.
         
-        //add a line series for MACD Signal line
+        //add a line series for MACD Signal line and a bar for MACD Histogram
         config.series.push({
             store: config.series[0].store,
             type: 'macd',
@@ -42,6 +43,15 @@ Ext.define("Chartsly.chart.indicator.MovingAverageConvergenceDivergence", {
             style: {
                 stroke: 'rgba(255,102,102,0.75)',
                 miterLimit: 1
+            }
+        }, {
+            store: config.series[0].store,
+            type: 'bar',
+            xField: 'date',
+            yField: 'histmacd',
+            style: {
+                stroke: 'rgba(228,124,124,0.75)',
+                fillStyle: 'rgba(228,124,124,0.75)'
             }
         });
 
