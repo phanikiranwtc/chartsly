@@ -3,10 +3,10 @@
  * @extends Ext.chart.CartesianChart
  *
  * Fast Stochastic Oscillator chart that looks for numeric axis and adds %D specific configuration
- * such as fields, maximum, and minimum. fields is defaulted to ['%D'] as this field is added by the
+ * such as fields, maximum, and minimum. fields is defaulted to ['pctd','pctk'] as this field is added by the
  * FastStochasticOscillator series to the records.
  * 
- * The calculated %D value is set a "%D" field on the record
+ * The calculated %K and %D value is set a "pctk" and 'pctd' field respectively on the record
  */
 Ext.define("Chartsly.chart.indicator.FastStochasticOscillator", {
     extend: 'Ext.chart.CartesianChart',
@@ -23,7 +23,7 @@ Ext.define("Chartsly.chart.indicator.FastStochasticOscillator", {
             if (axis.type === 'numeric') {
 
                 Ext.apply(axis, {
-                    fields: ['pctd'],
+                    fields: ['pctd','pctk'],
                     maximum: 100,
                     minimum: 0,
                     renderer: function (value, layoutContext, lastValue) {
@@ -49,7 +49,7 @@ Ext.define("Chartsly.chart.indicator.FastStochasticOscillator", {
                 overboughtLevel: 80,
                 oversoldLevel: 30,
                 lookBackPeriod: 14,  //in days
-                smaDays: 3,
+                smaDays: 3,	//in days
 		smooth: true,
                 style: {
                      stroke: 'black',
