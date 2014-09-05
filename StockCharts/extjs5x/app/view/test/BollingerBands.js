@@ -39,7 +39,8 @@ Ext.define("Chartsly.view.test.BollingerBands", {
                 period: 15,
                 bandGap: 5,
                 style: {
-                    stroke: 'rgb(187, 175, 174)'
+                    stroke: 'rgb(187, 175, 174)',
+                    lineDash: [5, 5]
                 },
                 xField: 'date',
                 yField: 'bband'
