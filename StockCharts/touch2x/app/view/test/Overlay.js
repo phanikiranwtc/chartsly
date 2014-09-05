@@ -8,8 +8,9 @@ Ext.define("Chartsly.view.test.Overlay", {
         // 'Chartsly.view.test.ParabolicSAR'
         // 'Chartsly.view.test.SimpleMovingAverage'
         // 'Chartsly.view.test.ExponentialMovingAverage'
-        'Chartsly.view.test.BollingerBands'
+        // 'Chartsly.view.test.BollingerBands'
         // 'Chartsly.view.test.MovingAverageEnvelops'
+        'Chartsly.view.test.Trendline'
     ],
     config: {
         items: [
@@ -19,8 +20,9 @@ Ext.define("Chartsly.view.test.Overlay", {
                 // xtype: 'cs-psar-test-chart'
                 // xtype: 'cs-sma-test-chart'
                 // xtype: 'cs-ema-test-chart'
-                xtype: 'cs-bbands-test-chart'
+                // xtype: 'cs-bbands-test-chart'
                 // xtype: 'cs-maenv-test-chart'
+                xtype: 'cs-tline-test-chart'
             }
         ]
     }
