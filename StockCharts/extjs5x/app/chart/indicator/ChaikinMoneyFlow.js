@@ -1,12 +1,12 @@
 /**
- * @class Chartsly.chart.indicator.WilliamPctR
+ * @class Chartsly.chart.indicator.ChaikinMoneyFlow
  * @extends Ext.chart.CartesianChart
  *
- * William %R chart that looks for numeric axis and adds William %R specific configuration
+ * ChaikinMoneyFlow chart that looks for numeric axis and adds Chikin MF specific configuration
  * such as fields, maximum, and minimum. fields is defaulted to ['pctr'] as this field is added by the
- * WilliamPctR series to the records.
+ * ChaikinMoneyFlow series to the records.
  * 
- * The calculated %R value is set a "pctr" field on the record
+ * The calculated %R value is set a "cmf" field on the record
  */
 Ext.define("Chartsly.chart.indicator.ChaikinMoneyFlow", {
     extend: 'Ext.chart.CartesianChart',
