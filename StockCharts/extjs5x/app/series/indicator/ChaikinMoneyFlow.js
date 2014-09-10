@@ -14,9 +14,9 @@
  * The calculated Chikin Money Flow value is set a "cmf" field on the record
  */
 Ext.define('Chartsly.series.indicator.ChaikinMoneyFlow', {
-    extend: 'Ext.chart.series.Cartesian',
+    extend: 'Ext.chart.series.Area',
     alias: 'series.chaikinmoneyflow',
-    seriesType: 'chaikinmoneyflow', 
+    seriesType: 'areaSeries', 
 
     config: {
 		
@@ -97,24 +97,6 @@ Ext.define('Chartsly.series.indicator.ChaikinMoneyFlow', {
         });
 
         this.callParent(arguments);
-    },
-
-    /**
-     * @private Override {@link Ext.chart.series.Series#getDefaultSpriteConfig}
-     * It gets the cartesian series config by calling the parent and then applies
-     * the Chikin Money Flow specific configs so that they are available to the WilliamPctR
-     * series
-     * @return {Object} sprite config object
-     */
-    getDefaultSpriteConfig: function () {
-		
-        var me = this,
-        parentStyleConfig = me.callParent(arguments);
-
-        return Ext.apply(parentStyleConfig, {
-			  
-           cmfPeriod : me.config.chaikinMoneyFlowPeriod
-        });
     }
 
 });

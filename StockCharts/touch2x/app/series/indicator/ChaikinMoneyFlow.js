@@ -14,12 +14,12 @@
  * The calculated Chikin Money Flow value is set a "cmf" field on the record
  */
 Ext.define('Chartsly.series.indicator.ChaikinMoneyFlow', {
-    extend: 'Ext.chart.series.Cartesian',
+    extend: 'Ext.chart.series.Area',
     alias: 'series.chaikinmoneyflow',
-    seriesType: 'chaikinmoneyflow', 
+    seriesType: 'areaSeries', 
 
     config: {
-		
+        
         /*
          * Data field containing the high value. Defaults to "high"
          */
@@ -32,10 +32,10 @@ Ext.define('Chartsly.series.indicator.ChaikinMoneyFlow', {
          * Data field containing the close value. Defaults to "close"
          */
         closeField: "close",
-		  /*
-		   * Data field containing the volume value. Defaults to "volume"
-		   */
-		  volumeField: "volume",
+          /*
+           * Data field containing the volume value. Defaults to "volume"
+           */
+          volumeField: "volume",
         /*
          * Chaikin money flow period (in days) to calculate Chaikin Money Flow. Defaults to 20 days
          */
@@ -47,7 +47,7 @@ Ext.define('Chartsly.series.indicator.ChaikinMoneyFlow', {
      * @param {Object} [config] Configuration
      */
     constructor: function (config) {
-		 
+         
         var me = this;
 
         var st = Ext.data.StoreManager.lookup(config.store);
@@ -57,64 +57,46 @@ Ext.define('Chartsly.series.indicator.ChaikinMoneyFlow', {
 
         st.each(function (item, index, length) {
            
-			   //
-				// Calculating Money Flow Multiplier value for each record with following formula
-				//
-				// Money Flow Multiplier = [(Close  -  Low) - (High - Close)] /(High - Low)
-				//
-				
-				var mfm = ( ((item.data[config.closeField] - item.data[config.lowField]) - ( item.data[config.highField] -  item.data[config.closeField] )) / (item.data[config.highField] - item.data[config.lowField]));
-				
-				item.data.mfm= mfm;
-	
-				//
-				// Money Flow Volume = Money Flow Multiplier x Volume for the Period
-				//
-				
-				var mfVolume = ( mfm * item.data[config.volumeField] );
+               //
+                // Calculating Money Flow Multiplier value for each record with following formula
+                //
+                // Money Flow Multiplier = [(Close  -  Low) - (High - Close)] /(High - Low)
+                //
+                
+                var mfm = ( ((item.data[config.closeField] - item.data[config.lowField]) - ( item.data[config.highField] -  item.data[config.closeField] )) / (item.data[config.highField] - item.data[config.lowField]));
+                
+                item.data.mfm= mfm;
+    
+                //
+                // Money Flow Volume = Money Flow Multiplier x Volume for the Period
+                //
+                
+                var mfVolume = ( mfm * item.data[config.volumeField] );
 
-				item.data.mfVolume = mfVolume;
+                item.data.mfVolume = mfVolume;
 
-				// Calculate Chaikin Money Flow for chaikinMoneyFlowPeriod
-				// e.g. : 20-period CMF = 20-period Sum of Money Flow Volume / 20 period Sum of Volume
+                // Calculate Chaikin Money Flow for chaikinMoneyFlowPeriod
+                // e.g. : 20-period CMF = 20-period Sum of Money Flow Volume / 20 period Sum of Volume
 
-	         if (index < cmfPeriod) {
-	                item["periodCMF"] = "";
-	                return;
-	         }else{
+             if (index < cmfPeriod) {
+                    item["periodCMF"] = "";
+                    return;
+             }else{
 
-					var periodCMFRecs = Ext.Array.slice(recs, index - cmfPeriod, index + 1);
+                    var periodCMFRecs = Ext.Array.slice(recs, index - cmfPeriod, index + 1);
 
-					var sumOfPeriodMFVArray = Ext.Array.pluck(Ext.Array.pluck(periodCMFRecs, "data"), 'mfVolume');
-					var sumOfVolumeArray = Ext.Array.pluck(Ext.Array.pluck(periodCMFRecs, "data"), 'volume');
-								
-					var periodCMF = Ext.Array.sum(sumOfPeriodMFVArray) / Ext.Array.sum(sumOfVolumeArray);
+                    var sumOfPeriodMFVArray = Ext.Array.pluck(Ext.Array.pluck(periodCMFRecs, "data"), 'mfVolume');
+                    var sumOfVolumeArray = Ext.Array.pluck(Ext.Array.pluck(periodCMFRecs, "data"), 'volume');
+                                
+                    var periodCMF = Ext.Array.sum(sumOfPeriodMFVArray) / Ext.Array.sum(sumOfVolumeArray);
 
-					item.data.cmf = periodCMF;
-					 
-	          }
-			
+                    item.data.cmf = periodCMF;
+                     
+              }
+            
         });
 
         this.callParent(arguments);
-    },
-
-    /**
-     * @private Override {@link Ext.chart.series.Series#getDefaultSpriteConfig}
-     * It gets the cartesian series config by calling the parent and then applies
-     * the Chikin Money Flow specific configs so that they are available to the WilliamPctR
-     * series
-     * @return {Object} sprite config object
-     */
-    getDefaultSpriteConfig: function () {
-		
-        var me = this,
-        parentStyleConfig = me.callParent(arguments);
-
-        return Ext.apply(parentStyleConfig, {
-			  
-           cmfPeriod : me.config.chaikinMoneyFlowPeriod
-        });
     }
 
 });

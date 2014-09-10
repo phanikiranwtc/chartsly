@@ -37,12 +37,12 @@ Ext.define("Chartsly.view.test.ChaikinMoneyFlow", {
                         highField: "high",
                         lowField: "low",
                         closeField: "close",
-								volumeField :"volume",
+						volumeField :"volume",
                         chaikinMoneyFlowPeriod: 20,  //in days
                         style: {
-                            stroke: 'rgba(237,123,43,0.75)',
-                            fill: 'rgba(237,123,43,0.1)',
-                            miterLimit: 1
+                            // stroke: 'rgba(237,123,43,0.75)',
+                            // fill: 'rgba(237,123,43,0.1)',
+                            // miterLimit: 1
                         }
                    
                     }
