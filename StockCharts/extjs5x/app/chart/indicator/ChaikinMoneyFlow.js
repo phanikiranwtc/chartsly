@@ -10,6 +10,7 @@
  */
 Ext.define("Chartsly.chart.indicator.ChaikinMoneyFlow", {
     extend: 'Ext.chart.CartesianChart',
+	 alternateClassName: 'Chartsly.chart.CMF',
     requires: ['Chartsly.series.indicator.ChaikinMoneyFlow', 'Chartsly.sprite.indicator.ChaikinMoneyFlow'],
     xtype: 'chaikinmoneyflow',
 

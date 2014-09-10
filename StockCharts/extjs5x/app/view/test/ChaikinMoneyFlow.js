@@ -7,7 +7,7 @@ Ext.define("Chartsly.view.test.ChaikinMoneyFlow", {
         'Chartsly.view.test.CandleStick',
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
-        'Ext.chart.series.Line',
+        'Ext.chart.series.Area',
         'Chartsly.chart.indicator.ChaikinMoneyFlow',
         'Chartsly.model.Stock', 
         'Chartsly.store.Apple'
@@ -19,7 +19,7 @@ Ext.define("Chartsly.view.test.ChaikinMoneyFlow", {
                 height: 350,
             },
             {
-                xclass: 'Chartsly.chart.indicator.ChaikinMoneyFlow',
+                xclass: 'Chartsly.chart.CMF',
                 height: 250,
                 insetPadding: {
                     top: 10,
@@ -44,6 +44,7 @@ Ext.define("Chartsly.view.test.ChaikinMoneyFlow", {
                             fill: 'rgba(237,123,43,0.1)',
                             miterLimit: 1
                         }
+                   
                     }
                 ],
                 axes: [
