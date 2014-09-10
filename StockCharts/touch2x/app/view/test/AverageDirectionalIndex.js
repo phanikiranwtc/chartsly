@@ -17,21 +17,16 @@ Ext.define("Chartsly.view.test.AverageDirectionalIndex", {
             {
                 xtype: 'candlestick-test-chart',
                 height: 350,
-                  insetPadding: {
-                    top: 10,
-                    right: 10,
-                    left: 10,
-                    bottom: 10
-                },
+             
             },
-            {
+               {
                 xclass: 'Chartsly.chart.indicator.AverageDirectionalIndex',
                 height: 250,
                 insetPadding: {
-                    top: 10,
-                    right: 10,
-                    left: 10,
-                    bottom: 10
+                     top: 10,
+                    right: 0,
+                    left: 0,
+                    bottom: 0
                 },
                 background: 'white',
                 series: [
@@ -39,7 +34,7 @@ Ext.define("Chartsly.view.test.AverageDirectionalIndex", {
                         store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
                         type: 'adx',
                         xField: 'date',
-                        yField: 'ADX',
+                        yField: 'adx',
                         highField: "high",
                         lowField: "low",
                         closeField: "close",smooth:true,
@@ -49,7 +44,8 @@ Ext.define("Chartsly.view.test.AverageDirectionalIndex", {
                             fill: 'rgba(237,123,43,0.1)',
                             miterLimit: 1
                         }
-                    }
+                    },
+                    
                 ],
                 axes: [
                     {

@@ -31,7 +31,7 @@ Ext.define('Chartsly.series.indicator.AverageDirectionalIndex', {
      * All Caliculation related fields were created dynamically, has naming is combine with lookback period, TrueRange14(TR14)
        +DM,-DM,+DI14,-DI14,DX,ADX. 
      */
-    constructor: function (config) {
+      constructor: function (config) {
 
         var me = this;
 
@@ -44,166 +44,190 @@ Ext.define('Chartsly.series.indicator.AverageDirectionalIndex', {
         var lows = Ext.Array.pluck(Ext.Array.pluck(recs, "data"), config.lowField);
         var closes = Ext.Array.pluck(Ext.Array.pluck(recs, "data"), config.closeField);
         
-        var tmp_TR = [];tmp_PDM = [];tmp_NDM = [];
-        tmp_DX = [];tmp_ADX = [];
-        
-        
+        var tmp_Tr = [];tmp_Pdm = [];tmp_Ndm = [];
+        tmp_Dx = [];tmp_Adx = [];
+    
         //lookbackperiod  
-        var mlpPeriod = config.lookBackPeriod;
+        var mlpPeriod = config.lookBackPeriod; 
+      
         var lpPeriod = config.lookBackPeriod - 1;
               
-      // define new arrays for temporary True range with lookback period tmp_TR14 Plus Directional Movement with look back period , 
-        eval('var tmp_TR'+mlpPeriod+'=[]');
-        eval('var tmp_PDM'+mlpPeriod+'=[]'); eval('var tmp_PDI'+mlpPeriod+'=[]');eval('var tmp_DIDiff'+mlpPeriod+'=[]');
-        eval('var tmp_NDM'+mlpPeriod+'=[]');eval('var tmp_NDI'+mlpPeriod+'=[]');eval('var tmp_DISum'+mlpPeriod+'=[]');
+     
+       // temporary variable for calculating the +DI , - DI and adx and their dependency calculations 
         
+        var tmp_TrPeriod=[]; 
+        var tmp_PdmPeriod=[]; var tmp_PdiPeriod=[];var tmp_DiDiffPeriod=[];
+        var tmp_NdmPeriod=[];var tmp_NdiPeriod=[]; var tmp_DiSumPeriod=[];
+        
+       
 
 
         st.each(function (item, index, length) {
-          
+         
+         if(config.yField!='adx'){
+			 return false;
+			 }
            
          if (index == 0) {
              
                           
-             tmp_TR.push(null);
-             tmp_PDM.push(null);
-             tmp_NDM.push(null); 
-             tmp_DX.push(null);
-             tmp_ADX.push(null);
-             
-                eval ('tmp_TR'+mlpPeriod+'.push(null)');            
-                eval ('tmp_PDM'+mlpPeriod+'.push(null)'); 
-                eval ('tmp_NDM'+mlpPeriod+'.push(null)');
+             tmp_Tr.push(null);
+             tmp_Pdm.push(null);
+             tmp_Ndm.push(null); 
+           
+             tmp_Dx.push(null);
+             tmp_Adx.push(null);
+          
+             tmp_TrPeriod.push(null);
               
-                eval ('tmp_PDI'+mlpPeriod+'.push(null)');
-                eval ('tmp_NDI'+mlpPeriod+'.push(null)');
+             tmp_PdmPeriod.push(null);
+             tmp_PdiPeriod.push(null);
+             
+             tmp_NdmPeriod.push(null); 
+             tmp_NdiPeriod.push(null);
+             
+             tmp_DiDiffPeriod.push(null);
+             tmp_DiSumPeriod.push(null);
+        
                 
-                eval('tmp_DIDiff'+mlpPeriod+'.push(null)');
-                eval('tmp_DISum'+mlpPeriod+'.push(null)');
                 
                 
            } 
-        
+       
   
  if (index != 0) {
-           var TR = Ext.Array.max([highs[index]-lows[index],Math.abs(highs[index]-closes[index-1]),Math.abs(lows[index]-closes[index-1])]);
-           item.data.TR = TR;
-           tmp_TR.push(TR);
+           var tr = Ext.Array.max([highs[index]-lows[index],Math.abs(highs[index]-closes[index-1]),Math.abs(lows[index]-closes[index-1])]);
+           item.data.tr = tr;
+           tmp_Tr.push(tr);
            
-           var PDM =  (( highs[index]- highs[index-1]  >  lows[index-1]-lows[index]) ? Ext.Array.max([highs[index]- highs[index-1],0]) : 0);
-           item.data.PDM = PDM;     
-           tmp_PDM.push(PDM);     
+           var pdm =  (( highs[index]- highs[index-1]  >  lows[index-1]-lows[index]) ? Ext.Array.max([highs[index]- highs[index-1],0]) : 0);
+           item.data.pdm = pdm;     
+           tmp_Pdm.push(pdm);     
                
-           var NDM =  (( lows[index-1]-lows[index] > highs[index]- highs[index-1]  ) ? Ext.Array.max([lows[index-1]-lows[index],0]) : 0);
-           item.data.NDM = NDM;
+           var ndm =  (( lows[index-1]-lows[index] > highs[index]- highs[index-1]  ) ? Ext.Array.max([lows[index-1]-lows[index],0]) : 0);
+           item.data.ndm = ndm;
          
-           tmp_NDM.push(NDM); 
-  }     
+           tmp_Ndm.push(ndm); 
+  }    
+
          if (index <= mlpPeriod) {
-                item["pctr"] = "";
+            
              
             if(index!=0){ 
-               tmp_DX.push(null);
-               tmp_ADX.push(null);
-                eval ('tmp_TR'+mlpPeriod+'.push(null)');            
-                eval ('tmp_PDM'+mlpPeriod+'.push(null)'); 
-                eval ('tmp_NDM'+mlpPeriod+'.push(null)');
+               tmp_Dx.push(null);
+               tmp_Adx.push(null);
+               
+             tmp_TrPeriod.push(null);
               
-                eval ('tmp_PDI'+mlpPeriod+'.push(null)');
-                eval ('tmp_NDI'+mlpPeriod+'.push(null)');
+             tmp_PdmPeriod.push(null);
+             tmp_PdiPeriod.push(null);
+             
+             tmp_NdmPeriod.push(null); 
+             tmp_NdiPeriod.push(null);
                 
-                eval('tmp_DIDiff'+mlpPeriod+'.push(null)');
-                eval('tmp_DISum'+mlpPeriod+'.push(null)');
+             tmp_DiDiffPeriod.push(null);
+             tmp_DiSumPeriod.push(null);
+        
              }   
                 
                return;
             }
-      
-           if(index == mlpPeriod+1){
+       
+           if(index == mlpPeriod+1 ){
 			
 			
-			eval('TR'+mlpPeriod+' = '+Ext.Array.sum(tmp_TR));  
-		   	eval('item.data.TR'+mlpPeriod+' = '+eval('TR'+mlpPeriod)+'' );
-			eval('tmp_TR'+mlpPeriod+'.push('+eval('TR'+mlpPeriod)+')' );
+			var trPeriod = Ext.Array.sum(tmp_Tr);  
+		   	item.data.trperiod = trPeriod;
+			tmp_TrPeriod.push(trPeriod);
 			
 					 
-			eval('var PDM'+mlpPeriod+' = '+Ext.Array.sum(tmp_PDM));   
-		    eval('item.data.PDM'+mlpPeriod+' = '+eval('PDM'+mlpPeriod)+'');
-		    eval('tmp_PDM'+mlpPeriod+'.push('+eval('PDM'+mlpPeriod)+')' );
+			var pdmPeriod = Ext.Array.sum(tmp_Pdm);   
+		    item.data.pdmperiod = pdmPeriod;
+		    tmp_PdmPeriod.push(pdmPeriod);
 			
-		    eval('var NDM'+mlpPeriod+' = '+Ext.Array.sum(tmp_NDM));   
-			eval('item.data.NDM'+mlpPeriod+' = '+eval('NDM'+mlpPeriod)+'' );	 
-			eval('tmp_NDM'+mlpPeriod+'.push('+eval('NDM'+mlpPeriod)+')' );	 
+		    var ndmPeriod = Ext.Array.sum(tmp_Ndm);   
+		    item.data.ndmperiod = ndmPeriod;
+		    tmp_NdmPeriod.push(ndmPeriod); 
 			
 			
 		  	 
 		   } else {
 
-			eval('var TR'+mlpPeriod+' = '+ eval('tmp_TR'+mlpPeriod+'['+(index-1)+'] - '+'(tmp_TR'+mlpPeriod+'['+(index-1)+']/'+mlpPeriod+')+tmp_TR['+index+']'));  
-		   	eval('item.data.TR'+mlpPeriod+' = '+eval('TR'+mlpPeriod) );  
-		   	eval('tmp_TR'+mlpPeriod+'.push('+eval('TR'+mlpPeriod)+')' );
+			var trPeriod = tmp_TrPeriod[(index-1)] - (tmp_TrPeriod[(index-1)]/(lpPeriod+1))+ tmp_Tr[index] ;  
+	    	item.data.trperiod = trPeriod;
+			tmp_TrPeriod.push(trPeriod);
 		   	
 		   	
-		   	eval('var PDM'+mlpPeriod+' = '+ eval('tmp_PDM'+mlpPeriod+'['+(index-1)+'] - '+'(tmp_PDM'+mlpPeriod+'['+(index-1)+']/'+mlpPeriod+')+tmp_PDM['+index+']')); 
-		    eval('item.data.PDM'+mlpPeriod+' = '+eval('PDM'+mlpPeriod)+'');
-		    eval('tmp_PDM'+mlpPeriod+'.push('+eval('PDM'+mlpPeriod)+')' );
+		   	
+		    
+		    var pdmPeriod = ( tmp_PdmPeriod[(index-1)] - (tmp_PdmPeriod[(index-1)]/mlpPeriod) +tmp_Pdm[index] ); 
+		    item.data.pdmperiod = pdmPeriod;
+		    tmp_PdmPeriod.push(pdmPeriod);
 			
-		    eval('var NDM'+mlpPeriod+' = '+ eval('tmp_NDM'+mlpPeriod+'['+(index-1)+'] - '+'(tmp_NDM'+mlpPeriod+'['+(index-1)+']/'+mlpPeriod+')+tmp_NDM['+index+']')); 
-			eval('item.data.NDM'+mlpPeriod+' = '+eval('NDM'+mlpPeriod)+'' );	 
-			eval('tmp_NDM'+mlpPeriod+'.push('+eval('NDM'+mlpPeriod)+')' );	 
-		   	
+		 
+		     var ndmPeriod = ( tmp_NdmPeriod[(index-1)] - (tmp_NdmPeriod[(index-1)]/mlpPeriod) +tmp_Ndm[index] );  	
+		   	 item.data.ndmperiod = ndmPeriod;
+		     tmp_NdmPeriod.push(ndmPeriod); 
 		   	
 			
 		   } 
 		
-		    eval('var PDI'+mlpPeriod+' = '+(100 * eval('tmp_PDM'+mlpPeriod+'['+(index)+']')/eval('tmp_TR'+mlpPeriod+'['+(index)+']')));   
-			eval('item.data.PDI'+mlpPeriod+' = '+eval('PDI'+mlpPeriod)+'' );	 
-			eval('tmp_PDI'+mlpPeriod+'.push('+eval('PDI'+mlpPeriod)+')' );	 
+			var pdiPeriod  =  (100 * tmp_PdmPeriod[index])/tmp_TrPeriod[index];   
+			item.data.pdiperiod  = pdiPeriod;	 
+			tmp_PdiPeriod.push(pdiPeriod);	 
 		
+		
+	
+			var ndiPeriod  =  (100 * tmp_NdmPeriod[index])/tmp_TrPeriod[index];   
+			item.data.ndiperiod  = ndiPeriod;	 
+			tmp_NdiPeriod.push(ndiPeriod);	 
 			
-			eval('var NDI'+mlpPeriod+' = '+( 100 * eval('tmp_NDM'+mlpPeriod+'['+(index)+']')/eval('tmp_TR'+mlpPeriod+'['+(index)+']')));   
-			eval('item.data.NDI'+mlpPeriod+' = '+eval('NDI'+mlpPeriod) );	 
-			eval('tmp_NDI'+mlpPeriod+'.push('+eval('NDI'+mlpPeriod)+')' );	 
+			
+       
+      		
+            var diDiffPeriod = Math.abs( tmp_PdiPeriod[index] - tmp_NdiPeriod[index]);   
+			item.data.didiffperiod = diDiffPeriod;	 
+			tmp_DiDiffPeriod.push(diDiffPeriod);	
             
-            eval('var DIDiff'+mlpPeriod+' = '+Math.abs(eval('tmp_PDI'+mlpPeriod+'['+(index)+']') - eval('tmp_NDI'+mlpPeriod+'['+(index)+']')));   
-			eval('item.data.DIDiff'+mlpPeriod+' = '+eval('DIDiff'+mlpPeriod) );	 
-			eval('tmp_DIDiff'+mlpPeriod+'.push('+eval('DIDiff'+mlpPeriod)+')' );	
-            
-            eval('var DISum'+mlpPeriod+' = '+Math.abs(eval('tmp_PDI'+mlpPeriod+'['+(index)+']') + eval('tmp_NDI'+mlpPeriod+'['+(index)+']')));   
-			eval('item.data.DISum'+mlpPeriod+' = '+eval('DISum'+mlpPeriod) );	 
-			eval('tmp_DISum'+mlpPeriod+'.push('+eval('DISum'+mlpPeriod)+')' );	
+        	
+            var diSumPeriod = Math.abs( tmp_PdiPeriod[index] + tmp_NdiPeriod[index] );   
+			
+			item.data.disumperiod = diSumPeriod;	 
+			tmp_DiSumPeriod.push(diSumPeriod);	
+			
+		     	
             
               
-           var DX = 100 * eval('tmp_DIDiff'+mlpPeriod+'['+(index)+']')/eval('tmp_DISum'+mlpPeriod+'['+(index)+']') ;
-           item.data.DX = DX;
-           tmp_DX.push(DX);
+           var dx = 100 * ( tmp_DiDiffPeriod[index]/ tmp_DiSumPeriod[index] ) ;
+           item.data.dx = dx;
+           tmp_Dx.push(dx);
            
-           if(index > 2 * mlpPeriod) {
+           if(index > 2 * lpPeriod+1) {
       
-               if(index== 2 * mlpPeriod+1){
-                  var ADX = Ext.Array.sum(tmp_DX)/mlpPeriod ;
-                  item.data.ADX = ADX;
-                  tmp_ADX.push(ADX);
+               if(index== 2 * lpPeriod+2){
+                  var adx = Ext.Array.sum(tmp_Dx)/mlpPeriod;
+                  item.data.adx = adx;
+                  tmp_Adx.push(adx);
                }else{
 				
-				  var ADX = ( (tmp_ADX[index-1] * lpPeriod)+ tmp_DX[index] )/ mlpPeriod ; 
-				  item.data.ADX = ADX;
-                  tmp_ADX.push(ADX);
+				  var adx = ((tmp_Adx[index-1] * lpPeriod)+ tmp_Dx[index])/(lpPeriod+1) ; 
+				  item.data.adx = adx;
+                  tmp_Adx.push(adx);
 			   }  
-                  
-                  
-	       
+            
+             
+         
+	      
 	       }else{
-			   tmp_ADX.push(null);
+			   tmp_Adx.push(null);
 			   
 		   }
           
-             
+          
       
-        });
-
+        }); 
+      
         this.callParent(arguments);
-    },
-
+    },   
    
 });
