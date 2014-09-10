@@ -1,7 +1,7 @@
 Ext.define('Chartsly.chart.indicator.AverageDirectionalIndex',{
    extend: 'Ext.chart.CartesianChart',
    requires: ['Chartsly.series.indicator.AverageDirectionalIndex'],
-   xtype:'ADXChart',
+   xtype:'adxchart',
    
    initConfig: function(config) {
 
@@ -9,11 +9,13 @@ Ext.define('Chartsly.chart.indicator.AverageDirectionalIndex',{
  
        var clpperiod = series.lookBackPeriod; 
 
+       var clpperiod =""; 
+
         Ext.Array.each(config.axes, function(axis, index, recs) {
             if (axis.type === 'numeric') {
 				
                 Ext.apply(axis, {
-                    fields: ['ADX','PDI'+clpperiod+'','NDI'+clpperiod+''],
+                    fields: ['adx'],
                    
                 });
             }
@@ -23,10 +25,9 @@ Ext.define('Chartsly.chart.indicator.AverageDirectionalIndex',{
             store: config.series[0].store,
             type: 'adx',
             xField: config.series[0].xField,
-            yField: 'PDI'+clpperiod+'',
+            yField: 'pdiperiod',
             closeField: config.series[0].closeField,
-           
-            smooth: true,
+            lookBackPeriod: 14,  //in days
             style: {
                 stroke: 'green',
                 miterLimit: 1
@@ -37,10 +38,9 @@ Ext.define('Chartsly.chart.indicator.AverageDirectionalIndex',{
             store: config.series[0].store,
             type: 'adx',
             xField: config.series[0].xField,
-            yField: 'NDI'+clpperiod+'',
+            yField: 'ndiperiod',
             closeField: config.series[0].closeField,
-            
-            smooth: true,
+            lookBackPeriod: 14,  //in days
             style: {
                 stroke: 'red',
                 miterLimit: 1
