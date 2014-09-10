@@ -1,51 +1,47 @@
 /**
- * Class to test AverageDirectionalIndex chart
+ * Class to test Fast Stochastic Oscillator chart
  */
-Ext.define("Chartsly.view.test.AverageDirectionalIndex", {
+Ext.define("Chartsly.view.test.FastStochasticOscillator", {
     extend: 'Ext.Panel',
     requires: [
-        'Chartsly.view.test.CandleStick',
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
-        'Chartsly.chart.indicator.AverageDirectionalIndex',
+        'Chartsly.chart.indicator.FastStochasticOscillator',
         'Chartsly.model.Stock', 
         'Chartsly.store.Apple'
     ],
     config: {
         items: [
             {
-                xtype: 'candlestick-test-chart',
-                height: 350,
-             
-            },
-               {
-                xclass: 'Chartsly.chart.indicator.AverageDirectionalIndex',
+                xclass: 'Chartsly.chart.indicator.FastStochasticOscillator',
                 height: 250,
                 insetPadding: {
-                     top: 10,
-                    right: 0,
-                    left: 0,
+                    top: 10,
+                    right: 10,
+                    left: 10,
                     bottom: 0
                 },
                 background: 'white',
                 series: [
                     {
                         store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
-                        type: 'adx',
+                        type: 'faststochasticoscillator',
                         xField: 'date',
-                        yField: 'adx',
+                        yField: 'pctk',
+                        closeField: "close",
                         highField: "high",
                         lowField: "low",
-                        closeField: "close",smooth:true,
+                        overboughtLevel: 80,
+                        oversoldLevel: 30,
                         lookBackPeriod: 14,  //in days
+                        smaDays: 3,  //in days
                         style: {
-                            stroke: 'black',
-                            fill: 'rgba(237,123,43,0.1)',
+                            stroke: 'red',
+                            fill: 'red',
                             miterLimit: 1
                         }
-                    },
-                    
+                    }
                 ],
                 axes: [
                     {
@@ -58,7 +54,7 @@ Ext.define("Chartsly.view.test.AverageDirectionalIndex", {
                     {
                         type: 'time',
                         position: 'bottom',
-                        fields: ['Time'],
+                        fields: ['date'],
                         style: {
                             strokeStyle: '#666',
                             estStepSize: 150

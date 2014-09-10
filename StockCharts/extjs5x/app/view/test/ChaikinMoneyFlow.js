@@ -1,14 +1,14 @@
 /**
- * Class to test AverageDirectionalIndex chart
+ * Class to test Chikin Money Flow indicator  chart
  */
-Ext.define("Chartsly.view.test.AverageDirectionalIndex", {
+Ext.define("Chartsly.view.test.ChaikinMoneyFlow", {
     extend: 'Ext.Panel',
     requires: [
         'Chartsly.view.test.CandleStick',
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
-        'Ext.chart.series.Line',
-        'Chartsly.chart.indicator.AverageDirectionalIndex',
+        'Ext.chart.series.Area',
+        'Chartsly.chart.indicator.ChaikinMoneyFlow',
         'Chartsly.model.Stock', 
         'Chartsly.store.Apple'
     ],
@@ -17,13 +17,12 @@ Ext.define("Chartsly.view.test.AverageDirectionalIndex", {
             {
                 xtype: 'candlestick-test-chart',
                 height: 350,
-             
             },
-               {
-                xclass: 'Chartsly.chart.indicator.AverageDirectionalIndex',
+            {
+                xclass: 'Chartsly.chart.CMF',
                 height: 250,
                 insetPadding: {
-                     top: 10,
+                    top: 10,
                     right: 0,
                     left: 0,
                     bottom: 0
@@ -32,20 +31,21 @@ Ext.define("Chartsly.view.test.AverageDirectionalIndex", {
                 series: [
                     {
                         store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
-                        type: 'adx',
+                        type: 'chaikinmoneyflow',
                         xField: 'date',
-                        yField: 'adx',
+                        yField: 'cmf',
                         highField: "high",
                         lowField: "low",
-                        closeField: "close",smooth:true,
-                        lookBackPeriod: 14,  //in days
+                        closeField: "close",
+						volumeField :"volume",
+                        chaikinMoneyFlowPeriod: 20,  //in days
                         style: {
-                            stroke: 'black',
-                            fill: 'rgba(237,123,43,0.1)',
-                            miterLimit: 1
+                            // stroke: 'rgba(237,123,43,0.75)',
+                            // fill: 'rgba(237,123,43,0.1)',
+                            // miterLimit: 1
                         }
-                    },
-                    
+                   
+                    }
                 ],
                 axes: [
                     {
@@ -58,7 +58,7 @@ Ext.define("Chartsly.view.test.AverageDirectionalIndex", {
                     {
                         type: 'time',
                         position: 'bottom',
-                        fields: ['Time'],
+                        fields: ['date'],
                         style: {
                             strokeStyle: '#666',
                             estStepSize: 150
