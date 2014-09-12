@@ -86,6 +86,18 @@ Ext.define('Chartsly.interactions.Annotation', {
     itemOnMove: null,   //internal,
     continueMove: false,    //internal
 
+    constructor: function() {
+
+        this.callParent(arguments);
+
+        //There is not direct config to set the button text :(
+        Ext.MessageBox.YESNOCANCEL = [
+            {text: 'Cancel', itemId: 'cancel'},
+            {text: 'Remove',     itemId: 'no'},
+            {text: 'Save',    itemId: 'yes', ui: 'action'}
+        ];
+    },
+
     updateChart: function (chart) {
         if (!(chart instanceof Ext.chart.CartesianChart)) {
             throw 'Annotation interaction can only be used on cartesian charts.';
@@ -108,14 +120,15 @@ Ext.define('Chartsly.interactions.Annotation', {
         var me = this,
             xy = me.getChartPosition(e),
             chart = me.getChart(),
-            surface = chart.getSurface('overlay');
+            surface = chart.getSurface('main');
 
         //show an image to indicate annotation
         var img = {
                 type: 'image',
                 x: xy[0] - 15,
                 y: xy[1] - 30,
-                draggable: true,
+                width: 30,
+                height: 30,
                 src: 'resources/images/Annotation.png'
         };
 
@@ -125,9 +138,9 @@ Ext.define('Chartsly.interactions.Annotation', {
         //create a dialog with text area
         Ext.Msg.show({
             header:false,
-            buttons: Ext.Msg.YESNOCANCEL,
+            buttons: Ext.MessageBox.YESNOCANCEL,
             buttonText: {yes: 'Save', no: 'Remove'},
-            multiline: true,
+            multiLine: true,
             closable: false,
             fn: function( btn , text, opt){
                 if (btn == 'no') {
@@ -150,16 +163,16 @@ Ext.define('Chartsly.interactions.Annotation', {
     onEditGestureEnd: function(e) {
         var me = this,
             chart = me.getChart(),
-            surface = chart.getSurface('overlay'),
+            surface = chart.getSurface('main'),
             item = me.getMatchingAnnotationSprite(e);
 
         if (item) {
             //create a dialog with text area populated for edit
             Ext.Msg.show({
                 header:false,
-                buttons: Ext.Msg.YESNOCANCEL,
+                buttons: Ext.MessageBox.YESNOCANCEL,
                 buttonText: {yes: 'Save', no: 'Remove'},
-                multiline: true,
+                multiLine: true,
                 closable: false,
                 value: item.text,
                 fn: function( btn , text, opt){
@@ -218,14 +231,14 @@ Ext.define('Chartsly.interactions.Annotation', {
 
         if (me.itemOnMove) {
             me.itemOnMove.sprite.setAttributes({x: xy[0] - 15, y: xy[1] - 15});  
-            me.getChart().getSurface('overlay').renderFrame();      
+            me.getChart().getSurface('main').renderFrame();      
         }
     },
 
     onGestureEnd: function (e) {
         var me = this,
             chart = me.getChart(),
-            surface =  chart.getSurface('overlay');
+            surface =  chart.getSurface('main');
 
         surface.renderFrame();
         me.unlockEvents(me.getMoveGesture());
@@ -244,8 +257,8 @@ Ext.define('Chartsly.interactions.Annotation', {
         var me = this;
 
         var chart = me.getChart(),
-            surface = chart.getSurface('overlay'),
-            rect = Ext.Array.slice(chart.getInnerRect()),
+            surface = chart.getSurface('main'),
+            rect = Ext.Array.slice(chart.getInnerRegion()),
             padding = chart.getInnerPadding(),
             px = padding.left,
             py = padding.top,
