@@ -19,8 +19,8 @@ Ext.define('Chartsly.view.main.Main', {
     // 'Chartsly.view.test.TRIX'
     // 'Chartsly.view.test.MovingAverageConvergenceDivergence'
     // 'Chartsly.view.test.RelativeVigorIndex'
-    //'Chartsly.view.test.Overlay',
-	 'Chartsly.view.test.ChaikinMoneyFlow'
+    'Chartsly.view.test.Overlay'
+	 // 'Chartsly.view.test.ChaikinMoneyFlow'
     ],
 
     xtype: 'app-main',
@@ -45,7 +45,7 @@ Ext.define('Chartsly.view.main.Main', {
         // xclass: 'Chartsly.view.test.TRIX'
         // xclass: 'Chartsly.view.test.MovingAverageConvergenceDivergence'
         // xclass: 'Chartsly.view.test.RelativeVigorIndex'
-        //xclass: 'Chartsly.view.test.Overlay',
-		  xclass: 'Chartsly.view.test.ChaikinMoneyFlow'
+        xclass: 'Chartsly.view.test.Overlay'
+		   // xclass: 'Chartsly.view.test.ChaikinMoneyFlow'
     }]
 });
