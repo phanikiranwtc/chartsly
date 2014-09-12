@@ -11,7 +11,8 @@ Ext.define("Chartsly.view.test.Overlay", {
         // 'Chartsly.view.test.BollingerBands'
         // 'Chartsly.view.test.MovingAverageEnvelops'
         // 'Chartsly.view.test.Trendline'
-        'Chartsly.view.test.FibonacciRetracements'
+        // 'Chartsly.view.test.FibonacciRetracements'
+        'Chartsly.view.test.Annotation'
     ],
     config: {
         items: [
@@ -24,7 +25,8 @@ Ext.define("Chartsly.view.test.Overlay", {
                 // xtype: 'cs-bbands-test-chart'
                 // xtype: 'cs-maenv-test-chart'
                 // xtype: 'cs-tline-test-chart'
-                xtype: 'cs-fibonacci-test-chart'
+                // xtype: 'cs-fibonacci-test-chart'
+                xtype: 'cs-annot-test-chart'
             }
         ]
     }
