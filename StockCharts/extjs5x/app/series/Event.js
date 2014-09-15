@@ -28,17 +28,6 @@ Ext.define('Chartsly.series.Event', {
 
         var type = config.eventType;
 
-        Ext.apply(config, {
-            tooltip: {
-                trackMouse: true,
-                style: 'background: #fff',
-                renderer: function(storeItem, item) {
-                    //TODO: Parameterize the string format and fields
-                    this.setHtml(Ext.String.capitalize(type) + ' - ' + storeItem.get("type") + ' : ' + storeItem.get(config.yField) + '%' + '</br>' + storeItem.get("remark"));
-                }
-            }
-        });
-
         switch(type) {
             case 'dividend':
                 me.setImage("resources/images/Dividend.png");
@@ -53,17 +42,44 @@ Ext.define('Chartsly.series.Event', {
                 me.setImage("resources/images/Rights.png");
                 break;
             default:
-                break;  //it is already set to the default - Event
+                me.setImage("resources/images/Event.png");
+                break;
         }
 
-        //add the image element to the document
-        var el = Ext.Element.create({
-            tag: 'img',
-            src: me.getImage(),
-            id: 'chartsly-event-img-id' //TODO: find a better way to create a unique id, from the application perspective
+        Ext.apply(config, {
+            marker: {
+                type: 'image',
+                src: me.getImage(),
+                width: 30,
+                height: 30,
+                x: -15,
+                y: -30,
+                // scale: 0.7,
+                fx: {
+                    duration: 200
+                }
+            },
+            tooltip: {
+                trackMouse: true,
+                style: 'background: #fff',
+                renderer: function(storeItem, item) {
+                    //TODO: Parameterize the string format and fields
+                    this.setHtml(Ext.String.capitalize(type) + ' - ' + storeItem.get("type") + ' : ' + storeItem.get(config.yField) + '%' + '</br>' + storeItem.get("remark"));
+                }
+            }
         });
 
-        Ext.getBody().appendChild(el);
+        //find out the event series sequence
+        var series = config.chart.config.series;
+        var i = 0;
+        me.eventSeriesSeq = 0;
+        for (i; i < series.length; i++) {
+            if (series[i].type == 'event') {
+                if (series[i].eventType == config.eventType) {
+                    me.eventSeriesSeq = i;
+                }
+            }
+        }
 
         this.callParent(arguments);
     },
@@ -80,7 +96,7 @@ Ext.define('Chartsly.series.Event', {
             parentStyleConfig = me.callParent(arguments);
 
         return Ext.apply(parentStyleConfig, {
-            image: me.getImage()
+            seq: me.eventSeriesSeq
         });
     }
 });

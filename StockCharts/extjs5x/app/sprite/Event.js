@@ -10,42 +10,12 @@ Ext.define('Chartsly.sprite.Event', {
     inheritableStatics: {
         def: {
             processors: {
-                image: 'string'
+                seq: 'number'
             }
         }
     },
 
     list: null,
-
-    drawEventMarker: function(ctx, surface, list) {
-        var me = this,
-            attr = me.attr,
-            imgSrc = attr.image,
-            i, x, y,
-            dataX = attr.dataX,
-            dataY = attr.dataY,
-            labels = attr.labels,
-            drawLabels = labels && me.getBoundMarker('labels'),
-            matrix = attr.matrix,
-            surfaceMatrix = surface.matrix,
-            pixel = surface.devicePixelRatio,
-            xx = matrix.getXX(),
-            yy = matrix.getYY(),
-            dx = matrix.getDX(),
-            dy = matrix.getDY();
-
-        for (i = 0; i < list.length; i += 3) {
-            x = list[i];
-            y = list[i + 1];
-
-            // var imageObj = new Image();
-            // imageObj.src = imgSrc;
-            var imageObj = document.getElementById('chartsly-event-img-id');
-
-            ctx.drawImage(imageObj, x - 15, 0);
-        }
-
-    },
 
     /**
      * @private Override {@link Ext.chart.series.sprite.Line#renderAggregates}
@@ -56,7 +26,6 @@ Ext.define('Chartsly.sprite.Event', {
             dataX = attr.dataX,
             dataY = attr.dataY,
             labels = attr.labels,
-            drawLabels = labels && me.getBoundMarker('labels'),
             matrix = attr.matrix,
             surfaceMatrix = surface.matrix,
             pixel = surface.devicePixelRatio,
@@ -65,7 +34,7 @@ Ext.define('Chartsly.sprite.Event', {
             dx = matrix.getDX(),
             dy = matrix.getDY(),
             markerCfg = {},
-            list = this.list || (this.list = []),
+            list = me.list || (me.list = []),
             x, y, i, index,
             minXs = aggregates.minX,
             maxXs = aggregates.maxX,
@@ -92,10 +61,22 @@ Ext.define('Chartsly.sprite.Event', {
         }
 
         if (list.length) {
-            var xLen = rect[2];
-
-            //Draw event markers
-            me.drawEventMarker(ctx, surface, list);
+            for (i = 0; i < list.length; i += 3) {
+                x = list[i];
+                y = list[i + 1];
+                index = list[i + 2];
+                if (attr.renderer) {
+                    markerCfg = {
+                        type: 'marker',
+                        x: x,
+                        y: me.attr.seq*30    //y=0 for the event marker
+                    };
+                    markerCfg = attr.renderer.call(me, me, markerCfg, {store: me.getStore()}, start + i/3) || {};
+                }
+                markerCfg.translationX = surfaceMatrix.x(x, me.attr.seq*30);
+                markerCfg.translationY = surfaceMatrix.y(x, me.attr.seq*30);
+                me.putMarker('markers', markerCfg, index, !attr.renderer);
+            }
         }
     }
 });

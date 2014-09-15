@@ -26,23 +26,28 @@ Ext.define("Chartsly.view.test.Event", {
             bottom: 0
         },
         interactions: [{
-            type: 'iteminfo',
-            listeners: {
-                show: function(me, item, panel) {
-                    panel.setHtml('Stock Price: $' + item.record.get('price'));
-                }
-            }
-        }, {
             type: 'itemhighlight'
         }],
         series: [{
                 store: Ext.create('Chartsly.store.AppleDividend', {}), 
                 type: 'event',
                 eventType: 'dividend',
-                // image: 'resources/images/Dividend.png',
                 xField: 'date',
                 yField: 'dividend'
-            },
+            }, {
+                store: Ext.create('Chartsly.store.AppleDividend', {}), 
+                type: 'event',
+                eventType: 'split',
+                xField: 'date',
+                yField: 'dividend'
+            }, {
+                store: Ext.create('Chartsly.store.AppleBonus', {}), 
+                type: 'event',
+                eventType: 'bonus',
+                // image: 'resources/images/Dividend.png',
+                xField: 'date',
+                yField: 'bonus'
+            }, 
             {
                 store: Ext.create('Chartsly.store.Apple', {}),
                 type: 'candlestick',
