@@ -12,7 +12,8 @@ Ext.define("Chartsly.view.test.Overlay", {
         // 'Chartsly.view.test.MovingAverageEnvelops'
         // 'Chartsly.view.test.Trendline'
         // 'Chartsly.view.test.FibonacciRetracements'
-        'Chartsly.view.test.Annotation'
+        // 'Chartsly.view.test.Annotation'
+        'Chartsly.view.test.Event'
     ],
     config: {
         items: [
@@ -26,7 +27,8 @@ Ext.define("Chartsly.view.test.Overlay", {
                 // xtype: 'cs-maenv-test-chart'
                 // xtype: 'cs-tline-test-chart'
                 // xtype: 'cs-fibonacci-test-chart'
-                xtype: 'cs-annot-test-chart'
+                // xtype: 'cs-annot-test-chart'
+                xtype: 'cs-event-test-chart'
             }
         ]
     }

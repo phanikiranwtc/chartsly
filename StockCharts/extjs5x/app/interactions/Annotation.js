@@ -141,7 +141,7 @@ Ext.define('Chartsly.interactions.Annotation', {
                     //set the annotation text and add annotation to the internal cache
                     me.annotations.push({text: text, sprite: item});
 
-                    chart.fireEvent('annotationadded', chart, text, sprite, e);
+                    chart.fireEvent('annotationadded', chart, text, item, e);
                 }
             }
         });
