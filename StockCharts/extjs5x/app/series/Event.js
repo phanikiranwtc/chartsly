@@ -85,10 +85,28 @@ Ext.define('Chartsly.series.Event', {
     },
 
     /**
+     * @private Override {@link Ext.chart.series.Cartesian#getItemForPoint}
+     */
+    getItemForPoint: function (x, y) {
+        if (this.getSprites()) {
+            var me = this,
+                chart = me.getChart(),
+                padding = chart.getInnerPadding(),
+                isRtl = chart.getInherited().rtl,
+                seq = me.sprites[0].config.seq;
+
+            // Convert the coordinates because the "markers" sprites that draw the bars ignore the chart's InnerPadding.
+            // See also Chartsly.sprite.Event.getIndexNearPoint(x,y) regarding the series's vertical coordinate system.
+            arguments[0] = x + (isRtl ? padding.right : -padding.left);
+            arguments[1] = y + seq*30 + padding.bottom;
+            return me.callParent(arguments);
+        }
+    },
+
+    /**
      * @private Override {@link Ext.chart.series.Series#getDefaultSpriteConfig}
      * It gets the cartesian series config by calling the parent and then applies
-     * the William %R specific configs so that they are available to the WilliamPctR
-     * series
+     * the Event specific configs so that they are available to the Event series
      * @return {Object} sprite config object
      */
     getDefaultSpriteConfig: function () {

@@ -1,6 +1,6 @@
 /**
  * @class Chartsly.sprite.Event
- * @extends Ext.chart.series.sprite.Line
+ * @extends Ext.chart.series.sprite.Aggregative
  *
  */
 Ext.define('Chartsly.sprite.Event', {
@@ -18,7 +18,7 @@ Ext.define('Chartsly.sprite.Event', {
     list: null,
 
     /**
-     * @private Override {@link Ext.chart.series.sprite.Line#renderAggregates}
+     * @private Override {@link Ext.chart.series.sprite.Aggregative#renderAggregates}
      */
     renderAggregates: function (aggregates, start, end, surface, ctx, clip, rect) {
         var me = this,
@@ -69,7 +69,7 @@ Ext.define('Chartsly.sprite.Event', {
                     markerCfg = {
                         type: 'marker',
                         x: x,
-                        y: me.attr.seq*30    //y=0 for the event marker
+                        y: me.attr.seq*30
                     };
                     markerCfg = attr.renderer.call(me, me, markerCfg, {store: me.getStore()}, start + i/3) || {};
                 }
@@ -78,5 +78,43 @@ Ext.define('Chartsly.sprite.Event', {
                 me.putMarker('markers', markerCfg, index, !attr.renderer);
             }
         }
+    },
+
+    /**
+     * @private Override {@link Ext.chart.series.sprite.Cartesian#getIndexNearPoint}
+     */
+    getIndexNearPoint: function (x, y) {
+        var sprite = this,
+            attr = sprite.attr,
+            dataX = attr.dataX,
+            surface = sprite.getSurface(),
+            surfaceRect = surface.getRect() || [0,0,0,0],
+            surfaceHeight = surfaceRect[3],
+            hitX, hitY,
+            i, bbox,
+            index = -1;
+
+        if (attr.flipXY) {
+            hitX = surfaceHeight - y;
+            if (surface.getInherited().rtl) {
+                hitY = surfaceRect[2] - x;
+            } else {
+                hitY = x;
+            }
+        } else {
+            hitX = x;
+            hitY = surfaceHeight - y;
+        }
+
+        var seq = attr.seq;
+        for (i = 0; i < dataX.length; i++) {
+            //get the marker sprites as we are using them to draw the events
+            bbox = sprite.getMarkerBBox('markers', i);
+
+            if (bbox && hitX >= bbox.x && hitX <= (bbox.x + bbox.width) && hitY >= 0 && hitY <= 30) {
+                index = i;
+            }
+        }
+        return index;
     }
 });

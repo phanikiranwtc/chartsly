@@ -25,9 +25,6 @@ Ext.define("Chartsly.view.test.Event", {
             left: 0,
             bottom: 0
         },
-        interactions: [{
-            type: 'itemhighlight'
-        }],
         series: [{
                 store: Ext.create('Chartsly.store.AppleDividend', {}), 
                 type: 'event',
