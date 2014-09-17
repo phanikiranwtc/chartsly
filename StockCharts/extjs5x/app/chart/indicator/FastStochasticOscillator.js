@@ -11,7 +11,7 @@
 Ext.define("Chartsly.chart.indicator.FastStochasticOscillator", {
     extend: 'Ext.chart.CartesianChart',
     requires: ['Chartsly.series.indicator.FastStochasticOscillator', 'Chartsly.sprite.indicator.FastStochasticOscillator'],
-    xtype: 'rsichart',
+    xtype: 'faststochasticoscillator',
 
     initConfig: function(config) {
 
