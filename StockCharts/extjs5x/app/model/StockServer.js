@@ -13,7 +13,7 @@ Ext.define("Chartsly.model.StockServer", {
             "close",
             "volume",
             "adjClose",
-				"cmf"
+            "cmf"
         ]
     // }
 });

@@ -17,7 +17,7 @@ Ext.define('Chartsly.series.indicator.ChaikinMoneyFlow', {
     extend: 'Ext.chart.series.Area',
     alias: 'series.chaikinmoneyflow',
     seriesType: 'areaSeries',
-	 requires : 'Chartsly.util.Helper',
+	 requires : 'Setu.Util',
 
     config: {
 		
@@ -56,7 +56,7 @@ Ext.define('Chartsly.series.indicator.ChaikinMoneyFlow', {
 		  // Checking for server side input data, if input data has "cmf" value then no calculation required else calculate
 		  // "cmf" value and then create Chikin MoneyFlow series
 		  
-		  var cmfValuePresent = Helper.checkForFieldPresence(st, config.yField);
+		  var cmfValuePresent = Util.isFieldPresent(st, config.yField);
 		  
 		  if( !cmfValuePresent ){
 			  
