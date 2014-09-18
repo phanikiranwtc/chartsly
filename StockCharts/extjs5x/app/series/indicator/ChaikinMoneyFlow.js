@@ -56,7 +56,7 @@ Ext.define('Chartsly.series.indicator.ChaikinMoneyFlow', {
 		  // Checking for server side input data, if input data has "cmf" value then no calculation required else calculate
 		  // "cmf" value and then create Chikin MoneyFlow series
 		  
-		  var cmfValuePresent = Chartsly.util.Helper.checkForFieldPresence(st, config.yField);
+		  var cmfValuePresent = Helper.checkForFieldPresence(st, config.yField);
 		  
 		  if( !cmfValuePresent ){
 			  

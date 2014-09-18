@@ -5,7 +5,7 @@
 Ext.define('Chartsly.util.Helper', {
     singleton : true,
 	 alias: 'helper',
-
+	 alternateClassName:'Helper',
 	 /**
 	  *  @param {Ext.data.Store} Store used for series
 	  *  @param fieldName	y-field for the series, which is used to check whether the store 
