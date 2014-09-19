@@ -10,7 +10,9 @@ Ext.define("Chartsly.view.test.ChaikinMoneyFlow", {
         'Ext.chart.series.Area',
         'Chartsly.chart.indicator.ChaikinMoneyFlow',
         'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.store.Apple',
+        'Chartsly.model.StockServer', 
+        'Chartsly.store.AppleServer'
     ],
     config: {
         items: [
@@ -30,14 +32,14 @@ Ext.define("Chartsly.view.test.ChaikinMoneyFlow", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: Ext.create('Chartsly.store.AppleServer', {}), //'Apple', // For client side data conversion use "Chartsly.store.Apple" store
                         type: 'chaikinmoneyflow',
                         xField: 'date',
                         yField: 'cmf',
                         highField: "high",
                         lowField: "low",
                         closeField: "close",
-						volumeField :"volume",
+								volumeField :"volume",
                         chaikinMoneyFlowPeriod: 20,  //in days
                         style: {
                             // stroke: 'rgba(237,123,43,0.75)',
