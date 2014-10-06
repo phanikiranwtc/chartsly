@@ -2,6 +2,7 @@ StockCharts/extjs5x/ext
 StockCharts/extjs5x/build/.sass-cache
 StockCharts/extjs5x/build/temp
 StockCharts/touch2x/build
-extjs-kitchensink/build
+extjs-kitchensink/build/temp
+extjs-kitchensink/build/.sass-cache
 extjs-kitchensink/ext/packages/*/build
 extjs-kitchensink/ext
