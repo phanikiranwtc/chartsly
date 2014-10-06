@@ -4,7 +4,7 @@
  * Sencha Cmd when upgrading.
  */
 
-
+Ext.Loader.setPath('Setu', '../lib/setu');
 Ext.Loader.setPath('Chartsly', '../StockCharts/extjs5x/app');
 
 Ext.application({
