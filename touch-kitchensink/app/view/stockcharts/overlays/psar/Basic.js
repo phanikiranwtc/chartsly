@@ -11,10 +11,11 @@ Ext.define("KS.view.stockcharts.overlays.psar.Basic", {
         'A CandleStick chart with Parabolic SAR (PSAR) overlay.'
     ],
     config: {
-        height: 400,
-        layout: 'fit',
+        // height: 400,
+        // layout: 'fit',
         items: [
             {
+                height: 500,
                 xtype: 'cs-psar-test-chart'
             }
         ]

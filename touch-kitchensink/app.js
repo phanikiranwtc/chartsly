@@ -43,11 +43,11 @@ Ext.application({
         'KS.view.stockcharts.indicators.trix.Basic',
         'KS.view.stockcharts.indicators.william.Basic',
 
-        // 'KS.view.stockcharts.overlays.bbands.Basic',
-        // 'KS.view.stockcharts.overlays.ema.Basic',
-        // 'KS.view.stockcharts.overlays.envelop.Basic',
-        // 'KS.view.stockcharts.overlays.sma.Basic',
-        // 'KS.view.stockcharts.overlays.psar.Basic',
+        'KS.view.stockcharts.overlays.bbands.Basic',
+        'KS.view.stockcharts.overlays.ema.Basic',
+        'KS.view.stockcharts.overlays.envelop.Basic',
+        'KS.view.stockcharts.overlays.sma.Basic',
+        'KS.view.stockcharts.overlays.psar.Basic',
 
         // 'KS.view.stockcharts.interactions.annotation.Basic',
         // 'KS.view.stockcharts.interactions.fibonacci.Basic',
