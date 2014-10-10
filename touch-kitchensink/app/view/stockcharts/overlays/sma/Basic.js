@@ -11,10 +11,11 @@ Ext.define("KS.view.stockcharts.overlays.sma.Basic", {
         'A CandleStick chart with Simple Moving Average (SMA) overlay.'
     ],
     config: {
-        height: 400,
-        layout: 'fit',
+        // height: 400,
+        // layout: 'fit',
         items: [
             {
+                height: 500,
                 xtype: 'cs-sma-test-chart'
             }
         ]
