@@ -18,8 +18,6 @@ Ext.define('Ext.ux.MenuButton', {
          */
         cls: 'menu',
 
-        menuConfig: {},
-
         menuItems: [],
 
         /**
@@ -56,7 +54,7 @@ Ext.define('Ext.ux.MenuButton', {
 
         this.element.addCls('x-open');
 
-        this.$menu = Ext.create('Ext.ux.ContextMenu', Ext.apply({}, this.getMenuConfig(), {
+        this.$menu = Ext.create('Ext.ux.ContextMenu', {
             cls: this.getMenuCls(),
             items: this.getMenuItems(),
             listeners: {
@@ -69,7 +67,7 @@ Ext.define('Ext.ux.MenuButton', {
                     }
                 }
             }
-        }));
+        });
 
         this.$menu.on({
             scope: this,

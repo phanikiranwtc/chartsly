@@ -442,30 +442,11 @@ Ext.define('Ext.scroll.Scroller', {
     /**
      * @private
      */
-    updateDirection: function(direction, oldDirection) {
-        var isAxisEnabledFlags = this.isAxisEnabledFlags,
-            verticalCls = this.cls + '-vertical',
-            horizontalCls = this.cls + '-horizontal',
-            element = this.getElement();
+    updateDirection: function(direction) {
+        var isAxisEnabledFlags = this.isAxisEnabledFlags;
 
-        if (oldDirection === 'both' || oldDirection === 'horizontal') {
-            element.removeCls(horizontalCls);
-        }
-
-        if (oldDirection === 'both' || oldDirection === 'vertical') {
-            element.removeCls(verticalCls);
-        }
-
-        isAxisEnabledFlags.x = isAxisEnabledFlags.y = false;
-        if (direction === 'both' || direction === 'horizontal') {
-            isAxisEnabledFlags.x = true;
-            element.addCls(horizontalCls);
-        }
-
-        if (direction === 'both' || direction === 'vertical') {
-            isAxisEnabledFlags.y = true;
-            element.addCls(verticalCls);
-        }
+        isAxisEnabledFlags.x = (direction === 'both' || direction === 'horizontal');
+        isAxisEnabledFlags.y = (direction === 'both' || direction === 'vertical');
     },
 
     /**

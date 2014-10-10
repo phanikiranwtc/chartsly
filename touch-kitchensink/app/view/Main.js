@@ -2,10 +2,12 @@ Ext.define('KS.view.Main', {
     extend: 'Ext.Panel',
     xtype: 'main',
     requires: [
+        'KS.view.Navigation',
+        'KS.view.ContentPanel'
     ],
     config: {
         items: [{
-            xtype: 'nestedlist',
+            xtype: 'navigation',
             title: 'Chartsly Examples',
             docked: 'left',
             width: 300            
@@ -18,6 +20,9 @@ Ext.define('KS.view.Main', {
                 text: 'Source',
                 align: 'right'
             }]
+        }, {
+            xtype: 'contentPanel',
+            title: 'Content Area'
         }]
     }
 });

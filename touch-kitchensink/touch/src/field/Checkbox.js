@@ -132,7 +132,7 @@ Ext.define('Ext.field.Checkbox', {
     },
 
     platformConfig: [{
-        theme: ['Windows', 'Blackberry', 'Tizen'],
+        theme: ['Windows', 'Blackberry'],
         labelAlign: 'left'
     }],
 

@@ -144,7 +144,7 @@ Ext.define('Ext.field.Field', {
     },
 
     platformConfig: [{
-        theme: ['Windows', 'MountainView', 'Blackberry', 'Tizen'],
+        theme: ['Windows', 'MountainView', 'Blackberry'],
         labelAlign: 'top'
     }],
 

@@ -22,9 +22,6 @@ Ext.define('Ext.util.SizeMonitor', {
                 return new namespace.Scroll(config);
             }
         }
-        else if (Ext.browser.is.IE11) {
-            return new namespace.Scroll(config);
-        }
         else {
             return new namespace.Default(config);
         }

@@ -317,7 +317,7 @@ Ext.define('Ext.slider.Slider', {
 
     // @private
     onTap: function(e) {
-        if (this.isDisabled() || this.getReadOnly()) {
+        if (this.isDisabled()) {
             return;
         }
 

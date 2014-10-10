@@ -826,7 +826,7 @@ Ext.define('Ext.util.Collection', {
             this.updateIndices();
         }
 
-        var index = item ? this.indices[this.getKey(item)] : -1;
+        var index = this.indices[this.getKey(item)];
         return (index === undefined) ? -1 : index;
     },
 

@@ -16,10 +16,9 @@ Ext.define('Ext.viewport.Android', {
 
         this.callSuper(arguments);
 
-        // Viewport is initialized before event system, we need to wait until the application is ready before
-        // we add the resize listener. Otherwise it will only fire if another resize listener is added later.
-        var me = this;
-        Ext.onReady(function() { Ext.getBody().on('resize', me.onResize, me);});
+        this.bodyElement.on('resize', this.onResize, this, {
+            buffer: 1
+        });
     },
 
     getWindowWidth: function () {

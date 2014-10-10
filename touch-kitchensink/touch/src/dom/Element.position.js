@@ -269,19 +269,18 @@ Ext.dom.Element.override({
      */
     getPageBox: function(getRegion) {
         var me = this,
-            el = me.dom;
-
-        if (!el) {
-            return new Ext.util.Region();
-        }
-
-        var w = el.offsetWidth,
+            el = me.dom,
+            w = el.offsetWidth,
             h = el.offsetHeight,
             xy = me.getXY(),
             t = xy[1],
             r = xy[0] + w,
             b = xy[1] + h,
             l = xy[0];
+
+        if (!el) {
+            return new Ext.util.Region();
+        }
 
         if (getRegion) {
             return new Ext.util.Region(t, r, b, l);
