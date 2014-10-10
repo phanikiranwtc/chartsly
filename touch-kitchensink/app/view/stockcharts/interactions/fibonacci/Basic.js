@@ -11,10 +11,11 @@ Ext.define("KS.view.stockcharts.interactions.fibonacci.Basic", {
         'A CandleStick chart with Fibonacci interaction. You may start the interaction with drag to draw the Fibonacci levels'
     ],
     config: {
-        height: 400,
-        layout: 'fit',
+        // height: 400,
+        // layout: 'fit',
         items: [
             {
+                height: 500,
                 xtype: 'cs-fibonacci-test-chart'
             }
         ]
