@@ -311,17 +311,7 @@ Ext.define('Ext.form.Panel', {
          * @cfg {Boolean} multipartDetection
          * If this is enabled the form will automatically detect the need to use 'multipart/form-data' during submission.
          */
-        multipartDetection: true,
-
-        /**
-         * @cfg {Boolean} enableSubmissionForm
-         * The submission form is generated but never added to the dom. It is a submittable version of your form panel, allowing for fields
-         * that are not simple textfields to be properly submitted to servers. It will also send values that are easier to parse
-         * with server side code.
-         *
-         * If this is false we will attempt to subject the raw form inside the form panel.
-         */
-        enableSubmissionForm: true
+        multipartDetection: true
     },
 
     getElementConfig: function() {
@@ -489,9 +479,8 @@ Ext.define('Ext.form.Panel', {
      * @param {Ext.form.Panel} options.success.form
      * The {@link Ext.form.Panel} that requested the action.
      *
-     * @param {Object/Ext.direct.Event} options.success.result
-     * The result object returned by the server as a result of the submit request. If the submit is sent using Ext.Direct,
-     * this will return the {@link Ext.direct.Event} instance, otherwise will return an Object.
+     * @param {Ext.form.Panel} options.success.result
+     * The result object returned by the server as a result of the submit request.
      *
      * @param {Object} options.success.data
      * The parsed data returned by the server.
@@ -517,15 +506,9 @@ Ext.define('Ext.form.Panel', {
      * If the standardSubmit config is true, then the return value is undefined.
      */
     submit: function(options, e) {
-        options = options || {};
-
         var me = this,
-            formValues = me.getValues(me.getStandardSubmit() || !options.submitDisabled),
-            form = me.element.dom || {};
-
-        if(this.getEnableSubmissionForm()) {
-            form = this.createSubmissionForm(form, formValues);
-        }
+            form = me.element.dom || {},
+            formValues;
 
         options = Ext.apply({
             url : me.getUrl() || form.action,
@@ -540,52 +523,15 @@ Ext.define('Ext.form.Panel', {
             failure : null
         }, options || {});
 
+        formValues = me.getValues(me.getStandardSubmit() || !options.submitDisabled);
+
         return me.fireAction('beforesubmit', [me, formValues, options, e], 'doBeforeSubmit');
     },
 
-    createSubmissionForm: function(form, values) {
-        var fields = this.getFields(),
-            name, input, field, fileinputElement, inputComponent;
-
-        if(form.nodeType === 1) {
-            form = form.cloneNode(false);
-
-            for (name in values) {
-                input = document.createElement("input");
-                input.setAttribute("type", "text");
-                input.setAttribute("name", name);
-                input.setAttribute("value", values[name]);
-                form.appendChild(input);
-            }
-        }
-
-        for (name in fields) {
-            if (fields.hasOwnProperty(name)) {
-                field = fields[name];
-                if(field.isFile) {
-                    if(!form.$fileswap) form.$fileswap = [];
-
-                    inputComponent = field.getComponent().input;
-                    fileinputElement = inputComponent.dom;
-                    input = fileinputElement.cloneNode(true);
-                    fileinputElement.parentNode.insertBefore(input, fileinputElement.nextSibling);
-                    form.appendChild(fileinputElement);
-                    form.$fileswap.push({original: fileinputElement, placeholder: input});
-                } else if(field.isPassword) {
-                    if(field.getComponent().getType !== "password") {
-                        field.setRevealed(false);
-                    }
-                }
-            }
-        }
-
-        return form;
-    },
-
     doBeforeSubmit: function(me, formValues, options) {
-        var form = options.form || {},
-            multipartDetected = false;
+        var form = me.element.dom || {};
 
+        var multipartDetected = false;
         if(this.getMultipartDetection() === true) {
             this.getFieldsAsArray().forEach(function(field) {
                 if(field.isFile === true) {
@@ -702,22 +648,10 @@ Ext.define('Ext.form.Panel', {
                     options.headers || {}
                 );
                 request.callback = function(callbackOptions, success, response) {
-                    var responseText = response.responseText,
+                    var me = this,
+                        responseText = response.responseText,
                         responseXML = response.responseXML,
                         statusResult = Ext.Ajax.parseStatus(response.status, response);
-
-                    if(form.$fileswap) {
-                        var original, placeholder;
-                        Ext.each(form.$fileswap, function(item) {
-                            original = item.original;
-                            placeholder = item.placeholder;
-
-                            placeholder.parentNode.insertBefore(original, placeholder.nextSibling);
-                            placeholder.parentNode.removeChild(placeholder);
-                        });
-                        form.$fileswap = null;
-                        delete form.$fileswap;
-                    }
 
                     me.setMasked(false);
 
@@ -827,9 +761,8 @@ Ext.define('Ext.form.Panel', {
      * @param {Ext.form.Panel} options.success.form
      * The {@link Ext.form.Panel} that requested the load.
      *
-     * @param {Object/Ext.direct.Event} options.success.result
-     * The result object returned by the server as a result of the load request. If the loading was done via Ext.Direct,
-     * will return the {@link Ext.direct.Event} instance, otherwise will return an Object.
+     * @param {Ext.form.Panel} options.success.result
+     * The result object returned by the server as a result of the load request.
      *
      * @param {Object} options.success.data
      * The parsed data returned by the server.
@@ -860,7 +793,7 @@ Ext.define('Ext.form.Panel', {
             api = me.getApi(),
             url = me.getUrl() || options.url,
             waitMsg = options.waitMsg,
-            successFn = function(response, data) {
+            successFn = function(data, response) {
                 me.setValues(data.data);
 
                 if (Ext.isFunction(options.success)) {
@@ -869,7 +802,7 @@ Ext.define('Ext.form.Panel', {
 
                 me.fireEvent('load', me, response);
             },
-            failureFn = function(response, data) {
+            failureFn = function(data, response) {
                 if (Ext.isFunction(options.failure)) {
                     options.failure.call(scope, me, response, data);
                 }
@@ -919,6 +852,7 @@ Ext.define('Ext.form.Panel', {
         } else if (url) {
             return Ext.Ajax.request({
                 url: url,
+                scope: me,
                 timeout: (options.timeout || this.getTimeout()) * 1000,
                 method: options.method || 'GET',
                 autoAbort: options.autoAbort,
@@ -929,7 +863,8 @@ Ext.define('Ext.form.Panel', {
                     options.headers || {}
                 ),
                 callback: function(callbackOptions, success, response) {
-                    var responseText = response.responseText,
+                    var me = this,
+                        responseText = response.responseText,
                         statusResult = Ext.Ajax.parseStatus(response.status, response);
 
                     me.setMasked(false);
@@ -1070,7 +1005,7 @@ Ext.define('Ext.form.Panel', {
         // Function which you give a field and a name, and it will add it into the values
         // object accordingly
         addValue = function(field, name) {
-            if (!all && (!name || name === 'null') || field.isFile) {
+            if (!all && (!name || name === 'null')) {
                 return;
             }
 

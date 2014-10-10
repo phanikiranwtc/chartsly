@@ -172,10 +172,6 @@ Ext.define('Ext.field.Select', {
         {
             theme: ['Windows'],
             pickerSlotAlign: 'left'
-        },
-        {
-            theme: ['Tizen'],
-            usePicker: false
         }
     ],
 
@@ -197,7 +193,7 @@ Ext.define('Ext.field.Select', {
             component.input.dom.disabled = true;
         }
 
-        if (Ext.theme.is.Blackberry) {
+        if (Ext.theme.name === "Blackberry") {
             this.label.on({
                 scope: me,
                 tap: "onFocus"
@@ -206,7 +202,7 @@ Ext.define('Ext.field.Select', {
     },
 
     getElementConfig: function() {
-        if (Ext.theme.is.Blackberry) {
+        if (Ext.theme.name === "Blackberry") {
                 var prefix = Ext.baseCSSPrefix;
 
                 return {
@@ -585,7 +581,7 @@ Ext.define('Ext.field.Select', {
 
     // @private
     updateLabelWidth: function() {
-        if (Ext.theme.is.Blackberry) {
+        if (Ext.theme.name === "Blackberry") {
             return;
         } else {
             this.callParent(arguments);
@@ -594,7 +590,7 @@ Ext.define('Ext.field.Select', {
 
     // @private
     updateLabelAlign: function() {
-        if (Ext.theme.is.Blackberry) {
+        if (Ext.theme.name === "Blackberry") {
             return;
         } else {
             this.callParent(arguments);
@@ -607,29 +603,14 @@ Ext.define('Ext.field.Select', {
      * @chainable
      */
     reset: function() {
-        var me = this,
-            record;
+        var store = this.getStore(),
+            record = (this.originalValue) ? this.originalValue : store.getAt(0);
 
-        if (me.getAutoSelect()) {
-            var store = me.getStore();
-
-            record = (me.originalValue) ? me.originalValue : store.getAt(0);
-        } else {
-            var usePicker = me.getUsePicker(),
-                picker = usePicker ? me.picker : me.listPanel;
-
-            if (picker) {
-                picker = picker.child(usePicker ? 'pickerslot' : 'dataview');
-
-                picker.deselectAll();
-            }
-
-            record = null;
+        if (store && record) {
+            this.setValue(record);
         }
 
-        me.setValue(record);
-
-        return me;
+        return this;
     },
 
     onFocus: function(e) {

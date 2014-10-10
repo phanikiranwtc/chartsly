@@ -309,13 +309,12 @@ Ext.define('Ext.data.association.HasMany', {
                     filters      : [filter],
                     remoteFilter : true,
                     autoSync     : autoSync,
-                    modelDefaults: modelDefaults
+                    modelDefaults: modelDefaults,
+                    listeners    : listeners
                 });
 
                 store = record[storeName] = Ext.create('Ext.data.Store', config);
                 store.boundTo = record;
-
-                store.onAfter(listeners);
 
                 if (autoLoad) {
                     record[storeName].load();

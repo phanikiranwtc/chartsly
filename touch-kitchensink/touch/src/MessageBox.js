@@ -226,25 +226,12 @@ Ext.define('Ext.MessageBox', {
             };
         }
 
-        var minHeight = '1.3em';
-        if (Ext.theme.is.Cupertino) {
-            minHeight = '1.5em'
-        } else if (Ext.filterPlatform('blackberry') || Ext.filterPlatform('ie10')) {
-            minHeight = '2.6em';
-        }
-
         Ext.applyIf(config, {
             docked: 'top',
-            minHeight: minHeight,
+            minHeight: (Ext.filterPlatform('blackberry') || Ext.filterPlatform('ie10')) ? '2.6em' : '1.3em',
             ui: Ext.filterPlatform('blackberry') ? 'light' : 'dark',
             cls   : this.getBaseCls() + '-title'
         });
-
-        if (Ext.theme.is.Tizen) {
-            Ext.applyIf(config, {
-                centered: false
-            });
-        }
 
         return Ext.factory(config, Ext.Toolbar, this.getTitle());
     },
@@ -281,14 +268,14 @@ Ext.define('Ext.MessageBox', {
                     pack: 'center'
                 };
 
-                var isFlexed = Ext.theme.is.CupertinoClassic  || Ext.theme.is.MountainView  || Ext.theme.is.Blackberry;
+                var isFlexed = Ext.theme.name == "CupertinoClassic"  || Ext.theme.name == "MountainView"  || Ext.theme.name == "Blackberry";
 
                 me.buttonsToolbar = Ext.create('Ext.Toolbar', {
                     docked: 'bottom',
                     defaultType: 'button',
                     defaults: {
                         flex: (isFlexed) ? 1 : undefined,
-                        ui: (Ext.theme.is.Blackberry) ? 'action' : undefined
+                        ui: (Ext.theme.name == "Blackberry") ? 'action' : undefined
                     },
                     layout: layout,
                     ui: me.getUi(),

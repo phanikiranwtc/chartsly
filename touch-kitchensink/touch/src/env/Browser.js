@@ -234,10 +234,6 @@ Ext.define('Ext.env.Browser', {
             browserVersion = new Ext.Version(browserMatch[1]);
         }
 
-        if(browserName === 'Safari' && userAgent.match(/BB10/)) {
-            browserName = 'BlackBerry';
-        }
-
         Ext.apply(this, {
             engineName: engineName,
             engineVersion: engineVersion,
@@ -288,10 +284,6 @@ Ext.define('Ext.env.Browser', {
         else if (!!window.isNK) {
             isWebView = true;
             this.setFlag('Sencha');
-        }
-
-        if (/(Glass)/i.test(userAgent)) {
-            this.setFlag('GoogleGlass');
         }
 
         // Check if running in UIWebView

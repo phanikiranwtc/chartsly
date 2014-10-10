@@ -24,9 +24,6 @@ Ext.define('Ext.env.Feature', {
             };
         }
 
-        Ext.theme.is = {};
-        Ext.theme.is[Ext.theme.name] = true;
-
         Ext.onDocumentReady(function() {
             this.registerTest({
                 ProperHBoxStretching: function() {
@@ -279,14 +276,7 @@ Ext.define('Ext.env.Feature', {
         },
 
         CssTransformNoPrefix: function() {
-            // This extra check is needed to get around a browser bug where both 'transform' and '-webkit-transform' are present
-            // but the device really only uses '-webkit-transform'. This is seen on the HTC One for example.
-            // https://sencha.jira.com/browse/TOUCH-5029
-            if(!Ext.browser.is.AndroidStock) {
-                return this.isStyleSupportedWithoutPrefix('transform')
-            } else {
-                return this.isStyleSupportedWithoutPrefix('transform') && !this.isStyleSupportedWithoutPrefix('-webkit-transform');
-            }
+            return this.isStyleSupportedWithoutPrefix('transform');
         },
 
         Css3dTransforms: function() {

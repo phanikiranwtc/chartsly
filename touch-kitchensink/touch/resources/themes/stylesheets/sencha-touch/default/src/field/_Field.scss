@@ -7,16 +7,11 @@ $form-clear-size: 2.2em;
 
 .x-field {
     min-height: $form-field-height;
-    background: $form-field-bg-color;
+    background: #fff;
 
     &:last-child {
         border-bottom: 0;
     }
-}
-
-.x-field-label {
-    background-color: $form-field-label-bg-color;
-    color: $form-field-label-color;
 }
 
 .x-field-input {
@@ -43,7 +38,6 @@ $form-clear-size: 2.2em;
     min-height: $form-field-height;
     border-width: 0;
     -webkit-appearance: none;
-    -webkit-text-fill-color: $form-field-color;
 }
 
 .x-ie .x-input-el {

@@ -1,95 +1,57 @@
 Ext.define('KS.view.Navigation', {
-    extend: 'Ext.dataview.List',
+    extend: 'Ext.dataview.NestedList',
     xtype: 'navigation',
     requires: [
-        'Ext.field.Search'
+        'Ext.field.Search',
+        'KS.model.ListItem',
+        'KS.store.Examples'
     ],
 
     title: 'Chartsly Examples',
 
+    config: {
+        store: 'Examples',
+    },
+
     initialize: function() {
         var me = this;
 
-        me.columns = [{
-            xtype: 'treecolumn',
-            text: 'Name',
-            flex: 1,
-            dataIndex: 'text',
-            scope: me,
-            renderer: function(value) {
-                var searchString = this.searchField.getValue();
+        // me.columns = [{
+        //     xtype: 'treecolumn',
+        //     text: 'Name',
+        //     flex: 1,
+        //     dataIndex: 'text',
+        //     scope: me,
+        //     renderer: function(value) {
+        //         var searchString = this.searchField.getValue();
 
-                if (searchString.length > 0) {
-                    return this.strMarkRedPlus(searchString, value);
-                }
+        //         if (searchString.length > 0) {
+        //             return this.strMarkRedPlus(searchString, value);
+        //         }
 
-                return value;
-            }
-        }];
+        //         return value;
+        //     }
+        // }];
 
-        var store = Ext.create('Ext.data.TreeStore', {
-            proxy : {
-                type : 'ajax',
-                url  : 'resources/data/navigation.json'
-            }
-        });
+        // var store = Ext.create('Ext.data.TreeStore', {
+        //     model: 'KS.model.ListItem',
+        //     storeId: 'tree-store',
+        //     // defaultRootProperty: 'children',
+        //     proxy : {
+        //         type : 'ajax',
+        //         url  : 'resources/data/navigation.json'
+        //     },
+        //     autoLoad: true,
+        //     listeners: {
+        //         load: function(store, recs, success) {
+        //             alert('Status: ' + success + ':' + recs.length);
+        //         }
+        //     }
+        // });
 
-        Ext.apply(me, {
-            store: store,
-            dockedItems : [
-                {
-                    xtype: 'textfield',
-                    dock: 'top',
-                    emptyText: 'Search',
-                    enableKeyEvents: true,
-
-                    triggers: {
-                        clear: {
-                            cls: 'x-form-clear-trigger',
-                            handler: 'onClearTriggerClick',
-                            hidden: true,
-                            scope: 'this'
-                        },
-                        search: {
-                            cls: 'x-form-search-trigger',
-                            weight: 1,
-                            handler: 'onSearchTriggerClick',
-                            scope: 'this'
-
-                        }
-                    },
-
-                    onClearTriggerClick: function() {
-                        this.setValue();
-                        me.store.clearFilter();
-                        this.getTrigger('clear').hide();
-                    },
-
-                    onSearchTriggerClick: function() {
-                        me.filterStore(this.getValue());
-                    },
-
-                    listeners: {
-                        keyup: {
-                            fn: function(field, event, eOpts) {
-                                var value = field.getValue();
-
-                                field.getTrigger('clear')[(value.length > 0) ? 'show' : 'hide']();
-
-                                this.filterStore(value);
-                            },
-                            buffer: 300
-                        },
-
-                        render: function(field) {
-                            this.searchField = field;
-                        },
-
-                        scope: me
-                    }
-                }
-            ]
-        });
+        // Ext.apply(me, {
+        //     store: 'Examples'
+        // });
 
         me.callParent(arguments);
     },
