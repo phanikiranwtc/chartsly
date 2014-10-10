@@ -11,10 +11,11 @@ Ext.define("KS.view.stockcharts.interactions.trendline.Basic", {
         'A CandleStick chart with Trendline interaction. You may add a new trendline using drag and you can add any number of trendlines to a chart.'
     ],
     config: {
-        height: 400,
-        layout: 'fit',
+        // height: 400,
+        // layout: 'fit',
         items: [
             {
+                height: 500,
                 xtype: 'cs-tline-test-chart'
             }
         ]
