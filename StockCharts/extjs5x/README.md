@@ -35,6 +35,7 @@ Interactions
 1. Trendline
 2. Fibonacci Retracements
 3. Add Annotations
+4. Crosshair
 
 Stock Events
 ============
