@@ -226,5 +226,5 @@ Ext.define('Chartsly.sprite.overlay.BollingerBands', {
         var stdev = Math.sqrt(sqDiff/valArr.length);
 
         return stdev;
-    },
+    }
 });

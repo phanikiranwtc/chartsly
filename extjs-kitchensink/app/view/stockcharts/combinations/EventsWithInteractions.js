@@ -21,7 +21,7 @@ Ext.define("KS.view.stockcharts.combinations.EventsWithInteractions", {
         'A combination to a CandleStick chart, with Events, and an interaction - Annotation'
     ],
     config: {
-        height: 400,
+        height: 500,
         layout: 'fit',
         items: [
             {

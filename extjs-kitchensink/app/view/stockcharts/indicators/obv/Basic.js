@@ -20,7 +20,7 @@ Ext.define("KS.view.stockcharts.indicators.obv.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 150,
+                height: 150
             },
             {
                 xtype: 'cartesian',
