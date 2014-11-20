@@ -23,7 +23,7 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
         'A combination to a CandleStick chart with PSAR and Bollinger Bands and Fibonacci interaction'
     ],
     config: {
-        height: 400,
+        height: 500,
         layout: 'fit',
         items: [
             {
@@ -122,7 +122,7 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
                         position: 'left',
                         style: {
                             floating: true,
-                            axisLine: false,
+                            // axisLine: false,
                             strokeStyle: '#666',
                             estStepSize: 40
                         },
@@ -158,7 +158,7 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
                         },
                         visibleRange: [0.5, 0.9],
                         style: {
-                            axisLine: false,
+                            // axisLine: false,
                             strokeStyle: '#888',
                             estStepSize: 50,
                             textPadding: 10

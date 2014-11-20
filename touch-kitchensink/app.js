@@ -53,11 +53,11 @@ Ext.application({
         'KS.view.stockcharts.interactions.fibonacci.Basic',
         'KS.view.stockcharts.interactions.trendline.Basic',
 
-        // 'KS.view.stockcharts.events.bonus.Basic',
-        // 'KS.view.stockcharts.events.dividend.Basic',
-        // 'KS.view.stockcharts.events.rights.Basic',
-        // 'KS.view.stockcharts.events.split.Basic',
-        // 'KS.view.stockcharts.events.combinations.Basic',
+        'KS.view.stockcharts.events.bonus.Basic',
+        'KS.view.stockcharts.events.dividend.Basic',
+        'KS.view.stockcharts.events.rights.Basic',
+        'KS.view.stockcharts.events.split.Basic',
+        'KS.view.stockcharts.events.combinations.Basic',
 
         // 'KS.view.stockcharts.combinations.MultipleIndicators',
         // 'KS.view.stockcharts.combinations.MultipleOverlays',

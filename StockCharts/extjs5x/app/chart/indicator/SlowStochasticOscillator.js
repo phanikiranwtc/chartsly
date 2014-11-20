@@ -53,7 +53,7 @@ Ext.define("Chartsly.chart.indicator.SlowStochasticOscillator", {
                         style: {
                               stroke: 'rgba(255,0,0,0.75)',
                               miterLimit: 1
-                        },
+                        }
         });
 
 

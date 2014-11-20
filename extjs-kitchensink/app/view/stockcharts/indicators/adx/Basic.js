@@ -20,7 +20,7 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350,
+                height: 350
              
             },
                {
@@ -48,7 +48,7 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
                             fill: 'rgba(237,123,43,0.1)',
                             miterLimit: 1
                         }
-                    },
+                    }
                     
                 ],
                 axes: [

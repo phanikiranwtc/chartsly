@@ -15,8 +15,7 @@ Ext.define('Chartsly.chart.indicator.AverageDirectionalIndex',{
             if (axis.type === 'numeric') {
 				
                 Ext.apply(axis, {
-                    fields: ['adx'],
-                   
+                    fields: ['adx']
                 });
             }
         });

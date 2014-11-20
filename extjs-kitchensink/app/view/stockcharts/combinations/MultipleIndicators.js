@@ -21,7 +21,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350,
+                height: 350
             },
             {
                 xclass: 'Chartsly.chart.indicator.WilliamPctR',
@@ -57,7 +57,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                         type: 'numeric',
                         position: 'left',
                         style: {
-                            axisLine: false
+                            // axisLine: false
                         }
                     },
                     {

@@ -20,7 +20,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
         'A CandleStick chart with PSAR and Bollinger Bands overlays'
     ],
     config: {
-        height: 400,
+        height: 500,
         layout: 'fit',
         items: [
             {
@@ -115,7 +115,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                         position: 'left',
                         style: {
                             floating: true,
-                            axisLine: false,
+                            // axisLine: false,
                             strokeStyle: '#666',
                             estStepSize: 40
                         },
@@ -151,7 +151,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                         },
                         visibleRange: [0.5, 0.9],
                         style: {
-                            axisLine: false,
+                            // axisLine: false,
                             strokeStyle: '#888',
                             estStepSize: 50,
                             textPadding: 10
