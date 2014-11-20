@@ -55,6 +55,7 @@ Ext.application({
         'KS.view.stockcharts.interactions.annotation.Basic',
         'KS.view.stockcharts.interactions.fibonacci.Basic',
         'KS.view.stockcharts.interactions.trendline.Basic',
+        'KS.view.stockcharts.interactions.crosshair.Basic',
 
         'KS.view.stockcharts.events.bonus.Basic',
         'KS.view.stockcharts.events.dividend.Basic',
