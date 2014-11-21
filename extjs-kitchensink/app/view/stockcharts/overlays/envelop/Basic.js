@@ -11,7 +11,7 @@ Ext.define("KS.view.stockcharts.overlays.envelop.Basic", {
         'A CandleStick chart with Moving Average Envelops (MAE) overlay.'
     ],
     config: {
-        height: 400,
+        height: 500,
         layout: 'fit',
         items: [
             {

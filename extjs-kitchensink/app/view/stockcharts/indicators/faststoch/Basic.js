@@ -52,7 +52,7 @@ Ext.define("KS.view.stockcharts.indicators.faststoch.Basic", {
                         type: 'numeric',
                         position: 'left',
                         style: {
-                            axisLine: false
+                            // axisLine: false
                         }
                     },
                     {

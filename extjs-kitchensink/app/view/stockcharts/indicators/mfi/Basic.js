@@ -57,7 +57,7 @@ Ext.define("KS.view.stockcharts.indicators.mfi.Basic", {
                         type: 'numeric',
                         position: 'left',
                         style: {
-                            axisLine: false
+                            // axisLine: false
                         }
                     },
                     {

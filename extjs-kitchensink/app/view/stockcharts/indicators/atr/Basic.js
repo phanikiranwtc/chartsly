@@ -48,7 +48,7 @@ Ext.define("KS.view.stockcharts.indicators.atr.Basic", {
                         type: 'numeric',
                         position: 'left',
                         style: {
-                            axisLine: false
+                            // axisLine: false
                         }
                     },
                     {

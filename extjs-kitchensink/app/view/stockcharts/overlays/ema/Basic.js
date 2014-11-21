@@ -11,7 +11,7 @@ Ext.define("KS.view.stockcharts.overlays.ema.Basic", {
         'A CandleStick chart with Exponential Moving Average (EMA) overlay.'
     ],
     config: {
-        height: 400,
+        height: 500,
         layout: 'fit',
         items: [
             {
