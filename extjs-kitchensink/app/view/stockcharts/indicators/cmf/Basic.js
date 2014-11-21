@@ -56,7 +56,7 @@ Ext.define("KS.view.stockcharts.indicators.cmf.Basic", {
                         type: 'numeric',
                         position: 'left',
                         style: {
-                            axisLine: false
+                            // axisLine: false
                         }
                     },
                     {

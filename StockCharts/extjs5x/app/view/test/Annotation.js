@@ -67,7 +67,7 @@ Ext.define("Chartsly.view.test.Annotation", {
                 position: 'left',
                 style: {
                     floating: true,
-                    axisLine: false,
+                    // axisLine: false,
                     strokeStyle: '#666',
                     estStepSize: 40
                 },
@@ -103,7 +103,7 @@ Ext.define("Chartsly.view.test.Annotation", {
                 },
                 visibleRange: [0.5, 0.9],
                 style: {
-                    axisLine: false,
+                    // axisLine: false,
                     strokeStyle: '#888',
                     estStepSize: 50,
                     textPadding: 10

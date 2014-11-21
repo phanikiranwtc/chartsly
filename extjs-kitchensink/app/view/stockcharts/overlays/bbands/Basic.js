@@ -11,7 +11,7 @@ Ext.define("KS.view.stockcharts.overlays.bbands.Basic", {
         'A CandleStick chart with Bollinger Bands (BBands) overlay.'
     ],
     config: {
-        height: 400,
+        height: 500,
         layout: 'fit',
         items: [
             {

@@ -15,7 +15,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
         'Chartsly.store.Apple'
     ],
     exampleDescription: [
-        'A combination to a CandleStick chart and MACD indicator'
+        'A combination to a CandleStick chart with William %R and MACD indicators'
     ],
     config: {
         items: [

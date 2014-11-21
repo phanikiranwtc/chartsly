@@ -59,7 +59,7 @@ Ext.define("KS.view.stockcharts.indicators.fullstoch.Basic", {
                         type: 'numeric',
                         position: 'left',
                         style: {
-                            axisLine: false
+                            // axisLine: false
                         }
                     },
                     {
