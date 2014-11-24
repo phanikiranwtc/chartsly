@@ -6,9 +6,11 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
     xtype: 'basic-combo-all',
     requires: [
         'Chartsly.view.test.CandleStick',
+        'Ext.chart.series.Bar',
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
+        'Ext.chart.interactions.ItemHighlight',
         'Chartsly.chart.indicator.WilliamPctR',
         'Chartsly.chart.indicator.MovingAverageConvergenceDivergence',
         'Chartsly.model.Stock', 

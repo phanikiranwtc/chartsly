@@ -6,8 +6,10 @@ Ext.define("KS.view.stockcharts.indicators.obv.Basic", {
     xtype: 'basic-obv',
     requires: [
         'Chartsly.view.test.CandleStick',
+        'Ext.chart.series.Bar',
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
+        'Ext.chart.axis.Category',
         'Ext.chart.series.Line',
         'Chartsly.chart.indicator.OnBalanceVolume',
         'Chartsly.model.Stock', 

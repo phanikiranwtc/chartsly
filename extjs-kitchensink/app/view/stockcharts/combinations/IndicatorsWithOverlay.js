@@ -7,9 +7,11 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
     requires: [
         'Ext.chart.Chart',
         'Ext.chart.series.CandleStick',
+        'Ext.chart.series.Bar',
         'Ext.chart.interactions.PanZoom',
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
+        'Ext.chart.axis.Category',
         'Ext.chart.series.Line',
         'Chartsly.model.Stock', 
         'Chartsly.store.Apple',

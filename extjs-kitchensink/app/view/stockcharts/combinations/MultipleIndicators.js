@@ -6,8 +6,10 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
     xtype: 'basic-combo-multi-indicators',
     requires: [
         'Chartsly.view.test.CandleStick',
+        'Ext.chart.series.Bar',
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
+        'Ext.chart.axis.Category',
         'Ext.chart.series.Line',
         'Chartsly.chart.indicator.WilliamPctR',
         'Chartsly.chart.indicator.MovingAverageConvergenceDivergence',
