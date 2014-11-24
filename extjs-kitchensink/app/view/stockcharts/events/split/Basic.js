@@ -8,6 +8,7 @@ Ext.define("KS.view.stockcharts.events.split.Basic", {
         'Ext.chart.Chart',
         'Ext.chart.series.CandleStick',
         'Ext.chart.interactions.PanZoom',
+        'Ext.chart.interactions.ItemHighlight',
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',

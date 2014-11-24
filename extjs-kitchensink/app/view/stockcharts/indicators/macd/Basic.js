@@ -6,8 +6,10 @@ Ext.define("KS.view.stockcharts.indicators.macd.Basic", {
     xtype: 'basic-macd',
     requires: [
         'Chartsly.view.test.CandleStick',
+        'Ext.chart.series.Bar',
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
+        'Ext.chart.axis.Category',
         'Ext.chart.series.Line',
         'Chartsly.chart.indicator.MovingAverageConvergenceDivergence',
         'Chartsly.model.Stock', 
