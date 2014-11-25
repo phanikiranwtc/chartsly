@@ -28,7 +28,7 @@
      * The name of the theme for this application.
      */
     
-    "theme": "ext-theme-crisp-touch",
+    "theme": "wtc-theme-chartsly",
     
     /**
      * The list of required packages (with optional versions; default is "latest").
