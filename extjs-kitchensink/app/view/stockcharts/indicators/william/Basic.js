@@ -65,16 +65,16 @@ Ext.define("KS.view.stockcharts.indicators.william.Basic", {
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
-                            estStepSize: 150
+                            estStepSize: 15
                         },
-                        dateFormat: 'Y',
-                        segmenter: {
-                            type: 'time',
-                            step: {
-                                unit: 'y',
-                                step: 1
-                            }
-                        },
+                        //dateFormat: 'Y',
+                        //segmenter: {
+                        //    type: 'time',
+                         //   step: {
+                          //      unit: 'y',
+                            //    step: 1
+                           // }
+                       // },
                         label: {
                             fontSize: 10,
                             fillStyle: '#666'

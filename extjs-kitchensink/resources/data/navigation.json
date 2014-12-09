@@ -23,7 +23,7 @@
                 },
                 {
                     "id"    : "basic-cmf",
-                    "text"  : "Chalin Money Flow (CMF)",
+                    "text"  : "chaikin Money Flow (CMF)",
                     "leaf"  : true
                 },
                 {
@@ -58,7 +58,7 @@
                 },
                 {
                     "id"    : "basic-obv",
-                    "text"  : "On Balance Volumne (OBV)",
+                    "text"  : "On Balance Volume (OBV)",
                     "leaf"  : true
                 },
                 {

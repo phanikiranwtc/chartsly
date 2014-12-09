@@ -8,6 +8,7 @@ Ext.define("KS.view.stockcharts.indicators.rsi.Basic", {
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
+		  'Chartsly.view.test.CandleStick',
         'Chartsly.chart.indicator.RelativeStrengthIndex',
         'Chartsly.model.Stock', 
         'Chartsly.store.Apple'
@@ -17,6 +18,10 @@ Ext.define("KS.view.stockcharts.indicators.rsi.Basic", {
     ],
     config: {
         items: [
+			  {
+			       xtype: 'candlestick-test-chart',
+			       height: 350
+			             },	
             {
                 xclass: 'Chartsly.chart.indicator.RelativeStrengthIndex',
                 height: 250,

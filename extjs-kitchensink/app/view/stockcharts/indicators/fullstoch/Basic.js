@@ -14,7 +14,7 @@ Ext.define("KS.view.stockcharts.indicators.fullstoch.Basic", {
         'Chartsly.store.Apple'
     ],
     exampleDescription: [
-        'A combination to a CandleStick chart and Slow Stochastic Oscillator indicator'
+        'A combination to a CandleStick chart and Full Stochastic Oscillator indicator'
     ],
     config: {
         items: [
