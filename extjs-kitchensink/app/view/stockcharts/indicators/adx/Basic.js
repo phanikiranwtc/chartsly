@@ -65,7 +65,7 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
                         fields: ['Time'],
                         style: {
                             strokeStyle: '#666',
-                            estStepSize: 150
+                            majorTickSize: 5
                         },
                         dateFormat: 'Y',
                         segmenter: {

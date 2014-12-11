@@ -60,7 +60,7 @@ Ext.define("KS.view.stockcharts.indicators.cci.Basic", {
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
-                            estStepSize: 150
+                            estStepSize: 5
                         },
                         dateFormat: 'Y',
                         segmenter: {

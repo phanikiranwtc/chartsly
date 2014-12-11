@@ -19,7 +19,7 @@ Ext.define("KS.view.stockcharts.indicators.faststoch.Basic", {
     config: {
         items: [
 			  {
-			        xtype: 'candlestick-test-chart'
+			        xtype: 'candlestick-test-chart',
 			        height: 350
 			    },	
             {
@@ -66,7 +66,7 @@ Ext.define("KS.view.stockcharts.indicators.faststoch.Basic", {
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
-                            estStepSize: 150
+                            majorTickSize: 5
                         },
                         dateFormat: 'Y',
                         segmenter: {

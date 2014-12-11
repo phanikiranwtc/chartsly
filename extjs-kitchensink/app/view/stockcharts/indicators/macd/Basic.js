@@ -60,12 +60,14 @@ Ext.define("KS.view.stockcharts.indicators.macd.Basic", {
                         },
                         dateFormat: 'Y',
                         segmenter: {
-                            type: 'time',
-                            step: {
-                                unit: 'y',
-                                step: 1
-                            }
+                            type: 'time'
+                            
                         },
+								renderer: function(val) {
+										var dt = new Date(val);
+
+									 	return Ext.Date.format(dt,'Y-m-d');
+								},
                         label: {
                             fontSize: 10,
                             fillStyle: '#666'

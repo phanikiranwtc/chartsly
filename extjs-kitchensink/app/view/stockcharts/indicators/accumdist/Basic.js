@@ -127,8 +127,8 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                         position: 'bottom',
                         fields: ['date'],
                         style: {
-                            strokeStyle: '#666',
-                            estStepSize: 150
+                            majorTickSize: 5,
+                            strokeStyle: '#666'
                         },
                         dateFormat: 'Y',
                         segmenter: {
