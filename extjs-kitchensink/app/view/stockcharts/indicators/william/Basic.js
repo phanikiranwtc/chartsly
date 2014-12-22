@@ -20,11 +20,13 @@ Ext.define("KS.view.stockcharts.indicators.william.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350
+                height: 350,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0}
             },
             {
                 xclass: 'Chartsly.chart.indicator.WilliamPctR',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 insetPadding: {
                     top: 10,
                     right: 0,
@@ -54,10 +56,8 @@ Ext.define("KS.view.stockcharts.indicators.william.Basic", {
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left',
-                        style: {
-                            // axisLine: false
-                        }
+                        position: 'left'
+                        
                     },
                     {
                         type: 'time',
@@ -65,10 +65,18 @@ Ext.define("KS.view.stockcharts.indicators.william.Basic", {
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
-                            estStepSize: 15
+                            estStepSize: 150
                         },
-                      
-                        label: {
+                        dateFormat: 'Y',
+                        segmenter: {
+                            type: 'time',
+                            step: {
+                              unit: 'y',
+                              step: 1
+                            },
+                            estStepSize: 15
+                            },
+                       label: {
                             fontSize: 10,
                             fillStyle: '#666'
                         }

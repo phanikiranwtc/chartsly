@@ -115,7 +115,6 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                         position: 'left',
                         style: {
                             floating: true,
-                            // axisLine: false,
                             strokeStyle: '#666',
                             estStepSize: 40
                         },
@@ -123,8 +122,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                             fillStyle: '#666',
                             fontWeight: '700'
                         },
-                        // maximum: 750,
-                        // minimum: 0,
+                        
                         background: {
                             fill: {
                                 type: 'linear',
@@ -151,7 +149,6 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                         },
                         visibleRange: [0.5, 0.9],
                         style: {
-                            // axisLine: false,
                             strokeStyle: '#888',
                             estStepSize: 50,
                             textPadding: 10

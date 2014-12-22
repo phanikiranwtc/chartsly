@@ -20,11 +20,13 @@ Ext.define("KS.view.stockcharts.indicators.pmo.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350
+                height: 350,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0}
             },
             {
                 xclass: 'Chartsly.chart.indicator.PriceMomentumOscillator',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 background: 'white',
                 series: [
                     {
@@ -36,7 +38,6 @@ Ext.define("KS.view.stockcharts.indicators.pmo.Basic", {
                         period1: 35,
                         period2: 20,
                         signalPeriod: 10,
-                        // smooth: true,
                         style: {
                             stroke: 'rgba(67,174,175,0.75)',
                             miterLimit: 1
@@ -54,7 +55,7 @@ Ext.define("KS.view.stockcharts.indicators.pmo.Basic", {
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
-                            majorTickSize: 5
+                            estStepSize: 150
                         },
                         dateFormat: 'Y',
                         segmenter: {

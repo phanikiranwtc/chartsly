@@ -73,7 +73,6 @@ Ext.define("KS.view.stockcharts.events.bonus.Basic", {
                         position: 'left',
                         style: {
                             floating: true,
-                            // axisLine: false,
                             strokeStyle: '#666',
                             estStepSize: 40
                         },
@@ -81,9 +80,7 @@ Ext.define("KS.view.stockcharts.events.bonus.Basic", {
                             fillStyle: '#666',
                             fontWeight: '700'
                         },
-                        // maximum: 750,
-                        // minimum: 0,
-                        background: {
+                       background: {
                             fill: {
                                 type: 'linear',
                                 degrees: 180,
@@ -109,7 +106,6 @@ Ext.define("KS.view.stockcharts.events.bonus.Basic", {
                         },
                         visibleRange: [0.5, 0.9],
                         style: {
-                            // axisLine: false,
                             strokeStyle: '#888',
                             estStepSize: 50,
                             textPadding: 10

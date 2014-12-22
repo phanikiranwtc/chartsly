@@ -20,12 +20,14 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350
+                height: 350,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0}
              
             },
                {
                 xclass: 'Chartsly.chart.indicator.AverageDirectionalIndex',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 insetPadding: {
                      top: 10,
                     right: 0,
@@ -54,10 +56,7 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left',
-                        style: {
-                            // axisLine: false
-                        }
+                        position: 'left'
                     },
                     {
                         type: 'time',
@@ -65,7 +64,7 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
                         fields: ['Time'],
                         style: {
                             strokeStyle: '#666',
-                            majorTickSize: 5
+                            estStepSize: 150
                         },
                         dateFormat: 'Y',
                         segmenter: {

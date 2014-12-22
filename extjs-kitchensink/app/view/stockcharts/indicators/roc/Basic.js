@@ -20,11 +20,13 @@ Ext.define("KS.view.stockcharts.indicators.roc.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350
+                height: 350,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0}
             },
             {
                 xclass: 'Chartsly.chart.indicator.RateOfChange',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 background: 'white',
                 series: [
                     {
@@ -52,7 +54,7 @@ Ext.define("KS.view.stockcharts.indicators.roc.Basic", {
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
-                            majorTickSize: 5
+                            estStepSize: 150
                         },
                         dateFormat: 'Y',
                         segmenter: {

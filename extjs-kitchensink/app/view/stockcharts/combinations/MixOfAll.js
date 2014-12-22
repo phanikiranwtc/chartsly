@@ -44,7 +44,6 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         store: Ext.create('Chartsly.store.GoogleBonus', {}), 
                         type: 'event',
                         eventType: 'bonus',
-                        // image: 'resources/images/Dividend.png',
                         xField: 'date',
                         yField: 'bonus'
                     }, {
@@ -136,7 +135,6 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         position: 'left',
                         style: {
                             floating: true,
-                            // axisLine: false,
                             strokeStyle: '#666',
                             estStepSize: 40
                         },
@@ -144,8 +142,6 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             fillStyle: '#666',
                             fontWeight: '700'
                         },
-                        // maximum: 750,
-                        // minimum: 0,
                         background: {
                             fill: {
                                 type: 'linear',
@@ -172,7 +168,6 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         },
                         visibleRange: [0.5, 0.9],
                         style: {
-                            // axisLine: false,
                             strokeStyle: '#888',
                             estStepSize: 50,
                             textPadding: 10
@@ -266,6 +261,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
             {
                 xclass: 'Chartsly.chart.indicator.WilliamPctR',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 insetPadding: {
                     top: 10,
                     right: 0,
@@ -295,10 +291,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left',
-                        style: {
-                            // axisLine: false
-                        }
+                        position: 'left'
                     },
                     {
                         type: 'time',

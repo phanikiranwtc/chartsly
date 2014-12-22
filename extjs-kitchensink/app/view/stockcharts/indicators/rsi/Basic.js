@@ -8,7 +8,7 @@ Ext.define("KS.view.stockcharts.indicators.rsi.Basic", {
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
-		  'Chartsly.view.test.CandleStick',
+	'Chartsly.view.test.CandleStick',
         'Chartsly.chart.indicator.RelativeStrengthIndex',
         'Chartsly.model.Stock', 
         'Chartsly.store.Apple'
@@ -18,13 +18,15 @@ Ext.define("KS.view.stockcharts.indicators.rsi.Basic", {
     ],
     config: {
         items: [
-			  {
-			       xtype: 'candlestick-test-chart',
-			       height: 350
-			             },	
+	    {
+	         xtype: 'candlestick-test-chart',
+	         height: 350,
+	         innerPadding : {top: 0, left: 0, right: 10, bottom: 0}
+	    },	
             {
                 xclass: 'Chartsly.chart.indicator.RelativeStrengthIndex',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 insetPadding: {
                     top: 10,
                     right: 10,
@@ -52,18 +54,15 @@ Ext.define("KS.view.stockcharts.indicators.rsi.Basic", {
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left',
-                        style: {
-                            // axisLine: false
-                        }
-                    },
+                        position: 'left'
+                     },
                     {
                         type: 'time',
                         position: 'bottom',
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
-                            majorTickSize: 5
+                            estStepSize: 150
                         },
                         dateFormat: 'Y',
                         segmenter: {

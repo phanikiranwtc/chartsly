@@ -20,11 +20,13 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 150
+                height: 150,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0}
             },
             {
                 xtype: 'cartesian',
                 height: 200,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 store: Ext.create('Chartsly.store.Apple', {}),
                 axes: [{
                     type: 'numeric',
@@ -95,6 +97,7 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
             {
                 xclass: 'Chartsly.chart.indicator.AccumulationDistributionLine',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 background: 'white',
                 series: [
                     {
@@ -127,8 +130,8 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                         position: 'bottom',
                         fields: ['date'],
                         style: {
-                            majorTickSize: 5,
-                            strokeStyle: '#666'
+                            strokeStyle: '#666',
+                            estStepSize: 150
                         },
                         dateFormat: 'Y',
                         segmenter: {

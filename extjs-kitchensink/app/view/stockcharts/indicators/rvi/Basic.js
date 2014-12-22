@@ -20,11 +20,13 @@ Ext.define("KS.view.stockcharts.indicators.rvi.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350
+                height: 350,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0}
             },
             {
                 xclass: 'Chartsly.chart.indicator.RelativeVigorIndex',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 background: 'white',
                 series: [
                     {
@@ -38,7 +40,6 @@ Ext.define("KS.view.stockcharts.indicators.rvi.Basic", {
                         lowField: "low",
                         period: 15,
                         signalPeriod: 4,
-                        // smooth: true,
                         style: {
                             stroke: 'rgba(67,174,175,0.75)',
                             miterLimit: 1
@@ -56,7 +57,7 @@ Ext.define("KS.view.stockcharts.indicators.rvi.Basic", {
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
-                            majorTickSize: 5
+                            estStepSize: 150
                         },
                         dateFormat: 'Y',
                         segmenter: {

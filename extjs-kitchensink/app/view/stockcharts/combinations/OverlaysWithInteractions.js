@@ -91,7 +91,6 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
                         yField: 'lowerbband'
                     },
                     {
-                        // store: Ext.create('Chartsly.store.Google', {}),//'Google',
                         type: 'candlestick',
                         xField: 'date',
                         openField: 'open',
@@ -122,7 +121,6 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
                         position: 'left',
                         style: {
                             floating: true,
-                            // axisLine: false,
                             strokeStyle: '#666',
                             estStepSize: 40
                         },
@@ -130,8 +128,6 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
                             fillStyle: '#666',
                             fontWeight: '700'
                         },
-                        // maximum: 750,
-                        // minimum: 0,
                         background: {
                             fill: {
                                 type: 'linear',
@@ -158,7 +154,6 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
                         },
                         visibleRange: [0.5, 0.9],
                         style: {
-                            // axisLine: false,
                             strokeStyle: '#888',
                             estStepSize: 50,
                             textPadding: 10

@@ -22,11 +22,13 @@ Ext.define("KS.view.stockcharts.indicators.obv.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 150
+                height: 150,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0}
             },
             {
                 xtype: 'cartesian',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 background: 'white',
                 store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
                 axes: [{
@@ -58,6 +60,7 @@ Ext.define("KS.view.stockcharts.indicators.obv.Basic", {
             {
                 xclass: 'Chartsly.chart.indicator.OnBalanceVolume',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 background: 'white',
                 series: [
                     {
@@ -89,7 +92,7 @@ Ext.define("KS.view.stockcharts.indicators.obv.Basic", {
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
-                            majorTickSize: 5
+                            estStepSize: 150
                         },
                         dateFormat: 'Y',
                         segmenter: {

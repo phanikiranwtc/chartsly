@@ -20,11 +20,13 @@ Ext.define("KS.view.stockcharts.indicators.cmf.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350
+                height: 350,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0}
             },
             {
                 xclass: 'Chartsly.chart.CMF',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 insetPadding: {
                     top: 10,
                     right: 0,
@@ -41,23 +43,15 @@ Ext.define("KS.view.stockcharts.indicators.cmf.Basic", {
                         highField: "high",
                         lowField: "low",
                         closeField: "close",
-						volumeField :"volume",
-                        chaikinMoneyFlowPeriod: 20,  //in days
-                        style: {
-                            // stroke: 'rgba(237,123,43,0.75)',
-                            // fill: 'rgba(237,123,43,0.1)',
-                            // miterLimit: 1
-                        }
-                   
+			volumeField :"volume",
+                        chaikinMoneyFlowPeriod: 20  //in days
+                    
                     }
                 ],
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left',
-                        style: {
-                            // axisLine: false
-                        }
+                        position: 'left'
                     },
                     {
                         type: 'time',
@@ -65,7 +59,7 @@ Ext.define("KS.view.stockcharts.indicators.cmf.Basic", {
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
-                            majorTickSize: 5
+                            estStepSize: 150
                         },
                         dateFormat: 'Y',
                         segmenter: {

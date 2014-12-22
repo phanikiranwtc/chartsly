@@ -22,11 +22,13 @@ Ext.define("KS.view.stockcharts.indicators.macd.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350
+                height: 350,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0}
             },
             {
                 xclass: 'Chartsly.chart.MACD',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 background: 'white',
                 series: [
                     {
@@ -60,14 +62,12 @@ Ext.define("KS.view.stockcharts.indicators.macd.Basic", {
                         },
                         dateFormat: 'Y',
                         segmenter: {
-                            type: 'time'
-                            
+                            type: 'time',
+                            step: {
+                                unit: 'y',
+                                step: 1
+                            }
                         },
-								renderer: function(val) {
-										var dt = new Date(val);
-
-									 	return Ext.Date.format(dt,'Y-m-d');
-								},
                         label: {
                             fontSize: 10,
                             fillStyle: '#666'

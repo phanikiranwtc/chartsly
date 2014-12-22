@@ -11,10 +11,11 @@ Ext.define("KS.view.stockcharts.interactions.crosshair.Basic", {
         'A CandleStick chart with Crosshair interaction. You may start the interaction with drag to see the crosshair lines.'
     ],
     config: {
-        height: 500,
+        height: 400,
         layout: 'fit',
         items: {
             xtype: 'candlestick-test-chart',
+            innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
             interactions: {
                 type: 'crosshair',
                 axes: {

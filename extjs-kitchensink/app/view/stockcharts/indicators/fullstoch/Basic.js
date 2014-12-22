@@ -20,11 +20,13 @@ Ext.define("KS.view.stockcharts.indicators.fullstoch.Basic", {
         items: [
 	    {
                 xtype: 'candlestick-test-chart',
-                height: 350
+                height: 350,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0}
             },			
             {
                 xclass: 'Chartsly.chart.indicator.SlowStochasticOscillator',
                 height: 250,
+                innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
                 insetPadding: {
                     top: 10,
                     right: 0,
@@ -41,7 +43,7 @@ Ext.define("KS.view.stockcharts.indicators.fullstoch.Basic", {
                         highField: "high",
                         lowField: "low",
                         closeField: "close",
-			            overboughtLevel: 80,
+		        overboughtLevel: 80,
                         oversoldLevel: 20,
                         lookBackPeriod: 14,  //in days
             			smaPctK: 3,   //days 
@@ -57,18 +59,15 @@ Ext.define("KS.view.stockcharts.indicators.fullstoch.Basic", {
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left',
-                        style: {
-                            // axisLine: false
-                        }
-                    },
+                        position: 'left'
+                     },
                     {
                         type: 'time',
                         position: 'bottom',
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
-                            majorTickSize: 5
+                            estStepSize: 150
                         },
                         dateFormat: 'Y',
                         segmenter: {
