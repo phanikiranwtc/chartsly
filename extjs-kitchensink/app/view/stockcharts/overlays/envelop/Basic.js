@@ -8,7 +8,7 @@ Ext.define("KS.view.stockcharts.overlays.envelop.Basic", {
         'Chartsly.view.test.MovingAverageEnvelops'
     ],
     exampleDescription: [
-        'A CandleStick chart with Moving Average Envelops (MAE) overlay.'
+        'A CandleStick chart with Moving Average Envelopes (MAE) overlay.'
     ],
     config: {
         height: 500,

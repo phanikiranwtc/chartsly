@@ -90,16 +90,71 @@ Ext.define('Chartsly.interactions.FibonacciRetracements', {
      */
     drawRetracementRatio : function (text, x, y, color) {
 
-        var ratio = {
-            type: "text",
-            text: text,
-            fill: color,
-            animate:true,
-            font: "12px monospace",
-            x:x,
-            y:y - 10
-        };
-        return ratio;
+		 if(x>750)
+		 {
+		  if(y<50){ 
+    
+    
+		         var ratio = {
+		             type: "text",
+		             text: text,
+		             fill: color,
+		             animate:true,
+		             font: "12px monospace",
+		             x:x-120,
+		             y:y+10
+            
+		         };
+		         return ratio;
+		     }
+		     else
+		     {
+		         var ratio = {
+		             type: "text",
+		             text: text,
+		             fill: color,
+		             animate:true,
+		             font: "12px monospace",
+		             x:x-120,
+		             y:y
+            
+		         };
+		         return ratio;
+		         }
+		     }
+		     else if(y<50){
+    
+    
+		         var ratio = {
+		             type: "text",
+		             text: text,
+		             fill: color,
+		             animate:true,
+		             font: "12px monospace",
+		             x:x,
+		             y:y+10
+            
+		         };
+		         return ratio;
+		     }
+    
+		     else
+		     {
+		         var ratio = {
+		             type: "text",
+		             text: text,
+		             fill: color,
+		             animate:true,
+		             font: "12px monospace",
+		             x:x,
+		             y:y-10
+            
+		         };
+		         return ratio;
+    
+    
+		     }
+		
     },
 
     /**

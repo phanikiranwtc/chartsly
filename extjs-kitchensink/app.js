@@ -4,6 +4,18 @@
  * Sencha Cmd when upgrading.
  */
 
+var loader=function(){
+	setTimeout(function(){
+		preloader();
+	},5000);
+}
+
+var preloader=function(){
+
+	Ext.get('pre-loading').hide();
+	Ext.create('KS.view.Viewport');
+}
+
 Ext.Loader.setPath({
     'Setu': '../lib/setu',
     'Chartsly': '../StockCharts/extjs5x/app'
@@ -12,7 +24,7 @@ Ext.Loader.setPath({
 Ext.application({
     name: 'KS',
 
-    autoCreateViewport: true,
+    //autoCreateViewport: true,
 	
     //-------------------------------------------------------------------------
     // Most customizations should be made to KS.Application. If you need to
@@ -83,5 +95,11 @@ Ext.application({
     init: function() {
         Ext.tip.QuickTipManager.init();
         Ext.state.Manager.setProvider(Ext.create('Ext.state.CookieProvider'));       
-    }
+    },
+	 
+	 launch: function(){
+	 	
+		 loader();
+		 
+	 }
 });

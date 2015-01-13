@@ -179,7 +179,8 @@
      */
     "resources": [
 		 
-		 "app/view/stockcharts"
+		 "app/view/stockcharts",
+		 "images"
     ],
 
     /**
