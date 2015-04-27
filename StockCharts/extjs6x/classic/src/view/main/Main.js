@@ -6,99 +6,68 @@
  * TODO - Replace this content of this view to suite the needs of your application.
  */
 Ext.define('Chartsly.view.main.Main', {
-    extend: 'Ext.tab.Panel',
+    extend: 'Ext.container.Container',
     xtype: 'app-main',
 
-    requires: [
-        'Ext.plugin.Viewport',
-        'Ext.window.MessageBox',
-
-        'Chartsly.view.main.MainController',
-        'Chartsly.view.main.MainModel',
-        'Chartsly.view.main.List'
-    ],
-
+    
     controller: 'main',
     viewModel: 'main',
+    requires: [
+    'Chartsly.view.test.WilliamPctR',
+    // 'Chartsly.view.test.AccumulationDistributionLine'
+    // 'Chartsly.view.test.AverageTrueRange'
+    // 'Chartsly.view.test.CommodityChannelIndex'
+    // 'Chartsly.view.test.OnBalanceVolume'
+    // 'Chartsly.view.test.RateOfChange'
+    // 'Chartsly.view.test.PriceMomentumOscillator'
+    // 'Chartsly.view.test.TRIX'
+    // 'Chartsly.view.test.MovingAverageConvergenceDivergence'
+    // 'Chartsly.view.test.RelativeVigorIndex'
+    // 'Chartsly.view.test.Overlay'
+    //'Chartsly.view.test.ChaikinMoneyFlow'
+    // 'Chartsly.view.test.MoneyFlowIndex'
+    // 'Chartsly.view.test.RelativeStrengthIndex'
+    // 'Chartsly.view.test.AverageDirectionalIndex'
+    // 'Chartsly.view.test.SlowStochasticOscillator'
+    // 'Chartsly.view.test.FastStochasticOscillator'
+    // 'Chartsly.view.test.BollingerBands'
+    // 'Chartsly.view.test.ExponentialMovingAverage'
+    //'Chartsly.view.test.Annotation'
+     // 'Chartsly.view.test.CrossHairInteactions'
+    ],
 
-    ui: 'navigation',
-
-    tabBarHeaderPosition: 1,
-    titleRotation: 0,
-    tabRotation: 0,
-
-    header: {
-        layout: {
-            align: 'stretchmax'
-        },
-        title: {
-            bind: {
-                text: '{name}'
-            },
-            flex: 0
-        },
-        iconCls: 'fa-th-list'
+    xtype: 'app-main',
+    
+    controller: 'main',
+    viewModel: {
+        type: 'main'
     },
 
-    tabBar: {
-        flex: 1,
-        layout: {
-            align: 'stretch',
-            overflowHandler: 'none'
-        }
-    },
-
-    responsiveConfig: {
-        tall: {
-            headerPosition: 'top'
-        },
-        wide: {
-            headerPosition: 'left'
-        }
-    },
-
-    defaults: {
-        bodyPadding: 20,
-        tabConfig: {
-            plugins: 'responsive',
-            responsiveConfig: {
-                wide: {
-                    iconAlign: 'left',
-                    textAlign: 'left'
-                },
-                tall: {
-                    iconAlign: 'top',
-                    textAlign: 'center',
-                    width: 120
-                }
-            }
-        }
+    layout: {
+        type: 'fit'
     },
 
     items: [{
-        title: 'Home',
-        iconCls: 'fa-home',
-        // The following grid shares a store with the classic version's grid as well!
-        items: [{
-            xtype: 'mainlist'
-        }]
-    }, {
-        title: 'Users',
-        iconCls: 'fa-user',
-        bind: {
-            html: '{loremIpsum}'
-        }
-    }, {
-        title: 'Groups',
-        iconCls: 'fa-users',
-        bind: {
-            html: '{loremIpsum}'
-        }
-    }, {
-        title: 'Settings',
-        iconCls: 'fa-cog',
-        bind: {
-            html: '{loremIpsum}'
-        }
+         xclass: 'Chartsly.view.test.WilliamPctR'
+        // xclass: 'Chartsly.view.test.AccumulationDistributionLine'
+        // xclass: 'Chartsly.view.test.AverageTrueRange'
+        // xclass: 'Chartsly.view.test.CommodityChannelIndex'
+        // xclass: 'Chartsly.view.test.OnBalanceVolume'
+        // xclass: 'Chartsly.view.test.RateOfChange'
+        // xclass: 'Chartsly.view.test.PriceMomentumOscillator'
+        // xclass: 'Chartsly.view.test.TRIX'
+        // xclass: 'Chartsly.view.test.MovingAverageConvergenceDivergence'
+        // xclass: 'Chartsly.view.test.RelativeVigorIndex'
+        // xclass: 'Chartsly.view.test.Overlay'
+        // xclass: 'Chartsly.view.test.ChaikinMoneyFlow'
+        // xclass: 'Chartsly.view.test.MoneyFlowIndex'
+        // xclass:'Chartsly.view.test.RelativeStrengthIndex'
+        // xclass:'Chartsly.view.test.AverageDirectionalIndex'
+        // xclass:'Chartsly.view.test.SlowStochasticOscillator'
+        // xclass:'Chartsly.view.test.FastStochasticOscillator'
+        // xclass:'Chartsly.view.test.BollingerBands'
+        // xclass:'Chartsly.view.test.ExponentialMovingAverage'
+        // xclass:'Chartsly.view.test.Annotation'
+        //  xclass:'Chartsly.view.test.CrossHairInteactions'
     }]
 });
