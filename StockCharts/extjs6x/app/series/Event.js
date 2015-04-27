@@ -62,9 +62,9 @@ Ext.define('Chartsly.series.Event', {
             tooltip: {
                 trackMouse: true,
                 style: 'background: #fff',
-                renderer: function(storeItem, item) {
+                renderer: function(tooltip,record, item) {
                     //TODO: Parameterize the string format and fields
-                    this.setHtml(Ext.String.capitalize(type) + ' - ' + storeItem.get("type") + ' : ' + storeItem.get(config.yField) + '%' + '</br>' + storeItem.get("remark"));
+                    tooltip.setHtml(Ext.String.capitalize(type) + ' - ' + record.get("type") + ' : ' + record.get(config.yField) + '%' + '</br>' + record.get("remark"));
                 }
             }
         });
