@@ -17,7 +17,7 @@ Ext.define('Chartsly.series.indicator.ChaikinMoneyFlow', {
     extend: 'Ext.chart.series.Area',
     alias: 'series.chaikinmoneyflow',
     seriesType: 'areaSeries',
-	  requires : 'Chartsly.lib.setu.Util',
+	  requires : 'Setu.Util',
 
     config: {
 		
