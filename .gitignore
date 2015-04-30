@@ -5,3 +5,5 @@ StockCharts/touch2x/build
 extjs-kitchensink/ext/packages/*/build
 #extjs-kitchensink/ext
 extjs-kitchensink/build
+*~
+*.swp
