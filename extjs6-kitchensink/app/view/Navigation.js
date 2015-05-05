@@ -10,7 +10,7 @@ Ext.define('KS.view.Navigation', {
     lines: false,
     useArrows: true,
     hideHeaders: true,
-
+    emptyText :'<div style="color:#e3742d;font-size: 17px;font-weight: 300;font-family: helvetica, arial, verdana, sans-serif;line-height: 32px;">No search item found</div>',
 
     initComponent: function() {
         var me = this;
