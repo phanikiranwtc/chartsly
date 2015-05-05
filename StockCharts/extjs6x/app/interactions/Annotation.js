@@ -229,7 +229,9 @@ Ext.define('Chartsly.interactions.Annotation', {
 
         surface.renderFrame();
         me.unlockEvents(me.getMoveGesture());
-
+        if(!Ext.isDefined(me.itemOnMove)){
+             me.itemOnMove = me.getMatchingAnnotationSprite(e);
+        }
         chart.fireEvent('annotationmoved', chart, me.itemOnMove.sprite, e);
     },
 
@@ -305,6 +307,9 @@ Ext.define('Chartsly.interactions.Annotation', {
                 // console.log('Found a matching annotation sprite. Returning......');
                 return tmp;
             }
+            if(!Ext.isDefined(me.itemOnMove)){
+                    return tmp;
+             }
         }
 
         //if we are here, we could not find anything
