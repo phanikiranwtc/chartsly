@@ -8,7 +8,7 @@
             "children"  : [
                 {
                     "id"    : "basic-accumdist",
-                    "text"  : "Accumulation/Distribution",
+                    "text"  : "Accumulation/Distribution Line (ADL)",
                     "leaf"  : true
                 },
                 {
@@ -48,7 +48,7 @@
                 },
                 {
                     "id"    : "basic-pmo",
-                    "text"  : "DecisionPoint Price Momentum Oscillator",
+                    "text"  : "DecisionPoint Price Momentum Oscillator (PMO)",
                     "leaf"  : true
                 },
                 {
@@ -103,7 +103,7 @@
                 },
                 {
                     "id"    : "basic-env",
-                    "text"  : "Envelopes",
+                    "text"  : "Moving Average Envelopes (MAE)",
                     "leaf"  : true
                 },
                 {
