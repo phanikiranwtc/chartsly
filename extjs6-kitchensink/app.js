@@ -99,7 +99,9 @@ Ext.application({
 	 
 	 launch: function(){
 	 	
-		 loader();
+		// loader();
+                Ext.get('pre-loading').hide();
+		Ext.create('KS.view.Viewport');
 		 
 	 }
 });
