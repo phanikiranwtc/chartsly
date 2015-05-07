@@ -115,53 +115,59 @@ Ext.define('KS.controller.Main', {
     },
 
     onNavSelectionChange: function(selModel, records) {
-        var record = records[0],
-            text = record.get('text'),
+        debugger;
+        var record = records[0];
+        if (!Ext.isDefined(record)){//added by steven
+        }
+        else
+            {
+            var text = record.get('text'),
             xtype = record.get('id'),
             alias = 'widget.' + xtype,
             contentPanel = this.getContentPanel(),
             themeName = Ext.themeName,
             cmp;
 
-        if (xtype) { // only leaf nodes have ids
-
+            if (xtype) { // only leaf nodes have ids
             // Bracket removal, adding, title setting, and description update within one layout.
-            Ext.suspendLayouts();
+                Ext.suspendLayouts();
 
-            contentPanel.removeAll(true);
+                contentPanel.removeAll(true);
 
-            var className = Ext.ClassManager.getNameByAlias(alias),
-                ViewClass = Ext.ClassManager.get(className),
-                clsProto = ViewClass.prototype;
-            if (clsProto.themes) {
-                clsProto.themeInfo = clsProto.themes[themeName];
-                if (themeName === 'gray') {
-                    clsProto.themeInfo = Ext.applyIf(clsProto.themeInfo || {}, clsProto.themes.classic);
+                var className = Ext.ClassManager.getNameByAlias(alias),
+                    ViewClass = Ext.ClassManager.get(className),
+                    clsProto = ViewClass.prototype;
+                if (clsProto.themes) {
+                    clsProto.themeInfo = clsProto.themes[themeName];
+                    if (themeName === 'gray') {
+                        clsProto.themeInfo = Ext.applyIf(clsProto.themeInfo || {}, clsProto.themes.classic);
+                    }
+                }
+
+                cmp = new ViewClass();
+                contentPanel.add(cmp);
+
+                contentPanel.setTitle(record.parentNode.get('text') + ' - ' + text);
+
+                document.title = document.title.split(' - ')[0] + ' - ' + text;
+                location.hash = xtype;
+
+                this.updateDescription(clsProto);
+
+                if (clsProto.exampleCode) {
+                    this.updateCodePreview(clsProto.exampleCode);
+                } else {
+                    this.updateCodePreviewAsync(clsProto, xtype);
+                }
+
+                Ext.resumeLayouts(true);
+                
+                if (cmp.floating) {
+                    cmp.show();
                 }
             }
-
-            cmp = new ViewClass();
-            contentPanel.add(cmp);
-
-            contentPanel.setTitle(record.parentNode.get('text') + ' - ' + text);
-
-            document.title = document.title.split(' - ')[0] + ' - ' + text;
-            location.hash = xtype;
-
-            this.updateDescription(clsProto);
-
-            if (clsProto.exampleCode) {
-                this.updateCodePreview(clsProto.exampleCode);
-            } else {
-                this.updateCodePreviewAsync(clsProto, xtype);
-            }
-
-            Ext.resumeLayouts(true);
-            
-            if (cmp.floating) {
-                cmp.show();
-            }
         }
+        
     },
 
     onMaximizeClick: function(){

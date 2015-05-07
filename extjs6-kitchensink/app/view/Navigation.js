@@ -4,23 +4,24 @@ Ext.define('KS.view.Navigation', {
     requires: [
         'Ext.form.field.Trigger'
     ],
-
+    
     title: 'Chartsly Examples',
     rootVisible: false,
     lines: false,
     useArrows: true,
     hideHeaders: true,
     emptyText :'<div style="color:#e3742d;font-size: 17px;font-weight: 300;font-family: helvetica, arial, verdana, sans-serif;line-height: 32px;">No search item found</div>',
-
+    
     initComponent: function() {
         var me = this;
 
         me.columns = [{
             xtype: 'treecolumn',
             text: 'Name',
-            flex: 1,
+            //flex: 1,//removed by steven
             dataIndex: 'text',
             scope: me,
+            width:450,//added by steven
             renderer: function(value) {
                 var searchString = this.searchField.getValue();
 
