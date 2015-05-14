@@ -46,7 +46,10 @@ Ext.define("KS.view.stockcharts.indicators.obv.Basic", {
                         text: 'Date',
                         fontSize: 15
                     },
-                    fields: 'date'
+                    fields: 'date',
+		    renderer: function (value, layoutContext, lastValue) {
+                          return Ext.Date.format(new Date(value), 'M');
+                    }
                 }],
                 series: {
                     type: 'bar',
