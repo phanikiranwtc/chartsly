@@ -18,10 +18,9 @@ Ext.define('KS.view.Navigation', {
         me.columns = [{
             xtype: 'treecolumn',
             text: 'Name',
-            //flex: 1,//removed by steven
             dataIndex: 'text',
             scope: me,
-            width:450,//added by steven
+            width:450,
             renderer: function(value) {
                 var searchString = this.searchField.getValue();
 

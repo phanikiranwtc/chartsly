@@ -115,12 +115,8 @@ Ext.define('KS.controller.Main', {
     },
 
     onNavSelectionChange: function(selModel, records) {
-        debugger;
         var record = records[0];
-        if (!Ext.isDefined(record)){//added by steven
-        }
-        else
-            {
+        if (Ext.isDefined(record)){
             var text = record.get('text'),
             xtype = record.get('id'),
             alias = 'widget.' + xtype,
