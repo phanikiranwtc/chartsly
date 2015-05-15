@@ -47,7 +47,7 @@ Ext.define('KS.view.Navigation', {
                     dock: 'top',
                     emptyText: 'Search',
                     enableKeyEvents: true,
-
+		    regex : /^[a-zA-Z%\/]+$/,
                     triggers: {
                         clear: {
                             cls: 'x-form-clear-trigger',
@@ -81,7 +81,7 @@ Ext.define('KS.view.Navigation', {
 
                                 field.getTrigger('clear')[(value.length > 0) ? 'show' : 'hide']();
 
-                                this.filterStore(value);
+                                this.filterStore(value,field);
                             },
                             buffer: 300
                         },
@@ -99,7 +99,7 @@ Ext.define('KS.view.Navigation', {
         me.callParent(arguments);
     },
 
-    filterStore: function(value) {
+    filterStore: function(value,field) {
         var me = this,
             store = me.store,
             searchString = value.toLowerCase(),
@@ -146,10 +146,17 @@ Ext.define('KS.view.Navigation', {
         if (searchString.length < 1) {
             store.clearFilter();
         } else {
+	  if(field.isValid()){
             v = new RegExp(searchString, 'i');
             store.getFilters().replaceAll({
                 filterFn: filterFn
             });
+	   } else {
+            v = /^@$/,
+            store.getFilters().replaceAll({
+                filterFn: filterFn
+            });
+          }
         }
     },
 
