@@ -14,7 +14,7 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
         'Chartsly.store.Apple'
     ],
     exampleDescription: [
-        'A combination to a CandleStick chart and Accumulation Distribution Line indicator'
+        'A combination to a CandleStick chart and Accumulation Distribution Line (ADL) indicator'
     ],
     config: {
         items: [
