@@ -29,10 +29,16 @@ Ext.define("Chartsly.view.test.Annotation", {
         },
         listeners: {
             annotationupdated: function(chart, annotText, sprite) {
-                alert('Annotation Updated: ' + annotText);
+                Ext.Msg.alert({message:'Annotation Updated: ' + annotText,
+                    buttons: Ext.Msg.OK,
+                    closable : true
+                });
             },
             annotationmoved: function(chart, sprite) {
-                alert('Annotation moved to: ' + sprite.attr.x + ':' + sprite.attr.y);
+               Ext.Msg.alert({message:'Annotation moved to: ' + sprite.attr.x + ':' + sprite.attr.y,
+                    buttons: Ext.Msg.OK,
+                    closable : true
+                });
             }
         },
         series: [
