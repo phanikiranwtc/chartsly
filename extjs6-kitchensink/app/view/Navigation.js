@@ -25,6 +25,7 @@ Ext.define('KS.view.Navigation', {
                 var searchString = this.searchField.getValue();
 
                 if (searchString.length > 0) {
+                    var searchString=this.filterRegExp(searchString);
                     return this.strMarkRedPlus(searchString, value);
                 }
 
@@ -47,7 +48,6 @@ Ext.define('KS.view.Navigation', {
                     dock: 'top',
                     emptyText: 'Search',
                     enableKeyEvents: true,
-		    regex : /^[a-zA-Z%\/]+$/,
                     triggers: {
                         clear: {
                             cls: 'x-form-clear-trigger',
@@ -81,7 +81,7 @@ Ext.define('KS.view.Navigation', {
 
                                 field.getTrigger('clear')[(value.length > 0) ? 'show' : 'hide']();
 
-                                this.filterStore(value,field);
+                                this.filterStore(value);
                             },
                             buffer: 300
                         },
@@ -99,7 +99,7 @@ Ext.define('KS.view.Navigation', {
         me.callParent(arguments);
     },
 
-    filterStore: function(value,field) {
+    filterStore: function(value) {
         var me = this,
             store = me.store,
             searchString = value.toLowerCase(),
@@ -146,20 +146,28 @@ Ext.define('KS.view.Navigation', {
         if (searchString.length < 1) {
             store.clearFilter();
         } else {
-	  if(field.isValid()){
+            var searchString=this.filterRegExp(searchString);
             v = new RegExp(searchString, 'i');
             store.getFilters().replaceAll({
                 filterFn: filterFn
             });
-	   } else {
-            v = /^@$/,
-            store.getFilters().replaceAll({
-                filterFn: filterFn
-            });
-          }
         }
     },
-
+    filterRegExp:function(searchString){
+        var str = searchString;
+        var specialkeys = str.match(/[^a-zA-Z0-9]/g);
+        var arr  = specialkeys;
+        var pos = 0;
+        if(arr){
+            for(var i=0; i<arr.length;i++) {
+                var pos = str.indexOf(arr[i],pos);
+                str = str.substr(0, pos) + '\\' + str.substr(pos);
+                searchString = str;
+                pos=pos+2;
+            }
+        }
+        return str;
+    },
     strMarkRedPlus : function (search, subject) {
         return subject.replace(
             new RegExp( '('+search+')', "gi" ),
