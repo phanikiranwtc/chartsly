@@ -20,8 +20,8 @@ Ext.define("Chartsly.view.test.BollingerBands", {
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple',
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
         'Chartsly.series.overlay.BollingerBands'
     ],
     config: {
@@ -33,7 +33,7 @@ Ext.define("Chartsly.view.test.BollingerBands", {
             bottom: 0
         },
         series: [{
-                store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                store:'YahooFinances', //'Google',
                 type: 'bbands',
                 closeField: 'close',
                 period: 15,
@@ -45,7 +45,7 @@ Ext.define("Chartsly.view.test.BollingerBands", {
                 xField: 'date',
                 yField: 'bband'
             }, {
-                store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                store: 'YahooFinances', //'Google',
                 type: 'bbands',
                 closeField: 'close',
                 period: 15,
@@ -56,7 +56,7 @@ Ext.define("Chartsly.view.test.BollingerBands", {
                 xField: 'date',
                 yField: 'upperbband'
             }, {
-                store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                store: 'YahooFinances', //'Google',
                 type: 'bbands',
                 closeField: 'close',
                 period: 15,
@@ -68,7 +68,7 @@ Ext.define("Chartsly.view.test.BollingerBands", {
                 yField: 'lowerbband'
             },
             {
-                store: Ext.create('Chartsly.store.Google', {}),//'Google',
+                store: 'YahooFinances',//'Google',
                 type: 'candlestick',
                 xField: 'date',
                 openField: 'open',
@@ -133,7 +133,7 @@ Ext.define("Chartsly.view.test.BollingerBands", {
                 background: {
                     fill: 'gray'
                 },
-                visibleRange: [0.5, 0.9],
+                //visibleRange: [0.5, 0.9],
                 style: {
                     // axisLine: false,
                     strokeStyle: '#888',

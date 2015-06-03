@@ -10,8 +10,8 @@ Ext.define("KS.view.stockcharts.indicators.roc.Basic", {
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
         'Chartsly.chart.indicator.RateOfChange',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart and Rate Of Change (ROC) indicator'
@@ -30,7 +30,7 @@ Ext.define("KS.view.stockcharts.indicators.roc.Basic", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: "YahooFinances", //'Apple',
                         type: 'roc',
                         xField: 'date',
                         yField: 'roc',

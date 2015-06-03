@@ -11,8 +11,8 @@ Ext.define("Chartsly.view.test.Annotation", {
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple',
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
         'Chartsly.interactions.Annotation'
     ],
     config: {
@@ -23,7 +23,7 @@ Ext.define("Chartsly.view.test.Annotation", {
             left: 0,
             bottom: 0
         },
-        store: Ext.create('Chartsly.store.Google', {}),//'Google',
+        store: 'YahooFinances',//'Google',
         interactions: {
             type: 'annotation'
         },
@@ -107,7 +107,7 @@ Ext.define("Chartsly.view.test.Annotation", {
                 background: {
                     fill: 'gray'
                 },
-                visibleRange: [0.5, 0.9],
+                //visibleRange: [0.5, 0.9],
                 style: {
                     // axisLine: false,
                     strokeStyle: '#888',

@@ -11,7 +11,7 @@ Ext.define("Chartsly.store.AppleBonus", {
             // [838278000000, 'Interim', '350', 'Second Interim Dividend'],
             // [840178800000, 'Final', '500', 'AGM'],
             // [844326000000, 'Final', '450', 'Final Dividend of Rs.4.50 per equity share of Re.1/- each'],
-            [834130800000, 'Ratio', '1:1', 'Final bonus']
+            [1421020800000, 'Ratio', '1:1', 'Final bonus']
         ]
     }
 });

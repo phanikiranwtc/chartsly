@@ -12,8 +12,8 @@ Ext.define("KS.view.stockcharts.indicators.macd.Basic", {
         'Ext.chart.axis.Category',
         'Ext.chart.series.Line',
         'Chartsly.chart.indicator.MovingAverageConvergenceDivergence',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart and Moving Average Convergence Divergence (MACD) indicator'
@@ -32,7 +32,7 @@ Ext.define("KS.view.stockcharts.indicators.macd.Basic", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'macd',
                         xField: 'date',
                         yField: 'macd',

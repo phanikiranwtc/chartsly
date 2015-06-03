@@ -12,9 +12,9 @@ Ext.define("KS.view.stockcharts.events.combinations.Basic", {
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
-        'Chartsly.model.Stock', 
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances', 
         'Chartsly.model.Dividend', 
-        'Chartsly.store.Apple',
         'Chartsly.store.AppleDividend',
         'Chartsly.series.Event'
     ],
@@ -54,7 +54,7 @@ Ext.define("KS.view.stockcharts.events.combinations.Basic", {
                         yField: 'bonus'
                     }, 
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}),
+                        store: 'YahooFinances',
                         type: 'candlestick',
                         xField: 'date',
                         openField: 'open',
@@ -116,7 +116,7 @@ Ext.define("KS.view.stockcharts.events.combinations.Basic", {
                         background: {
                             fill: 'gray'
                         },
-                        visibleRange: [0.5, 0.9],
+                        //visibleRange: [0.5, 0.9],
                         style: {
                             strokeStyle: '#888',
                             estStepSize: 50,

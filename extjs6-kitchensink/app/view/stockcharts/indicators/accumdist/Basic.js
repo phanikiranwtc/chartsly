@@ -10,8 +10,8 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
         'Chartsly.chart.indicator.AccumulationDistributionLine',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart and Accumulation Distribution Line (ADL) indicator'
@@ -27,7 +27,7 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                 xtype: 'cartesian',
                 height: 200,
                 innerPadding : {top: 0, left: 0, right: 10, bottom: 0},
-                store: Ext.create('Chartsly.store.Apple', {}),
+                store:'YahooFinances',
                 axes: [{
                     type: 'numeric',
                     position: 'left',
@@ -47,7 +47,7 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                     background: {
                         fill: 'gray'
                     },
-                    visibleRange: [0.5, 0.9],
+                    //visibleRange: [0.5, 0.9],
                     style: {
                         axisLine: false,
                         strokeStyle: '#888',
@@ -101,7 +101,7 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'adl',
                         xField: 'date',
                         yField: 'adl',

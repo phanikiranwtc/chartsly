@@ -10,8 +10,8 @@ Ext.define("KS.view.stockcharts.indicators.cmf.Basic", {
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Area',
         'Chartsly.chart.indicator.ChaikinMoneyFlow',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart and Chaikin Money Flow (CMF) indicator'
@@ -36,14 +36,14 @@ Ext.define("KS.view.stockcharts.indicators.cmf.Basic", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'chaikinmoneyflow',
                         xField: 'date',
                         yField: 'cmf',
                         highField: "high",
                         lowField: "low",
                         closeField: "close",
-			volumeField :"volume",
+			            volumeField :"volume",
                         chaikinMoneyFlowPeriod: 20  //in days
                     
                     }

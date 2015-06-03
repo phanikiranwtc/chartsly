@@ -10,8 +10,8 @@ Ext.define("KS.view.stockcharts.indicators.pmo.Basic", {
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
         'Chartsly.chart.indicator.PriceMomentumOscillator',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart and Price Momentum Oscillator (PMO) indicator'
@@ -30,7 +30,7 @@ Ext.define("KS.view.stockcharts.indicators.pmo.Basic", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: "YahooFinances", //'Apple',
                         type: 'pmo',
                         xField: 'date',
                         yField: 'pmo',

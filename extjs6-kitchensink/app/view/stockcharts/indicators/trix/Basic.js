@@ -10,8 +10,8 @@ Ext.define("KS.view.stockcharts.indicators.trix.Basic", {
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
         'Chartsly.chart.indicator.TRIX',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart and TRIX indicator'
@@ -29,7 +29,7 @@ Ext.define("KS.view.stockcharts.indicators.trix.Basic", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'trix',
                         xField: 'date',
                         yField: 'trix',

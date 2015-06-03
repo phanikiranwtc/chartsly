@@ -13,8 +13,8 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
         'Ext.chart.series.Line',
         'Chartsly.chart.indicator.WilliamPctR',
         'Chartsly.chart.indicator.MovingAverageConvergenceDivergence',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
     ],
     exampleDescription: [
         'A combination to a CandleStick chart with William %R and MACD indicators'
@@ -39,7 +39,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'williampctr',
                         xField: 'date',
                         yField: 'pctr',
@@ -90,7 +90,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'macd',
                         xField: 'date',
                         yField: 'macd',

@@ -13,8 +13,8 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
         'Ext.chart.interactions.ItemHighlight',
         'Chartsly.chart.indicator.WilliamPctR',
         'Chartsly.chart.indicator.MovingAverageConvergenceDivergence',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
     ],
     exampleDescription: [
         'A combination to a CandleStick chart with PSAR and Bollinger Bands, which has got Annotation and Events, and two indicators - MACD and William %R'
@@ -35,13 +35,13 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                     type: 'annotation'
                 },
                 series: [{
-                        store: Ext.create('Chartsly.store.GoogleDividend', {}), 
+                        store: Ext.create('Chartsly.store.AppleDividend', {}), 
                         type: 'event',
                         eventType: 'dividend',
                         xField: 'date',
                         yField: 'dividend'
                     }, {
-                        store: Ext.create('Chartsly.store.GoogleBonus', {}), 
+                        store: Ext.create('Chartsly.store.AppleBonus', {}), 
                         type: 'event',
                         eventType: 'bonus',
                         xField: 'date',
@@ -53,7 +53,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         xField: 'date',
                         yField: 'dividend'
                     },{
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'parabolicsar',
                         highField: 'high',
                         lowField: 'low',
@@ -69,7 +69,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             lineWidth: 0
                         }
                     },{
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -81,7 +81,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         xField: 'date',
                         yField: 'bband'
                     }, {
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -92,7 +92,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         xField: 'date',
                         yField: 'upperbband'
                     }, {
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -104,7 +104,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         yField: 'lowerbband'
                     },
                     {
-                        store: Ext.create('Chartsly.store.Google', {}),//'Google',
+                        store: 'YahooFinances',//'Google',
                         type: 'candlestick',
                         xField: 'date',
                         openField: 'open',
@@ -166,7 +166,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         background: {
                             fill: 'gray'
                         },
-                        visibleRange: [0.5, 0.9],
+                        //visibleRange: [0.5, 0.9],
                         style: {
                             strokeStyle: '#888',
                             estStepSize: 50,
@@ -215,7 +215,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'macd',
                         xField: 'date',
                         yField: 'macd',
@@ -271,7 +271,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'williampctr',
                         xField: 'date',
                         yField: 'pctr',

@@ -13,8 +13,8 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
         'Ext.chart.axis.Numeric',
         'Ext.chart.axis.Category',
         'Ext.chart.series.Line',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple',
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
         'Chartsly.chart.indicator.MovingAverageConvergenceDivergence'
 
     ],
@@ -34,7 +34,7 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                     bottom: 0
                 },
                 series: [{
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'parabolicsar',
                         highField: 'high',
                         lowField: 'low',
@@ -50,7 +50,7 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                             lineWidth: 0
                         }
                     },{
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -62,7 +62,7 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                         xField: 'date',
                         yField: 'bband'
                     }, {
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -73,7 +73,7 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                         xField: 'date',
                         yField: 'upperbband'
                     }, {
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -85,7 +85,7 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                         yField: 'lowerbband'
                     },
                     {
-                        store: Ext.create('Chartsly.store.Google', {}),//'Google',
+                        store: 'YahooFinances',//'Google',
                         type: 'candlestick',
                         xField: 'date',
                         openField: 'open',
@@ -147,7 +147,7 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                         background: {
                             fill: 'gray'
                         },
-                        visibleRange: [0.5, 0.9],
+                        //visibleRange: [0.5, 0.9],
                         style: {
                             strokeStyle: '#888',
                             estStepSize: 50,
@@ -196,7 +196,7 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'macd',
                         xField: 'date',
                         yField: 'macd',

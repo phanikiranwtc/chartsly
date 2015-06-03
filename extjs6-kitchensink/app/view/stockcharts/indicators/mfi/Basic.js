@@ -10,8 +10,8 @@ Ext.define("KS.view.stockcharts.indicators.mfi.Basic", {
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
         'Chartsly.chart.indicator.MoneyFlowIndex',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart and Money Flow Index (MFI) indicator'
@@ -36,7 +36,7 @@ Ext.define("KS.view.stockcharts.indicators.mfi.Basic", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'moneyflowindex',
                         xField: 'date',
                         yField: 'mfi',

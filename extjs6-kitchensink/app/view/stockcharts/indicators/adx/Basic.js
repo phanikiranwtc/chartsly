@@ -10,8 +10,8 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
         'Chartsly.chart.indicator.AverageDirectionalIndex',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart and Average Directional Index (ADX) indicator'
@@ -37,7 +37,7 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'adx',
                         xField: 'date',
                         yField: 'adx',
@@ -61,7 +61,7 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
                     {
                         type: 'time',
                         position: 'bottom',
-                        fields: ['Time'],
+                        fields: ['date'],
                         style: {
                             strokeStyle: '#666',
                             estStepSize: 150

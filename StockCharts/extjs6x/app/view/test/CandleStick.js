@@ -11,8 +11,8 @@ Ext.define("Chartsly.view.test.CandleStick", {
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
     ],
     config: {
         background: 'white',
@@ -24,7 +24,7 @@ Ext.define("Chartsly.view.test.CandleStick", {
         },
         series: [
             {
-                store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                store: 'YahooFinances', //'Apple',
                 type: 'candlestick',
                 xField: 'date',
                 openField: 'open',
@@ -48,7 +48,7 @@ Ext.define("Chartsly.view.test.CandleStick", {
                 }
             },
             {
-                store: Ext.create('Chartsly.store.Google', {}),//'Google',
+                store: 'YahooFinances',//'Google',
                 type: 'candlestick',
                 xField: 'date',
                 openField: 'open',
@@ -113,7 +113,7 @@ Ext.define("Chartsly.view.test.CandleStick", {
                 background: {
                     fill: 'gray'
                 },
-                visibleRange: [0.5, 0.9],
+               // visibleRange: [0.5, 0.9],
                 style: {
                     // axisLine: false,
                     strokeStyle: '#888',

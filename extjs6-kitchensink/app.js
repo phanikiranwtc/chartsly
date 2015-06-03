@@ -92,16 +92,24 @@ Ext.application({
         'Main'
     ],
 
-    init: function() {
-        Ext.tip.QuickTipManager.init();
-        Ext.state.Manager.setProvider(Ext.create('Ext.state.CookieProvider'));       
+   init: function() {
+      var store = Ext.create('Chartsly.store.YahooFinances',{
+          autoLoad: true,
+          config:{
+              whereClause: {symbol:'GOOG',startDate:'2015-01-01',endDate:"2015-05-18"}
+          }
+      });
+      store.on('load', function(){
+        Ext.create('KS.view.Viewport'); 
+        Ext.get('pre-loading').hide();
+      }, this, {single : true});
     },
 	 
 	 launch: function(){
 	 	
 		// loader();
-                Ext.get('pre-loading').hide();
-		Ext.create('KS.view.Viewport');
+        // Ext.get('pre-loading').hide();
+		//Ext.create('KS.view.Viewport');
 		 
 	 }
 });

@@ -11,8 +11,8 @@ Ext.define("Chartsly.view.test.ParabolicSAR", {
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple',
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
         'Chartsly.series.overlay.ParabolicSAR'
     ],
     config: {
@@ -24,7 +24,7 @@ Ext.define("Chartsly.view.test.ParabolicSAR", {
             bottom: 0
         },
         series: [{
-                store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                store: 'YahooFinances', //'Google',
                 type: 'parabolicsar',
                 highField: 'high',
                 lowField: 'low',
@@ -41,7 +41,7 @@ Ext.define("Chartsly.view.test.ParabolicSAR", {
                 }
             },
             {
-                store: Ext.create('Chartsly.store.Google', {}),//'Google',
+                store: 'YahooFinances',//'Google',
                 type: 'candlestick',
                 xField: 'date',
                 openField: 'open',
@@ -106,7 +106,7 @@ Ext.define("Chartsly.view.test.ParabolicSAR", {
                 background: {
                     fill: 'gray'
                 },
-                visibleRange: [0.5, 0.9],
+                //visibleRange: [0.5, 0.9],
                 style: {
                     // axisLine: false,
                     strokeStyle: '#888',

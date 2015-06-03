@@ -11,8 +11,8 @@ Ext.define("Chartsly.view.test.ExponentialMovingAverage", {
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple',
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
         'Chartsly.series.overlay.ExponentialMovingAverage'
     ],
     config: {
@@ -24,7 +24,7 @@ Ext.define("Chartsly.view.test.ExponentialMovingAverage", {
             bottom: 0
         },
         series: [{
-                store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                store: 'YahooFinances', //'Google',
                 type: 'ema',
                 closeField: 'close',
                 period: 5,
@@ -34,7 +34,7 @@ Ext.define("Chartsly.view.test.ExponentialMovingAverage", {
                 xField: 'date',
                 yField: 'ema'
             }, {
-                store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                store: 'YahooFinances', //'Google',
                 type: 'ema',
                 closeField: 'close',
                 period: 10,
@@ -44,7 +44,7 @@ Ext.define("Chartsly.view.test.ExponentialMovingAverage", {
                 xField: 'date',
                 yField: 'ema'
             },{
-                store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                store: 'YahooFinances', //'Google',
                 type: 'ema',
                 closeField: 'close',
                 period: 15,
@@ -54,7 +54,7 @@ Ext.define("Chartsly.view.test.ExponentialMovingAverage", {
                 xField: 'date',
                 yField: 'ema'
             },{
-                store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                store: 'YahooFinances', //'Google',
                 type: 'ema',
                 closeField: 'close',
                 period: 25,
@@ -65,7 +65,7 @@ Ext.define("Chartsly.view.test.ExponentialMovingAverage", {
                 yField: 'ema'
             },
             {
-                store: Ext.create('Chartsly.store.Google', {}),//'Google',
+                store: 'YahooFinances',//'Google',
                 type: 'candlestick',
                 xField: 'date',
                 openField: 'open',
@@ -130,7 +130,7 @@ Ext.define("Chartsly.view.test.ExponentialMovingAverage", {
                 background: {
                     fill: 'gray'
                 },
-                visibleRange: [0.5, 0.9],
+                //visibleRange: [0.5, 0.9],
                 style: {
                     // axisLine: false,
                     strokeStyle: '#888',

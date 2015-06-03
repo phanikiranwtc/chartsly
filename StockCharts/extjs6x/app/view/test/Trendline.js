@@ -11,8 +11,8 @@ Ext.define("Chartsly.view.test.Trendline", {
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple',
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
         'Chartsly.interactions.Trendline'
     ],
     config: {
@@ -23,7 +23,7 @@ Ext.define("Chartsly.view.test.Trendline", {
             left: 0,
             bottom: 0
         },
-        store: Ext.create('Chartsly.store.Google', {}),//'Google',
+        store: 'YahooFinances',//'Google',
         interactions: [{
             type: 'trendline',
             line: {
@@ -97,7 +97,7 @@ Ext.define("Chartsly.view.test.Trendline", {
                 background: {
                     fill: 'gray'
                 },
-                visibleRange: [0.5, 0.9],
+                //visibleRange: [0.5, 0.9],
                 style: {
                     // axisLine: false,
                     strokeStyle: '#888',

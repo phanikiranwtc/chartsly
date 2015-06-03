@@ -10,8 +10,8 @@ Ext.define("KS.view.stockcharts.indicators.faststoch.Basic", {
         'Ext.chart.series.Line',
 	'Chartsly.view.test.CandleStick',
         'Chartsly.chart.indicator.FastStochasticOscillator',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart and Fast Stochastic Oscillator indicator'
@@ -36,7 +36,7 @@ Ext.define("KS.view.stockcharts.indicators.faststoch.Basic", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'faststochasticoscillator',
                         xField: 'date',
                         yField: 'pctk',
