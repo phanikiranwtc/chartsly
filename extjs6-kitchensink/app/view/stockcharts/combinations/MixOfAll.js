@@ -34,6 +34,20 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                 interactions: {
                     type: 'annotation'
                 },
+                listeners: {
+                    annotationupdated: function(chart, annotText, sprite) {
+                           Ext.Msg.alert({message:'Annotation Updated: ' + annotText,
+                               buttons: Ext.Msg.OK,
+                               closable : true
+                           });
+                   },
+                   annotationmoved: function(chart, sprite) {
+                       Ext.Msg.alert({message:'Annotation moved to: ' + sprite.attr.x + ':' + sprite.attr.y,
+                           buttons: Ext.Msg.OK,
+                           closable : true
+                       });
+                 }
+                },
                 series: [{
                         store: Ext.create('Chartsly.store.AppleDividend', {}), 
                         type: 'event',
