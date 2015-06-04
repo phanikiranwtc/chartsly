@@ -147,12 +147,16 @@ Ext.define("Chartsly.view.test.CandleStick", {
                 style: {
                     // axisLine: false,
                     strokeStyle: '#888',
-                    estStepSize: 50,
+                   // estStepSize: 50,
                     textPadding: 10
                 },
                 label: {
-                    fontWeight: '700',
-                    fillStyle: '#666'
+                    fontWeight: '300',
+                       fontSize: '13px',
+                       fontFamily:'helvetica,arial,verdana,sans-serif',
+                       rotate: {
+                          degrees: 290
+                       }
                 },
                 renderer: function (value, layoutContext, lastValue) {
                     var month, day;
