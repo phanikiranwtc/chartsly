@@ -96,7 +96,7 @@ Ext.application({
       var store = Ext.create('Chartsly.store.YahooFinances',{
           autoLoad: true,
           config:{
-              whereClause: {symbol:'GOOG',startDate:'2015-01-01',endDate:"2015-05-18"}
+              whereClause: {symbol:'GOOG',startDate:'2015-01-05',endDate:"2015-05-18"}
           }
       });
       store.on('load', function(){

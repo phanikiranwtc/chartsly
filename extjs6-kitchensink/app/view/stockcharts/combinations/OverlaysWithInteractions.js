@@ -17,7 +17,8 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
         'Chartsly.series.overlay.ParabolicSAR',
         'Chartsly.view.test.Trendline',
         'Chartsly.interactions.FibonacciRetracements',
-        'Chartsly.interactions.Trendline'
+        'Chartsly.interactions.Trendline',
+        'Setu.Util'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart with PSAR and Bollinger Bands and Fibonacci interaction'
@@ -111,6 +112,35 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
                         },
                         aggregator: {
                             stretagy: 'time'
+                        },
+                        marker: {
+                            opacity: 1,
+                            scaling: 0.01,
+                            fillStyle : '#E3742D',
+                            fx: {
+                                duration: 20,
+                                easing: 'easeOut'
+                            }
+                        },
+                        highlightCfg: {
+                            opacity: 1,
+                            scaling: 1.5
+                        },
+                        tooltip: {
+                            trackMouse: true,
+                            style:{
+                                backgroundColor:'#fff',
+                                border:'2px solid #E3742D',
+                                fontFamily:'Helvetica',
+                            },
+                            renderer: function(tooltip,record, item) {
+                                var open = Util.formatNumber(record.get('open'),"0.0000");
+                                var close = Util.formatNumber(record.get('close'),"0.0000");
+                                var high = Util.formatNumber(record.get('high'),"0.0000");
+                                var low = Util.formatNumber(record.get('low'),"0.0000");
+                                var volume = record.get('volume');
+                                tooltip.setHtml('<table>'+'<tr>'+'<td>'+'Open:'+'</td>'+'<td>'+'$'+open+'</td>'+'</tr>'+'<tr>'+'<td>'+'Close:'+'</td>'+'<td>'+'$'+close+'</td>'+'</tr>'+'<tr>'+'<td>'+'High:'+'</td>'+'<td>'+'$'+high+'</td>'+'</tr>'+'<tr>'+'<td>'+'Low:'+'</td>'+'<td>'+'$'+low+'</td>'+'</tr>'+'<tr>'+'<td>'+'Volume:'+'</td>'+'<td>'+'$'+volume+'</td>'+'</tr>'+'</table>');
+                            }
                         }
                     }
                 ],
