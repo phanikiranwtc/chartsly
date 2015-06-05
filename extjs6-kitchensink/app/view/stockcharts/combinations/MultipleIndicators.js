@@ -190,7 +190,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                             strokeStyle: '#666',
                             estStepSize: 150
                         },
-                        dateFormat: 'Y',
+                        //dateFormat: 'Y',
                         segmenter: {
                             type: 'time',
                             step: {
@@ -205,6 +205,9 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                            rotate: {
                               degrees: 290
                            }
+                        },
+                        renderer: function (value, layoutContext, lastValue) {
+                            return Ext.Date.format(new Date(value), 'Y');
                         }
                     }
                 ]

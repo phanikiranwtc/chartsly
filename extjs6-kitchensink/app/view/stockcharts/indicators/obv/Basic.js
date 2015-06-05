@@ -39,7 +39,12 @@ Ext.define("KS.view.stockcharts.indicators.obv.Basic", {
                         text: 'Volume',
                         fontSize: 15
                     },
-                    fields: 'volume'
+                    fields: 'volume',
+                    label: {
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
+                    }
                 }, {
                     type: 'category',
                     position: 'bottom',
@@ -48,8 +53,16 @@ Ext.define("KS.view.stockcharts.indicators.obv.Basic", {
                         fontSize: 15
                     },
                     fields: 'date',
-		    renderer: function (value, layoutContext, lastValue) {
-                        return Ext.Date.format(new Date(value), 'M');
+                    label: {
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
+                    },
+		            renderer: function (value, layoutContext, lastValue) {
+                        return Ext.Date.format(new Date(value), 'Y-m-d');
                     }
                 }],
                 series: [{

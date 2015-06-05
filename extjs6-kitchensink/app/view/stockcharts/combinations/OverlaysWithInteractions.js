@@ -197,7 +197,8 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
                               degrees: 290
                            }
                         },
-                        renderer: function (value, layoutContext, lastValue) {
+                        dateFormat:"Y-m-d"
+                        /*renderer: function (value, layoutContext, lastValue) {
                             var month, day;
                             switch (layoutContext.majorTicks.unit) {
                                 case Ext.Date.YEAR:
@@ -226,7 +227,7 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
                                 default:
                                     return Ext.Date.format(value, 'h:i:s');
                             }
-                        }
+                        }*/
                     }
                 ]
             }

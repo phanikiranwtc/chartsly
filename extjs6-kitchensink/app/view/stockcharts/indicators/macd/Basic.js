@@ -95,7 +95,6 @@ Ext.define("KS.view.stockcharts.indicators.macd.Basic", {
                             strokeStyle: '#666',
                             estStepSize: 150
                         },
-                        dateFormat: 'Y',
                         segmenter: {
                             type: 'time',
                             step: {
@@ -103,6 +102,14 @@ Ext.define("KS.view.stockcharts.indicators.macd.Basic", {
                                 step: 1
                             }
                         },
+                        /*dateFormat: 'Y',
+                        segmenter: {
+                            type: 'time',
+                            step: {
+                                unit: 'y',
+                                step: 1
+                            }
+                        },*/
                         label: {
                            fontWeight: '300',
                            fontSize: '13px',
@@ -110,6 +117,9 @@ Ext.define("KS.view.stockcharts.indicators.macd.Basic", {
                            rotate: {
                               degrees: 290
                            }
+                        },
+                        renderer: function (value, layoutContext, lastValue) {
+                            return Ext.Date.format(new Date(value), 'Y');
                         }
                     }
                 ]

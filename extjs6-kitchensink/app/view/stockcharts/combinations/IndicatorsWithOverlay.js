@@ -192,7 +192,8 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                               degrees: 290
                            }
                         },
-                        renderer: function (value, layoutContext, lastValue) {
+                        dateFormat:"Y-m-d"
+                        /*renderer: function (value, layoutContext, lastValue) {
                             var month, day;
                             switch (layoutContext.majorTicks.unit) {
                                 case Ext.Date.YEAR:
@@ -221,7 +222,7 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                                 default:
                                     return Ext.Date.format(value, 'h:i:s');
                             }
-                        }
+                        }*/
                     }
                 ]
             },
@@ -293,7 +294,7 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                             strokeStyle: '#666',
                             estStepSize: 150
                         },
-                        dateFormat: 'Y',
+                        //dateFormat: 'Y',
                         segmenter: {
                             type: 'time',
                             step: {
@@ -308,6 +309,9 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                            rotate: {
                               degrees: 290
                            }
+                        },
+                        renderer: function (value, layoutContext, lastValue) {
+                            return Ext.Date.format(new Date(value), 'Y');
                         }
                     }
                 ]
