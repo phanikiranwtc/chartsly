@@ -113,9 +113,6 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
                            fontWeight: '300',
                            fontSize: '13px',
                            fontFamily:'helvetica,arial,verdana,sans-serif',
-                           rotate: {
-                              degrees: 290
-                           }
                         }
                     }
                 ]

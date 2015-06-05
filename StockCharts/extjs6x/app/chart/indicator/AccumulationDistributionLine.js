@@ -22,7 +22,7 @@ Ext.define("Chartsly.chart.indicator.AccumulationDistributionLine", {
                 Ext.apply(axis, {
                     fields: ['adl'],
                     renderer: function (value, layoutContext, lastValue) {
-                        return "";
+                        return value;
                     }
                 });
             }

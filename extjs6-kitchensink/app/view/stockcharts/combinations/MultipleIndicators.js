@@ -114,10 +114,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                         label: {
                            fontWeight: '300',
                            fontSize: '13px',
-                           fontFamily:'helvetica,arial,verdana,sans-serif',
-                           rotate: {
-                              degrees: 290
-                           }
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
                         }
                     }
                 ]
@@ -201,10 +198,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                         label: {
                            fontWeight: '300',
                            fontSize: '13px',
-                           fontFamily:'helvetica,arial,verdana,sans-serif',
-                           rotate: {
-                              degrees: 290
-                           }
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
                         },
                         renderer: function (value, layoutContext, lastValue) {
                             return Ext.Date.format(new Date(value), 'Y');

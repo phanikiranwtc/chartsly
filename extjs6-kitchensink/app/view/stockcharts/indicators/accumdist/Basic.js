@@ -37,9 +37,9 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                         text: 'Volume',
                         fontSize: 15
                     },
-                    renderer: function() {
+                    /*renderer: function() {
                         return "";
-                    }
+                    }*/
                 },
                 {
                     type: 'time',
@@ -206,12 +206,9 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                             }
                         },
                         label: {
-                            fontWeight: '300',
-                            fontSize: '13px',
-                            fontFamily:'helvetica,arial,verdana,sans-serif',
-                            rotate: {
-                              degrees: 290
-                            }
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
                         }
                     }
                 ]

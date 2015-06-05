@@ -93,7 +93,6 @@ Ext.define("KS.view.stockcharts.indicators.faststoch.Basic", {
                            fontSize: '13px',
                            fontFamily:'helvetica,arial,verdana,sans-serif',
                         }
-                        
                     },
                     {
                         type: 'time',
@@ -115,9 +114,6 @@ Ext.define("KS.view.stockcharts.indicators.faststoch.Basic", {
                            fontWeight: '300',
                            fontSize: '13px',
                            fontFamily:'helvetica,arial,verdana,sans-serif',
-                           rotate: {
-                              degrees: 290
-                           }
                         }
                     }
                 ]

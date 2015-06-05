@@ -306,9 +306,6 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                            fontWeight: '300',
                            fontSize: '13px',
                            fontFamily:'helvetica,arial,verdana,sans-serif',
-                           rotate: {
-                              degrees: 290
-                           }
                         },
                         renderer: function (value, layoutContext, lastValue) {
                             return Ext.Date.format(new Date(value), 'Y');
