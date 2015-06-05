@@ -136,12 +136,17 @@ Ext.define('Chartsly.interactions.Annotation', {
                     surface.renderFrame();
 
                     chart.fireEvent('annotationremoved', chart, e);
-                } else {
+                } else if(btn == 'yes') {
                     //yes and cancel button
                     //set the annotation text and add annotation to the internal cache
                     me.annotations.push({text: text, sprite: item});
 
                     chart.fireEvent('annotationadded', chart, text, item, e);
+                }else {
+                    surface.remove(item);
+                    surface.renderFrame();
+
+                    chart.fireEvent('annotationremoved', chart, e);
                 }
             }
         });
