@@ -183,8 +183,9 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             estStepSize: 40
                         },
                         label: {
-                            fillStyle: '#666',
-                            fontWeight: '700'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
                         },
                         background: {
                             fill: {
@@ -217,8 +218,12 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             textPadding: 10
                         },
                         label: {
-                            fontWeight: '700',
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         },
                         renderer: function (value, layoutContext, lastValue) {
                             var month, day;
@@ -306,7 +311,12 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left'
+                        position: 'left',
+                        label: {
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
+                        }
                     },
                     {
                         type: 'category',   //FIXME: Bar series does not render for 'time' type. SDK seems to have an issue
@@ -325,8 +335,12 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             }
                         },
                         label: {
-                            fontSize: 10,
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         }
                     }
                 ]
@@ -393,7 +407,12 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left'
+                        position: 'left',
+                        label: {
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
+                        }
                     },
                     {
                         type: 'time',
@@ -412,8 +431,12 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             }
                         },
                         label: {
-                            fontSize: 10,
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         }
                     }
                 ]

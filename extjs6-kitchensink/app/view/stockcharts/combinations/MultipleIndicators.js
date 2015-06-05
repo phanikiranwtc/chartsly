@@ -89,7 +89,11 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left'
+                        position: 'left',
+                        label: {
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'                        }
                     },
                     {
                         type: 'time',
@@ -108,8 +112,12 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                             }
                         },
                         label: {
-                            fontSize: 10,
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         }
                     }
                 ]
@@ -167,7 +175,12 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left'
+                        position: 'left',
+                        label: {
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
+                        }
                     },
                     {
                         type: 'category',   //FIXME: Bar series does not render for 'time' type. SDK seems to have an issue
@@ -186,8 +199,12 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                             }
                         },
                         label: {
-                            fontSize: 10,
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         }
                     }
                 ]

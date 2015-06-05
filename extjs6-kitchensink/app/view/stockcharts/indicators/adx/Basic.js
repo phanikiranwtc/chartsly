@@ -86,7 +86,12 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left'
+                        position: 'left',
+                        label: {
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                        }
                     },
                     {
                         type: 'time',
@@ -105,8 +110,12 @@ Ext.define("KS.view.stockcharts.indicators.adx.Basic", {
                             }
                         },
                         label: {
-                            fontSize: 10,
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         }
                     }
                 ]

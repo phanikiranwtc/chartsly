@@ -119,8 +119,9 @@ Ext.define("KS.view.stockcharts.events.combinations.Basic", {
                             estStepSize: 40
                         },
                         label: {
-                            fillStyle: '#666',
-                            fontWeight: '700'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
                         },
                         background: {
                             fill: {
@@ -153,8 +154,12 @@ Ext.define("KS.view.stockcharts.events.combinations.Basic", {
                             textPadding: 10
                         },
                         label: {
-                            fontWeight: '700',
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         },
                         renderer: function (value, layoutContext, lastValue) {
                             var month, day;

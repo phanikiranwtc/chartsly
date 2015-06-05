@@ -114,8 +114,9 @@ Ext.define("Chartsly.view.test.CandleStick", {
                     estStepSize: 40
                 },
                 label: {
-                    fillStyle: '#666',
-                    fontWeight: '700'
+                   fontWeight: '300',
+                   fontSize: '13px',
+                   fontFamily:'helvetica,arial,verdana,sans-serif'
                 },
                 maximum: 750,
                 minimum: 0,

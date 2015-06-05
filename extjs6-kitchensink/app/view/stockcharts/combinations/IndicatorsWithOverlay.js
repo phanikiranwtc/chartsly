@@ -150,8 +150,9 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                             estStepSize: 40
                         },
                         label: {
-                            fillStyle: '#666',
-                            fontWeight: '700'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
                         },
                         background: {
                             fill: {
@@ -184,8 +185,12 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                             textPadding: 10
                         },
                         label: {
-                            fontWeight: '700',
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         },
                         renderer: function (value, layoutContext, lastValue) {
                             var month, day;
@@ -273,7 +278,12 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left'
+                        position: 'left',
+                        label: {
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
+                        }
                     },
                     {
                         type: 'category',   //FIXME: Bar series does not render for 'time' type. SDK seems to have an issue
@@ -292,8 +302,12 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                             }
                         },
                         label: {
-                            fontSize: 10,
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         }
                     }
                 ]
