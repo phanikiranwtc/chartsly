@@ -35,7 +35,8 @@ Ext.define('Chartsly.sprite.indicator.SlowStochasticOscillator', {
             dataX = attr.dataX,
             dataY = attr.dataY,
             labels = attr.labels,
-            drawLabels = labels && me.getBoundMarker('labels'),
+            drawLabels = labels && me.getMarker('labels'),
+            drawMarkers = me.getMarker('markers'),
             matrix = attr.matrix,
             surfaceMatrix = surface.matrix,
             pixel = surface.devicePixelRatio,
@@ -69,7 +70,20 @@ Ext.define('Chartsly.sprite.indicator.SlowStochasticOscillator', {
                 list.push(maxX * xx + dx, maxY * yy + dy, idx[i]);
             }
         }
-
+        if (list.length) {
+            for (i = 0; i < list.length; i += 3) {
+                x = list[i];
+                y = list[i + 1];
+                
+                index = list[i + 2];
+                if (drawMarkers) {
+                    me.drawMarker(x, y, index);
+                }
+                if (drawLabels && labels[index]) {
+                    me.drawLabel(labels[index], x, y, index, rect);
+                }
+            }
+        }
         var pixelAdjust = attr.lineWidth * surface.devicePixelRatio / 2;
 
         pixelAdjust -= Math.floor(pixelAdjust);

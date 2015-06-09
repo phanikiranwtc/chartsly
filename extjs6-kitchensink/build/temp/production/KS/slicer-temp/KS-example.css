@@ -19286,6 +19286,10 @@ a.x-color-picker-item:hover {
     font-size: 18px;
     font-weight: bold;
 }
+/* http://localhost:1841/sass/src/view/Viewport.scss:2 */
+.x-splitter-focus {
+    outline: none;
+}
 /* http://localhost:1841/sass/src/view/CodePreview.scss:1 */
 .preview-container pre.prettyprint {
     margin: 0;
@@ -19310,4 +19314,8 @@ a.x-color-picker-item:hover {
     color: white;
     font-size: 18px;
     font-weight: bold;
+}
+/* http://localhost:1841/sass/src/view/Viewport.scss:2 */
+.x-splitter-focus {
+    outline: none;
 }

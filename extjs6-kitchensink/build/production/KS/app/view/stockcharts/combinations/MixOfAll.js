@@ -13,8 +13,9 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
         'Ext.chart.interactions.ItemHighlight',
         'Chartsly.chart.indicator.WilliamPctR',
         'Chartsly.chart.indicator.MovingAverageConvergenceDivergence',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
+        'Setu.Util'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart with PSAR and Bollinger Bands, which has got Annotation and Events, and two indicators - MACD and William %R'
@@ -34,14 +35,28 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                 interactions: {
                     type: 'annotation'
                 },
+                listeners: {
+                    annotationupdated: function(chart, annotText, sprite) {
+                           Ext.Msg.alert({message:'Annotation Updated: ' + annotText,
+                               buttons: Ext.Msg.OK,
+                               closable : true
+                           });
+                   },
+                   annotationmoved: function(chart, sprite) {
+                       Ext.Msg.alert({message:'Annotation moved to: ' + sprite.attr.x + ':' + sprite.attr.y,
+                           buttons: Ext.Msg.OK,
+                           closable : true
+                       });
+                 }
+                },
                 series: [{
-                        store: Ext.create('Chartsly.store.GoogleDividend', {}), 
+                        store: Ext.create('Chartsly.store.AppleDividend', {}), 
                         type: 'event',
                         eventType: 'dividend',
                         xField: 'date',
                         yField: 'dividend'
                     }, {
-                        store: Ext.create('Chartsly.store.GoogleBonus', {}), 
+                        store: Ext.create('Chartsly.store.AppleBonus', {}), 
                         type: 'event',
                         eventType: 'bonus',
                         xField: 'date',
@@ -53,7 +68,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         xField: 'date',
                         yField: 'dividend'
                     },{
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'parabolicsar',
                         highField: 'high',
                         lowField: 'low',
@@ -69,7 +84,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             lineWidth: 0
                         }
                     },{
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -81,7 +96,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         xField: 'date',
                         yField: 'bband'
                     }, {
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -92,7 +107,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         xField: 'date',
                         yField: 'upperbband'
                     }, {
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -104,7 +119,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         yField: 'lowerbband'
                     },
                     {
-                        store: Ext.create('Chartsly.store.Google', {}),//'Google',
+                        store: 'YahooFinances',//'Google',
                         type: 'candlestick',
                         xField: 'date',
                         openField: 'open',
@@ -125,6 +140,35 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         },
                         aggregator: {
                             stretagy: 'time'
+                        },
+                        marker: {
+                            opacity: 1,
+                            scaling: 0.2,
+                            fillStyle : '#E3742D',
+                            fx: {
+                                duration: 20,
+                                easing: 'easeOut'
+                            }
+                        },
+                        highlightCfg: {
+                            opacity: 1,
+                            scaling: 1.5
+                        },
+                        tooltip: {
+                            trackMouse: true,
+                            style:{
+                                backgroundColor:'#fff',
+                                border:'2px solid #E3742D',
+                                fontFamily:'Helvetica',
+                            },
+                            renderer: function(tooltip,record, item) {
+                                var open = Util.formatNumber(record.get('open'),"0.0000");
+                                var close = Util.formatNumber(record.get('close'),"0.0000");
+                                var high = Util.formatNumber(record.get('high'),"0.0000");
+                                var low = Util.formatNumber(record.get('low'),"0.0000");
+                                var volume = record.get('volume');
+                                tooltip.setHtml('<table>'+'<tr>'+'<td>'+'Open:'+'</td>'+'<td>'+'$'+open+'</td>'+'</tr>'+'<tr>'+'<td>'+'Close:'+'</td>'+'<td>'+'$'+close+'</td>'+'</tr>'+'<tr>'+'<td>'+'High:'+'</td>'+'<td>'+'$'+high+'</td>'+'</tr>'+'<tr>'+'<td>'+'Low:'+'</td>'+'<td>'+'$'+low+'</td>'+'</tr>'+'<tr>'+'<td>'+'Volume:'+'</td>'+'<td>'+'$'+volume+'</td>'+'</tr>'+'</table>');
+                            }
                         }
                     }
                 ],
@@ -139,8 +183,9 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             estStepSize: 40
                         },
                         label: {
-                            fillStyle: '#666',
-                            fontWeight: '700'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
                         },
                         background: {
                             fill: {
@@ -166,17 +211,22 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         background: {
                             fill: 'gray'
                         },
-                        visibleRange: [0.5, 0.9],
+                        //visibleRange: [0.5, 0.9],
                         style: {
                             strokeStyle: '#888',
                             estStepSize: 50,
                             textPadding: 10
                         },
                         label: {
-                            fontWeight: '700',
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         },
-                        renderer: function (value, layoutContext, lastValue) {
+                        dateFormat:"Y-m-d"
+                        /*renderer: function (value, layoutContext, lastValue) {
                             var month, day;
                             switch (layoutContext.majorTicks.unit) {
                                 case Ext.Date.YEAR:
@@ -205,7 +255,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                                 default:
                                     return Ext.Date.format(value, 'h:i:s');
                             }
-                        }
+                        }*/
                     }
                 ]
             },
@@ -215,7 +265,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'macd',
                         xField: 'date',
                         yField: 'macd',
@@ -227,13 +277,47 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         style: {
                             stroke: 'rgba(67,174,175,0.75)',
                             miterLimit: 1
+                        },
+                        marker: {
+                            opacity: 1,
+                            scaling: 0.2,
+                            fillStyle : '#E3742D',
+                            fx: {
+                                duration: 20,
+                                easing: 'easeOut'
+                            }
+                        },
+                        highlightCfg: {
+                            opacity: 1,
+                            scaling: 1.5
+                        },
+                        tooltip: {
+                            trackMouse: true,
+                            style:{
+                                backgroundColor:'#fff',
+                                border:'2px solid #E3742D',
+                                fontFamily:'Helvetica',
+                            },
+                            renderer: function(tooltip,record, item) {
+                                var open = Util.formatNumber(record.get('open'),"0.0000");
+                                var close = Util.formatNumber(record.get('close'),"0.0000");
+                                var high = Util.formatNumber(record.get('high'),"0.0000");
+                                var low = Util.formatNumber(record.get('low'),"0.0000");
+                                var volume = record.get('volume');
+                                tooltip.setHtml('<table>'+'<tr>'+'<td>'+'Open:'+'</td>'+'<td>'+'$'+open+'</td>'+'</tr>'+'<tr>'+'<td>'+'Close:'+'</td>'+'<td>'+'$'+close+'</td>'+'</tr>'+'<tr>'+'<td>'+'High:'+'</td>'+'<td>'+'$'+high+'</td>'+'</tr>'+'<tr>'+'<td>'+'Low:'+'</td>'+'<td>'+'$'+low+'</td>'+'</tr>'+'<tr>'+'<td>'+'Volume:'+'</td>'+'<td>'+'$'+volume+'</td>'+'</tr>'+'</table>');
+                            }
                         }
                     }
                 ],
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left'
+                        position: 'left',
+                        label: {
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
+                        }
                     },
                     {
                         type: 'category',   //FIXME: Bar series does not render for 'time' type. SDK seems to have an issue
@@ -243,7 +327,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             strokeStyle: '#666',
                             estStepSize: 150
                         },
-                        dateFormat: 'Y',
+                        //dateFormat: 'Y',
                         segmenter: {
                             type: 'time',
                             step: {
@@ -252,8 +336,12 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             }
                         },
                         label: {
-                            fontSize: 10,
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
+                        },
+                        renderer: function (value, layoutContext, lastValue) {
+                            return Ext.Date.format(new Date(value), 'Y');
                         }
                     }
                 ]
@@ -271,7 +359,7 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'williampctr',
                         xField: 'date',
                         yField: 'pctr',
@@ -285,13 +373,47 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             stroke: 'rgba(237,123,43,0.75)',
                             fill: 'rgba(237,123,43,0.1)',
                             miterLimit: 1
+                        },
+                        marker: {
+                            opacity: 1,
+                            scaling: 0.2,
+                            fillStyle : '#E3742D',
+                            fx: {
+                                duration: 20,
+                                easing: 'easeOut'
+                            }
+                        },
+                        highlightCfg: {
+                            opacity: 1,
+                            scaling: 1.5
+                        },
+                        tooltip: {
+                            trackMouse: true,
+                            style:{
+                                backgroundColor:'#fff',
+                                border:'2px solid #E3742D',
+                                fontFamily:'Helvetica',
+                            },
+                            renderer: function(tooltip,record, item) {
+                                var open = Util.formatNumber(record.get('open'),"0.0000");
+                                var close = Util.formatNumber(record.get('close'),"0.0000");
+                                var high = Util.formatNumber(record.get('high'),"0.0000");
+                                var low = Util.formatNumber(record.get('low'),"0.0000");
+                                var volume = record.get('volume');
+                                tooltip.setHtml('<table>'+'<tr>'+'<td>'+'Open:'+'</td>'+'<td>'+'$'+open+'</td>'+'</tr>'+'<tr>'+'<td>'+'Close:'+'</td>'+'<td>'+'$'+close+'</td>'+'</tr>'+'<tr>'+'<td>'+'High:'+'</td>'+'<td>'+'$'+high+'</td>'+'</tr>'+'<tr>'+'<td>'+'Low:'+'</td>'+'<td>'+'$'+low+'</td>'+'</tr>'+'<tr>'+'<td>'+'Volume:'+'</td>'+'<td>'+'$'+volume+'</td>'+'</tr>'+'</table>');
+                            }
                         }
                     }
                 ],
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left'
+                        position: 'left',
+                        label: {
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
+                        }
                     },
                     {
                         type: 'time',
@@ -310,8 +432,9 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             }
                         },
                         label: {
-                            fontSize: 10,
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
                         }
                     }
                 ]

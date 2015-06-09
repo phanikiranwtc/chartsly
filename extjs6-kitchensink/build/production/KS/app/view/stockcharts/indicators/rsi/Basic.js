@@ -10,8 +10,9 @@ Ext.define("KS.view.stockcharts.indicators.rsi.Basic", {
         'Ext.chart.series.Line',
 	'Chartsly.view.test.CandleStick',
         'Chartsly.chart.indicator.RelativeStrengthIndex',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple'
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
+        'Setu.Util'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart and Relative Strength Index (RSI) indicator'
@@ -36,7 +37,7 @@ Ext.define("KS.view.stockcharts.indicators.rsi.Basic", {
                 background: 'white',
                 series: [
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}), //'Apple',
+                        store: 'YahooFinances', //'Apple',
                         type: 'relativestrengthindex',
                         xField: 'date',
                         yField: 'rsi',
@@ -48,13 +49,47 @@ Ext.define("KS.view.stockcharts.indicators.rsi.Basic", {
                             stroke: '#85bedb',
                             fill: '#85bedb',
                             miterLimit: 1
+                        },
+                        marker: {
+                            opacity: 1,
+                            scaling: 0.2,
+                            fillStyle : '#E3742D',
+                            fx: {
+                                duration: 20,
+                                easing: 'easeOut'
+                            }
+                        },
+                        highlightCfg: {
+                            opacity: 1,
+                            scaling: 1.5
+                        },
+                        tooltip: {
+                            trackMouse: true,
+                            style:{
+                                backgroundColor:'#fff',
+                                border:'2px solid #E3742D',
+                                fontFamily:'Helvetica',
+                            },
+                            renderer: function(tooltip,record, item) {
+                                var open = Util.formatNumber(record.get('open'),"0.0000");
+                                var close = Util.formatNumber(record.get('close'),"0.0000");
+                                var high = Util.formatNumber(record.get('high'),"0.0000");
+                                var low = Util.formatNumber(record.get('low'),"0.0000");
+                                var volume = record.get('volume');
+                                tooltip.setHtml('<table>'+'<tr>'+'<td>'+'Open:'+'</td>'+'<td>'+'$'+open+'</td>'+'</tr>'+'<tr>'+'<td>'+'Close:'+'</td>'+'<td>'+'$'+close+'</td>'+'</tr>'+'<tr>'+'<td>'+'High:'+'</td>'+'<td>'+'$'+high+'</td>'+'</tr>'+'<tr>'+'<td>'+'Low:'+'</td>'+'<td>'+'$'+low+'</td>'+'</tr>'+'<tr>'+'<td>'+'Volume:'+'</td>'+'<td>'+'$'+volume+'</td>'+'</tr>'+'</table>');
+                            }
                         }
                     }
                 ],
                 axes: [
                     {
                         type: 'numeric',
-                        position: 'left'
+                        position: 'left',
+                        label: {
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                        }
                      },
                     {
                         type: 'time',
@@ -73,8 +108,9 @@ Ext.define("KS.view.stockcharts.indicators.rsi.Basic", {
                             }
                         },
                         label: {
-                            fontSize: 10,
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
                         }
                     }
                 ]

@@ -67,7 +67,7 @@ Ext.define("KS.view.stockcharts.events.bonus.Basic", {
                         },
                         marker: {
                             opacity: 1,
-                            scaling: 0.01,
+                            scaling: 0.2,
                             fillStyle : '#E3742D',
                             fx: {
                                 duration: 20,

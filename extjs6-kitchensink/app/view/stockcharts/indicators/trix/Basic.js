@@ -43,7 +43,7 @@ Ext.define("KS.view.stockcharts.indicators.trix.Basic", {
                         },
                         marker: {
                             opacity: 1,
-                            scaling: 0.01,
+                            scaling: 0.2,
                             fillStyle : '#E3742D',
                             fx: {
                                 duration: 20,
@@ -80,6 +80,13 @@ Ext.define("KS.view.stockcharts.indicators.trix.Basic", {
                            fontWeight: '300',
                            fontSize: '13px',
                            fontFamily:'helvetica,arial,verdana,sans-serif',
+                        },
+                        renderer:function(val){
+                            if (val==0){
+                                return Ext.util.Format.number(val,'0');
+                            }else{
+                                return Ext.util.Format.number(val,'0.00');
+                            }
                         }
                     },
                     {

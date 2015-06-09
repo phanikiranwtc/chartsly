@@ -45,7 +45,7 @@ Ext.define("KS.view.stockcharts.indicators.pmo.Basic", {
                         },
                         marker: {
                             opacity: 1,
-                            scaling: 0.01,
+                            scaling: 0.2,
                             fillStyle : '#E3742D',
                             fx: {
                                 duration: 20,
@@ -82,6 +82,9 @@ Ext.define("KS.view.stockcharts.indicators.pmo.Basic", {
                            fontWeight: '300',
                            fontSize: '13px',
                            fontFamily:'helvetica,arial,verdana,sans-serif',
+                        },
+                        renderer:function(val){
+                            return Ext.util.Format.number(val,'0');
                         }
                     },
                     {

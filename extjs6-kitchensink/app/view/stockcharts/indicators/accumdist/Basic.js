@@ -42,7 +42,8 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                     }*/
                 },
                 {
-                    type: 'time',
+                    //type: 'time',
+                    type: 'category',
                     fields: ['date'],
                     position: 'bottom',
                     background: {
@@ -52,7 +53,8 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                     style: {
                         axisLine: false,
                         strokeStyle: '#888',
-                        textPadding: 10
+                        textPadding: 10,
+                        estStepSize: 50,
                     },
                     label: {
                        fontWeight: '300',
@@ -62,7 +64,10 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                           degrees: 290
                        }
                     },
-                    dateFormat:"Y-m-d"
+                    renderer: function (value, layoutContext, lastValue) {
+                        return Ext.Date.format(new Date(value), 'Y-m-d');
+                    }
+                    //dateFormat:"Y-m-d"
                     /*renderer: function (value, layoutContext, lastValue) {
                         var month, day;
                         switch (layoutContext.majorTicks.unit) {
@@ -100,7 +105,7 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                     yField: 'volume',
                     marker: {
                         opacity: 1,
-                        scaling: 0.01,
+                        scaling: 0.2,
                         fillStyle : '#E3742D',
                         fx: {
                             duration: 20,
@@ -151,7 +156,7 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                         },
                         marker: {
                             opacity: 1,
-                            scaling: 0.01,
+                            scaling: 0.2,
                             fillStyle : '#E3742D',
                             fx: {
                                 duration: 20,

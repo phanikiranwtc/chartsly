@@ -11,10 +11,11 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
         'Ext.chart.series.Line',
-        'Chartsly.model.Stock', 
-        'Chartsly.store.Apple',
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
         'Chartsly.series.overlay.BollingerBands',
-        'Chartsly.series.overlay.ParabolicSAR'
+        'Chartsly.series.overlay.ParabolicSAR',
+        'Setu.Util'
     ],
     exampleDescription: [
         'A CandleStick chart with PSAR and Bollinger Bands overlays'
@@ -33,7 +34,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                     bottom: 0
                 },
                 series: [{
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'parabolicsar',
                         highField: 'high',
                         lowField: 'low',
@@ -49,7 +50,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                             lineWidth: 0
                         }
                     },{
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -61,7 +62,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                         xField: 'date',
                         yField: 'bband'
                     }, {
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store: 'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -72,7 +73,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                         xField: 'date',
                         yField: 'upperbband'
                     }, {
-                        store: Ext.create('Chartsly.store.Google', {}), //'Google',
+                        store:'YahooFinances', //'Google',
                         type: 'bbands',
                         closeField: 'close',
                         period: 15,
@@ -84,7 +85,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                         yField: 'lowerbband'
                     },
                     {
-                        store: Ext.create('Chartsly.store.Google', {}),//'Google',
+                        store: 'YahooFinances',//'Google',
                         type: 'candlestick',
                         xField: 'date',
                         openField: 'open',
@@ -105,6 +106,35 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                         },
                         aggregator: {
                             stretagy: 'time'
+                        },
+                        marker: {
+                            opacity: 1,
+                            scaling: 0.2,
+                            fillStyle : '#E3742D',
+                            fx: {
+                                duration: 20,
+                                easing: 'easeOut'
+                            }
+                        },
+                        highlightCfg: {
+                            opacity: 1,
+                            scaling: 1.5
+                        },
+                        tooltip: {
+                            trackMouse: true,
+                            style:{
+                                backgroundColor:'#fff',
+                                border:'2px solid #E3742D',
+                                fontFamily:'Helvetica',
+                            },
+                            renderer: function(tooltip,record, item) {
+                                var open = Util.formatNumber(record.get('open'),"0.0000");
+                                var close = Util.formatNumber(record.get('close'),"0.0000");
+                                var high = Util.formatNumber(record.get('high'),"0.0000");
+                                var low = Util.formatNumber(record.get('low'),"0.0000");
+                                var volume = record.get('volume');
+                                tooltip.setHtml('<table>'+'<tr>'+'<td>'+'Open:'+'</td>'+'<td>'+'$'+open+'</td>'+'</tr>'+'<tr>'+'<td>'+'Close:'+'</td>'+'<td>'+'$'+close+'</td>'+'</tr>'+'<tr>'+'<td>'+'High:'+'</td>'+'<td>'+'$'+high+'</td>'+'</tr>'+'<tr>'+'<td>'+'Low:'+'</td>'+'<td>'+'$'+low+'</td>'+'</tr>'+'<tr>'+'<td>'+'Volume:'+'</td>'+'<td>'+'$'+volume+'</td>'+'</tr>'+'</table>');
+                            }
                         }
                     }
                 ],
@@ -119,8 +149,9 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                             estStepSize: 40
                         },
                         label: {
-                            fillStyle: '#666',
-                            fontWeight: '700'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
                         },
                         
                         background: {
@@ -147,17 +178,22 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                         background: {
                             fill: 'gray'
                         },
-                        visibleRange: [0.5, 0.9],
+                        //visibleRange: [0.5, 0.9],
                         style: {
                             strokeStyle: '#888',
                             estStepSize: 50,
                             textPadding: 10
                         },
                         label: {
-                            fontWeight: '700',
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         },
-                        renderer: function (value, layoutContext, lastValue) {
+                        dateFormat:"Y-m-d"
+                        /*renderer: function (value, layoutContext, lastValue) {
                             var month, day;
                             switch (layoutContext.majorTicks.unit) {
                                 case Ext.Date.YEAR:
@@ -186,7 +222,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
                                 default:
                                     return Ext.Date.format(value, 'h:i:s');
                             }
-                        }
+                        }*/
                     }
                 ]
             }

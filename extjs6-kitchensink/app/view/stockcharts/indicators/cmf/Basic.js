@@ -48,7 +48,7 @@ Ext.define("KS.view.stockcharts.indicators.cmf.Basic", {
                         chaikinMoneyFlowPeriod: 20,  //in days
                         marker: {
                             opacity: 1,
-                            scaling: 0.01,
+                            scaling: 0.2,
                             fillStyle : '#E3742D',
                             fx: {
                                 duration: 20,
@@ -85,17 +85,25 @@ Ext.define("KS.view.stockcharts.indicators.cmf.Basic", {
                            fontWeight: '300',
                            fontSize: '13px',
                            fontFamily:'helvetica,arial,verdana,sans-serif',
+                        },
+                        renderer:function(val){
+                            if (val==0){
+                                return Ext.util.Format.number(val,'0');
+                            }else{
+                                return Ext.util.Format.number(val,'0.0');
+                            }
                         }
                     },
                     {
-                        type: 'time',
+                        //type: 'time',
+                        type: 'category',
                         position: 'bottom',
                         fields: ['date'],
                         style: {
                             strokeStyle: '#666',
                             estStepSize: 150
                         },
-                        dateFormat: 'Y',
+                        //dateFormat: 'Y',
                         segmenter: {
                             type: 'time',
                             step: {
@@ -107,6 +115,9 @@ Ext.define("KS.view.stockcharts.indicators.cmf.Basic", {
                            fontWeight: '300',
                            fontSize: '13px',
                            fontFamily:'helvetica,arial,verdana,sans-serif',
+                        },
+                        renderer: function (value, layoutContext, lastValue) {
+                            return Ext.Date.format(new Date(value), 'Y');
                         }
                     }
                 ]

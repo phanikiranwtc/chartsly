@@ -11,12 +11,13 @@ Ext.define("KS.view.stockcharts.combinations.EventsWithInteractions", {
         'Ext.chart.interactions.ItemHighlight',
         'Ext.chart.axis.Time',
         'Ext.chart.axis.Numeric',
-        'Ext.chart.series.Line',
-        'Chartsly.model.Stock', 
+        'Ext.chart.series.Line', 
         'Chartsly.model.Dividend', 
-        'Chartsly.store.Apple',
+        'Chartsly.model.YahooFinance',
+        'Chartsly.store.YahooFinances',
         'Chartsly.store.AppleDividend',
-        'Chartsly.series.Event'
+        'Chartsly.series.Event',
+        'Setu.Util'
     ],
     exampleDescription: [
         'A combination to a CandleStick chart, with Events, and an interaction - Annotation'
@@ -37,6 +38,20 @@ Ext.define("KS.view.stockcharts.combinations.EventsWithInteractions", {
                 interactions: [{
                     type: 'annotation'
                 }],
+                listeners: {
+                    annotationupdated: function(chart, annotText, sprite) {
+                           Ext.Msg.alert({message:'Annotation Updated: ' + annotText,
+                               buttons: Ext.Msg.OK,
+                               closable : true
+                           });
+                   },
+                   annotationmoved: function(chart, sprite) {
+                       Ext.Msg.alert({message:'Annotation moved to: ' + sprite.attr.x + ':' + sprite.attr.y,
+                           buttons: Ext.Msg.OK,
+                           closable : true
+                       });
+                 }
+                },
                 series: [{
                         store: Ext.create('Chartsly.store.AppleDividend', {}), 
                         type: 'event',
@@ -57,7 +72,7 @@ Ext.define("KS.view.stockcharts.combinations.EventsWithInteractions", {
                         yField: 'bonus'
                     }, 
                     {
-                        store: Ext.create('Chartsly.store.Apple', {}),
+                        store: 'YahooFinances',
                         type: 'candlestick',
                         xField: 'date',
                         openField: 'open',
@@ -78,6 +93,35 @@ Ext.define("KS.view.stockcharts.combinations.EventsWithInteractions", {
                         },
                         aggregator: {
                             stretagy: 'time'
+                        },
+                        marker: {
+                            opacity: 1,
+                            scaling: 0.2,
+                            fillStyle : '#E3742D',
+                            fx: {
+                                duration: 20,
+                                easing: 'easeOut'
+                            }
+                        },
+                        highlightCfg: {
+                            opacity: 1,
+                            scaling: 1.5
+                        },
+                        tooltip: {
+                            trackMouse: true,
+                            style:{
+                                backgroundColor:'#fff',
+                                border:'2px solid #E3742D',
+                                fontFamily:'Helvetica',
+                            },
+                            renderer: function(tooltip,record, item) {
+                                var open = Util.formatNumber(record.get('open'),"0.0000");
+                                var close = Util.formatNumber(record.get('close'),"0.0000");
+                                var high = Util.formatNumber(record.get('high'),"0.0000");
+                                var low = Util.formatNumber(record.get('low'),"0.0000");
+                                var volume = record.get('volume');
+                                tooltip.setHtml('<table>'+'<tr>'+'<td>'+'Open:'+'</td>'+'<td>'+'$'+open+'</td>'+'</tr>'+'<tr>'+'<td>'+'Close:'+'</td>'+'<td>'+'$'+close+'</td>'+'</tr>'+'<tr>'+'<td>'+'High:'+'</td>'+'<td>'+'$'+high+'</td>'+'</tr>'+'<tr>'+'<td>'+'Low:'+'</td>'+'<td>'+'$'+low+'</td>'+'</tr>'+'<tr>'+'<td>'+'Volume:'+'</td>'+'<td>'+'$'+volume+'</td>'+'</tr>'+'</table>');
+                            }
                         }
                     }
                 ],
@@ -92,8 +136,9 @@ Ext.define("KS.view.stockcharts.combinations.EventsWithInteractions", {
                             estStepSize: 40
                         },
                         label: {
-                            fillStyle: '#666',
-                            fontWeight: '700'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif'
                         },
                        background: {
                             fill: {
@@ -119,17 +164,22 @@ Ext.define("KS.view.stockcharts.combinations.EventsWithInteractions", {
                         background: {
                             fill: 'gray'
                         },
-                        visibleRange: [0.5, 0.9],
+                       // visibleRange: [0.5, 0.9],
                         style: {
                             strokeStyle: '#888',
                             estStepSize: 50,
                             textPadding: 10
                         },
                         label: {
-                            fontWeight: '700',
-                            fillStyle: '#666'
+                           fontWeight: '300',
+                           fontSize: '13px',
+                           fontFamily:'helvetica,arial,verdana,sans-serif',
+                           rotate: {
+                              degrees: 290
+                           }
                         },
-                        renderer: function (value, layoutContext, lastValue) {
+                        dateFormat:"Y-m-d"
+                        /*renderer: function (value, layoutContext, lastValue) {
                             var month, day;
                             switch (layoutContext.majorTicks.unit) {
                                 case Ext.Date.YEAR:
@@ -158,7 +208,7 @@ Ext.define("KS.view.stockcharts.combinations.EventsWithInteractions", {
                                 default:
                                     return Ext.Date.format(value, 'h:i:s');
                             }
-                        }
+                        }*/
                     }
                 ]
             }
