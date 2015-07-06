@@ -1,0 +1,1 @@
+This folder has been, consciously, left empty. You shall keep the SDK files here.

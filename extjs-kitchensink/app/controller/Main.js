@@ -279,7 +279,7 @@ Ext.define('KS.controller.Main', {
     updateCodePreviewAsync: function(clsProto, xtype) {
         var me = this,
             className = Ext.ClassManager.getNameByAlias('widget.' + xtype),
-            path = className.replace(/\./g, '/').replace('KS', 'app') + '.js';
+            path = className.replace(/\./g, '/').replace('KS', 'resources/app') + '.js';
 
         Ext.Ajax.request({
             url: path,
