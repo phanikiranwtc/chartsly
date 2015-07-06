@@ -1,8 +1,12 @@
 ![alt text](https://github.com/walkingtree/chartsly/blob/gh-pages/images/chartsly_logo_orange_200.png "Chartsly")
 Chartsly
 ========
-
 Stock Charts package based on Sencha Ext JS &amp; Touch
+
+Resources
+---------
+* [Website](http://walkingtree.github.io/chartsly/)
+* [Demo](http://chartslyuat.walkingtree.in/)
 
 Getting Started
 ---------------
