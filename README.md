@@ -30,7 +30,7 @@ The deployable artefacts are located under `ext-kitchensink/build/production/KS`
 
 Want to contribute?
 -------------------
-Fork the repository and submit pull requests.
+[Fork](https://github.com/walkingtree/chartsly#fork-destination-box) the repository and submit pull requests.
 
 License
 -------
