@@ -1,8 +1,10 @@
 ![alt text](https://github.com/walkingtree/chartsly/blob/gh-pages/images/chartsly_logo_orange_200.png "Chartsly")
+
+[![Join the chat at https://gitter.im/walkingtree/chartsly](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/walkingtree/chartsly?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Chartsly
 ========
 
-[![Join the chat at https://gitter.im/walkingtree/chartsly](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/walkingtree/chartsly?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Stock Charts package based on Sencha Ext JS &amp; Touch
 
 Resources
