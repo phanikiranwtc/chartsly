@@ -16,7 +16,7 @@ Ext.define("Chartsly.view.test.AccumulationDistributionLine", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 150,
+                height: 150
             },
             {
                 xtype: 'chart',

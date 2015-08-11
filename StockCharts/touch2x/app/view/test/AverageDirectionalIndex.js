@@ -16,7 +16,7 @@ Ext.define("Chartsly.view.test.AverageDirectionalIndex", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350,
+                height: 350
              
             },
                {
@@ -44,7 +44,7 @@ Ext.define("Chartsly.view.test.AverageDirectionalIndex", {
                             fill: 'rgba(237,123,43,0.1)',
                             miterLimit: 1
                         }
-                    },
+                    }
                     
                 ],
                 axes: [

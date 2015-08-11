@@ -74,7 +74,7 @@ Ext.define('Chartsly.series.indicator.MoneyFlowIndex', {
 
 	   // Enters the condition from second record.
 	   if(index > 0) {
-		   items = item.store.data.items;
+		    items = item.stores[0].data.items;
 		   
 		   // Calculating typicalPrice as per the formula, for the previous record. 	
 		   var previousTypicalPrice = (items[index-1].get(config.highField) + items[index-1].get(config.lowField) + items[index-1].get(config.closeField))/3;	

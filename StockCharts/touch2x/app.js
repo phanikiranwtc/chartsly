@@ -14,13 +14,24 @@ Ext.application({
     name: 'Chartsly',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'Ext.chart.interactions.ItemInfo'
     ],
 
     views: [
-        'Main'
+        'Main',
+        'Line'
     ],
+    //Initialise the all stores
+    stores:[
+       'Apple',
+       'AppleBonus',
+       'AppleDividend',
+       'Google',
+       'GoogleBonus',
+       'GoogleDividend'
 
+    ],
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',

@@ -82,9 +82,13 @@ Ext.define('Chartsly.series.indicator.RelativeStrengthIndex', {
 	var rs = gainAvg/lossAvg;
 
             //calculate Relative Strength Index and set it on the record
-            var rsi = 100-(100/(1+rs));
-	    rsi = Ext.util.Format.number(rsi,"0.00");	    
-            item.data.rsi = rsi;
+            if(Ext.isNumber(rs)){
+               var rsi = 100-(100/(1+rs));
+               rsi=Ext.Number.toFixed(rsi,2);
+               //rsi = Ext.util.Format.format(rsi,"0.00");     
+               item.data.rsi = rsi;
+            
+            }
         });
 
         this.callParent(arguments);

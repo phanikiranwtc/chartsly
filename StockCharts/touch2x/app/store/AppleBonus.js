@@ -1,5 +1,5 @@
 Ext.define("Chartsly.store.AppleBonus", {
-    alias: 'store.AppleDividend',
+    alias: 'store.AppleBonus',//It is bonus store devided is alo use in devidend store
     requires: ['Chartsly.model.Bonus', 'Ext.data.reader.Array'],
     extend: "Ext.data.ArrayStore",
     config: {

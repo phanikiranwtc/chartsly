@@ -16,7 +16,7 @@ Ext.define("Chartsly.view.test.SlowStochasticOscillator", {
         items: [
 	    {
                 xtype: 'candlestick-test-chart',
-                height: 350,
+                height: 350
             },			
             {
                 xclass: 'Chartsly.chart.indicator.SlowStochasticOscillator',
@@ -47,7 +47,7 @@ Ext.define("Chartsly.view.test.SlowStochasticOscillator", {
                              stroke: 'rgba(0,0,0,0.75)',
                              miterLimit: 1
                         }
-                    },
+                    }
 		
                 ],
                 axes: [

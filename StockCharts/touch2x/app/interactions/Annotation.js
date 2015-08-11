@@ -149,12 +149,18 @@ Ext.define('Chartsly.interactions.Annotation', {
                     surface.renderFrame();
 
                     chart.fireEvent('annotationremoved', chart, e);
-                } else {
+                } else if(btn == 'yes') {
                     //yes and cancel button
                     //set the annotation text and add annotation to the internal cache
                     me.annotations.push({text: text, sprite: item});
 
-                    chart.fireEvent('annotationadded', chart, text, sprite, e);
+                    chart.fireEvent('annotationadded', chart, text, item, e);
+                }else {
+                    //For cancel button.Remove the annotation sprite
+                    surface.remove(item);
+                    surface.renderFrame();
+
+                    chart.fireEvent('annotationremoved', chart, e);
                 }
             }
         });
@@ -242,8 +248,10 @@ Ext.define('Chartsly.interactions.Annotation', {
 
         surface.renderFrame();
         me.unlockEvents(me.getMoveGesture());
-
-        chart.fireEvent('annotationmoved', chart, me.itemOnMove.sprite, e);
+        //control comes here for every dragstart event, even if we are not dragging an annotation. And in that case the item will be null
+        if(Ext.isDefined(me.itemOnMove)){
+           chart.fireEvent('annotationmoved', chart, me.itemOnMove.sprite, e);
+        }
     },
 
     /**

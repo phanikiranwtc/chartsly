@@ -15,13 +15,17 @@ Ext.Loader.setPath({
     'Chartsly': '../StockCharts/touch2x/app',
     'KS': 'app'
 });
-
+//To load the all the stores before load the app
+Ext.require(['Chartsly.store.Apple','Chartsly.store.AppleBonus','Chartsly.store.AppleDividend','Chartsly.store.Google','Chartsly.store.GoogleDividend','Chartsly.store.GoogleBonus']);
 Ext.application({
     name: 'KS',
 
     requires: [
-        'Ext.MessageBox',
-        
+
+        'Ext.MessageBox',//some required classes are added
+        'Ext.chart.axis.Category',
+        'Ext.chart.series.Bar',
+        'Ext.chart.interactions.ItemInfo',
         //TODO: KS.view.* must have worked but it is not working
         'KS.view.ContentPanel',
         'KS.view.DescriptionPanel',
@@ -52,19 +56,20 @@ Ext.application({
         'KS.view.stockcharts.interactions.annotation.Basic',
         'KS.view.stockcharts.interactions.fibonacci.Basic',
         'KS.view.stockcharts.interactions.trendline.Basic',
+        'KS.view.stockcharts.interactions.crosshair.Basic',
 
         'KS.view.stockcharts.events.bonus.Basic',
         'KS.view.stockcharts.events.dividend.Basic',
         'KS.view.stockcharts.events.rights.Basic',
         'KS.view.stockcharts.events.split.Basic',
         'KS.view.stockcharts.events.combinations.Basic',
-
-        // 'KS.view.stockcharts.combinations.MultipleIndicators',
-        // 'KS.view.stockcharts.combinations.MultipleOverlays',
-        // 'KS.view.stockcharts.combinations.IndicatorsWithOverlay',
-        // 'KS.view.stockcharts.combinations.OverlaysWithInteractions',
-        // 'KS.view.stockcharts.combinations.EventsWithInteractions',
-        // 'KS.view.stockcharts.combinations.MixOfAll'
+         //Combinations charts are also included
+        'KS.view.stockcharts.combinations.MultipleIndicators',
+        'KS.view.stockcharts.combinations.MultipleOverlays',
+        'KS.view.stockcharts.combinations.IndicatorsWithOverlay',
+        'KS.view.stockcharts.combinations.OverlaysWithInteractions',
+        'KS.view.stockcharts.combinations.EventsWithInteractions',
+        'KS.view.stockcharts.combinations.MixOfAll'
     ],
 
     views: [

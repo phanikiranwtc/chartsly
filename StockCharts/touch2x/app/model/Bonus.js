@@ -1,11 +1,11 @@
 Ext.define("Chartsly.model.Bonus", {
     extend: 'Ext.data.Model',
-    // config: {
+    config: {
         fields: [
             'date',
             "type",
             "bonus",
             "remark"
         ]
-    // }
+     }
 });

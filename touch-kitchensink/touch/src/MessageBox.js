@@ -228,8 +228,8 @@ Ext.define('Ext.MessageBox', {
 
         Ext.applyIf(config, {
             docked: 'top',
-            minHeight: (Ext.filterPlatform('blackberry') || Ext.filterPlatform('ie10')) ? '2.6em' : '1.3em',
-            ui: Ext.filterPlatform('blackberry') ? 'light' : 'dark',
+           // minHeight: (Ext.filterPlatform('blackberry') || Ext.filterPlatform('ie10')) ? '2.6em' : '1.3em',
+           //  ui: Ext.filterPlatform('blackberry') ? 'light' : 'dark',
             cls   : this.getBaseCls() + '-title'
         });
 

@@ -12,7 +12,7 @@ Ext.define('Chartsly.view.Main', {
         // 'Chartsly.view.test.TRIX'
         // 'Chartsly.view.test.MovingAverageConvergenceDivergence'
         // 'Chartsly.view.test.RelativeVigorIndex'
-        'Chartsly.view.test.Overlay',
+        'Chartsly.view.test.Overlay'
 		  // 'Chartsly.view.test.ChaikinMoneyFlow'
     ],
     config: {

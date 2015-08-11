@@ -1,11 +1,11 @@
 Ext.define("Chartsly.model.Dividend", {
     extend: 'Ext.data.Model',
-    // config: {
+     config: {
         fields: [
             'date',
             "type",
             "dividend",
             "remark"
         ]
-    // }
+     }
 });

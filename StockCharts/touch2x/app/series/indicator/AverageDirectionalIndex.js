@@ -228,6 +228,6 @@ Ext.define('Chartsly.series.indicator.AverageDirectionalIndex', {
         }); 
       
         this.callParent(arguments);
-    },   
+    }   
    
 });

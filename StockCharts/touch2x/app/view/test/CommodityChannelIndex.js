@@ -16,7 +16,7 @@ Ext.define("Chartsly.view.test.CommodityChannelIndex", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350,
+                height: 350
             },
             {
                 xclass: 'Chartsly.chart.indicator.CommodityChannelIndex',

@@ -49,7 +49,7 @@ Ext.define('Chartsly.series.overlay.ParabolicSAR', {
             //identify initial trend
             if (index <= 1) {
                 if (prevHigh && high > prevHigh) {
-                    console.log('UP'); 
+                    //console.log('UP'); 
 
                     uptrend = true;
 
@@ -61,7 +61,7 @@ Ext.define('Chartsly.series.overlay.ParabolicSAR', {
                 }
 
                 if (prevHigh && high < prevHigh) {
-                    console.log('DOWN'); 
+                   // console.log('DOWN'); 
 
                     uptrend = false;
 
@@ -157,7 +157,7 @@ Ext.define('Chartsly.series.overlay.ParabolicSAR', {
                     af = 0.02;
                 }
 
-                console.log('H: ' + high + ' L: ' + low + ' EP: ' + ep + ' AF: ' + af + ' SAR: ' + item.data.sar);
+              //  console.log('H: ' + high + ' L: ' + low + ' EP: ' + ep + ' AF: ' + af + ' SAR: ' + item.data.sar);
             }
 
             prevHigh0 = prevHigh;

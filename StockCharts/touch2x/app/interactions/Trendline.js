@@ -12,7 +12,8 @@ Ext.define('Chartsly.interactions.Trendline', {
     extend: 'Ext.chart.interactions.Abstract',
     requires: [
         'Ext.chart.CartesianChart',
-        'Ext.chart.axis.layout.Discrete'
+        'Ext.chart.axis.layout.Discrete',
+        'Chartsly.view.Line'
     ],
 
     type: 'trendline',
@@ -77,7 +78,7 @@ Ext.define('Chartsly.interactions.Trendline', {
         if (x > 0 && x < chartWidth && y > 0 && y < chartHeight) {
             me.lockEvents(me.getGesture());
             me.trendLine = surface.add(Ext.apply({
-                xclass: 'Ext.draw.sprite.Line',
+                xclass: 'Chartsly.view.Line',
                 fromX: x,
                 fromY: y,
                 toX: 0,

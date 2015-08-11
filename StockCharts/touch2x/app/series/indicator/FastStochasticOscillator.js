@@ -10,7 +10,7 @@
 Ext.define('Chartsly.series.indicator.FastStochasticOscillator', {
     extend: 'Ext.chart.series.Cartesian',
     alias: 'series.faststochasticoscillator',
-    seriesType: 'faststochasticoscillatorSeries',
+    seriesType: 'lineSeries',
 
     config: {
         /*

@@ -8,7 +8,10 @@
      * The file path to this application's front HTML document, relative to this app.json file
      */
     "indexHtmlPath": "index.html",
-
+    /**
+     *To add externalfiles into our application
+     */
+    "classpath": "app,../StockCharts/touch2x/app,../lib/setu",
     /**
      * The absolute URL to this application in development environment, i.e: the URL to run this application
      * on your web browser during development, e.g: "http://localhost/myapp/index.html".
@@ -105,7 +108,8 @@
     "resources": [
         "resources/images",
         "resources/icons",
-        "resources/startup"
+        "resources/startup",
+        "resources/data"//Included the data into the resources
     ],
 
     /**
