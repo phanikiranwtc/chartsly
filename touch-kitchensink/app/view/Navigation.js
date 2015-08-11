@@ -10,7 +10,7 @@ Ext.define('KS.view.Navigation', {
     title: 'Chartsly Examples',
 
     config: {
-        store: 'Examples',
+        store: 'Examples'
     },
 
     initialize: function() {

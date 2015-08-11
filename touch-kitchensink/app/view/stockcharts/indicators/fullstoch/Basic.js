@@ -20,7 +20,7 @@ Ext.define("KS.view.stockcharts.indicators.fullstoch.Basic", {
         items: [
         {
                 xtype: 'candlestick-test-chart',
-                height: 350,
+                height: 350
             },          
             {
                 xclass: 'Chartsly.chart.indicator.SlowStochasticOscillator',
@@ -51,7 +51,7 @@ Ext.define("KS.view.stockcharts.indicators.fullstoch.Basic", {
                              stroke: 'rgba(0,0,0,0.75)',
                              miterLimit: 1
                         }
-                    },
+                    }
         
                 ],
                 axes: [

@@ -20,12 +20,11 @@ Ext.define("KS.view.stockcharts.combinations.MultipleOverlays", {
         'A CandleStick chart with PSAR and Bollinger Bands overlays'
     ],
     config: {
-        height: 400,
-        layout: 'fit',
         items: [
             {
                 xtype: 'chart',
                 background: 'white',
+                height: 400,
                 insetPadding: {
                     top: 10,
                     right: 0,

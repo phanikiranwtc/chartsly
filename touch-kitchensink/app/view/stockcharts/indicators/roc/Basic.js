@@ -20,7 +20,7 @@ Ext.define("KS.view.stockcharts.indicators.roc.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350,
+                height: 350
             },
             {
                 xclass: 'Chartsly.chart.indicator.RateOfChange',

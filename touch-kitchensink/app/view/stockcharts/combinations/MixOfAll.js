@@ -29,8 +29,16 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                     left: 0,
                     bottom: 0
                 },
-                interactions: {
+                interactions: [{
                     type: 'annotation'
+                }],///added listeners
+                listeners: {
+                    annotationupdated: function(chart, annotText, sprite) {
+                       alert('Annotation Updated: ' + annotText);
+                    },
+                    annotationmoved: function(chart, sprite) {
+                        alert('Annotation moved to: ' + sprite.attr.x + ':' + sprite.attr.y);
+                    }
                 },
                 series: [{
                         store: Ext.create('Chartsly.store.GoogleDividend', {}), 
@@ -46,7 +54,8 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                         xField: 'date',
                         yField: 'bonus'
                     }, {
-                        store: Ext.create('Chartsly.store.AppleDividend', {}), 
+                        //the chart used google store so it requires GoogleDividend
+                        store: Ext.create('Chartsly.store.GoogleDividend', {}), 
                         type: 'event',
                         eventType: 'split',
                         xField: 'date',
@@ -213,7 +222,8 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                 ]
             },
             {
-                xclass: 'Chartsly.chart.MACD',
+                //oes not recognize the alias name while build
+                xclass: 'Chartsly.chart.indicator.MovingAverageConvergenceDivergence',
                 height: 250,
                 background: 'white',
                 series: [
@@ -246,14 +256,14 @@ Ext.define("KS.view.stockcharts.combinations.MixOfAll", {
                             strokeStyle: '#666',
                             estStepSize: 150
                         },
-                        dateFormat: 'Y',
+                        /*dateFormat: 'Y',//Format is not required for category
                         segmenter: {
                             type: 'time',
                             step: {
                                 unit: 'y',
                                 step: 1
                             }
-                        },
+                        },*/
                         label: {
                             fontSize: 10,
                             fillStyle: '#666'

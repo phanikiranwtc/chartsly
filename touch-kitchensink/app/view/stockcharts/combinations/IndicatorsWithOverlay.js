@@ -192,8 +192,8 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                     }
                 ]
             },
-            {
-                xclass: 'Chartsly.chart.MACD',
+            {   //passing the full class name as alias is not recognized
+                xclass:  'Chartsly.chart.indicator.MovingAverageConvergenceDivergence',
                 height: 250,
                 background: 'white',
                 series: [
@@ -226,14 +226,14 @@ Ext.define("KS.view.stockcharts.combinations.IndicatorsWithOverlay", {
                             strokeStyle: '#666',
                             estStepSize: 150
                         },
-                        dateFormat: 'Y',
+                        /*dateFormat: 'Y',//Format is not required for category
                         segmenter: {
                             type: 'time',
                             step: {
                                 unit: 'y',
                                 step: 1
                             }
-                        },
+                        },*/
                         label: {
                             fontSize: 10,
                             fillStyle: '#666'

@@ -21,10 +21,9 @@ Ext.define("KS.view.stockcharts.combinations.EventsWithInteractions", {
         'A combination to a CandleStick chart, with Events, and an interaction - Annotation'
     ],
     config: {
-        height: 400,
-        layout: 'fit',
         items: [
             {
+                height: 400,
                 xtype: 'chart',
                 background: 'white',
                 insetPadding: {
@@ -35,7 +34,15 @@ Ext.define("KS.view.stockcharts.combinations.EventsWithInteractions", {
                 },
                 interactions: [{
                     type: 'annotation'
-                }],
+                }],//added listeners
+                listeners: {
+                    annotationupdated: function(chart, annotText, sprite) {
+                       alert('Annotation Updated: ' + annotText);
+                    },
+                    annotationmoved: function(chart, sprite) {
+                        alert('Annotation moved to: ' + sprite.attr.x + ':' + sprite.attr.y);
+                    }
+                },
                 series: [{
                         store: Ext.create('Chartsly.store.AppleDividend', {}), 
                         type: 'event',

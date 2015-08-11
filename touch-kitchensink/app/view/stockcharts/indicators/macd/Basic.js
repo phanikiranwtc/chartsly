@@ -20,10 +20,10 @@ Ext.define("KS.view.stockcharts.indicators.macd.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350,
+                height: 350
             },
-            {
-                xclass: 'Chartsly.chart.MACD',
+            {//Alias names not recongized when  build the application 
+                xclass: 'Chartsly.chart.indicator.MovingAverageConvergenceDivergence',
                 height: 250,
                 background: 'white',
                 series: [

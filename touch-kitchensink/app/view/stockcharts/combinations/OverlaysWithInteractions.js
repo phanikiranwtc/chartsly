@@ -23,12 +23,11 @@ Ext.define("KS.view.stockcharts.combinations.OverlaysWithInteractions", {
         'A combination to a CandleStick chart with PSAR and Bollinger Bands and Fibonacci interaction'
     ],
     config: {
-        height: 400,
-        layout: 'fit',
         items: [
             {
                 xtype: 'chart',
                 background: 'white',
+                height: 400,
                 insetPadding: {
                     top: 10,
                     right: 0,

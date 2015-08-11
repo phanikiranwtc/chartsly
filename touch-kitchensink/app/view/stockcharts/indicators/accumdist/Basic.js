@@ -20,7 +20,7 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 150,
+                height: 150
             },
             {
                 xtype: 'chart',
@@ -89,7 +89,10 @@ Ext.define("KS.view.stockcharts.indicators.accumdist.Basic", {
                 series: [{
                     type: 'area',
                     xField: 'date',
-                    yField: 'volume'
+                    yField: 'volume',
+                    style:{//this config necessary to display chart in touch
+                        fill: 'pink'
+                    }
                 }]
             },
             {

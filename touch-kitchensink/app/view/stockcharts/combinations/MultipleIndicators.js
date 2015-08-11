@@ -21,7 +21,7 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350,
+                height: 350
             },
             {
                 xclass: 'Chartsly.chart.indicator.WilliamPctR',
@@ -83,8 +83,8 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                     }
                 ]
             },
-            {
-                xclass: 'Chartsly.chart.MACD',
+            {  //Does not recognize the alias name while build
+                xclass: 'Chartsly.chart.indicator.MovingAverageConvergenceDivergence',
                 height: 250,
                 background: 'white',
                 series: [
@@ -117,14 +117,14 @@ Ext.define("KS.view.stockcharts.combinations.MultipleIndicators", {
                             strokeStyle: '#666',
                             estStepSize: 150
                         },
-                        dateFormat: 'Y',
+                       /* dateFormat: 'Y',//Format is not required for category
                         segmenter: {
                             type: 'time',
                             step: {
                                 unit: 'y',
                                 step: 1
                             }
-                        },
+                        },*/
                         label: {
                             fontSize: 10,
                             fillStyle: '#666'

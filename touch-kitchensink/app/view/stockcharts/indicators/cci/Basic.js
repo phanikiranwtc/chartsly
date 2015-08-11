@@ -20,7 +20,7 @@ Ext.define("KS.view.stockcharts.indicators.cci.Basic", {
         items: [
             {
                 xtype: 'candlestick-test-chart',
-                height: 350,
+                height: 350
             },
             {
                 xclass: 'Chartsly.chart.indicator.CommodityChannelIndex',
@@ -43,7 +43,11 @@ Ext.define("KS.view.stockcharts.indicators.cci.Basic", {
                         closeField: "close",
                         strongLevel: 10,
                         weakLevel: -10,
-                        period: 14
+                        period: 14,
+                        style: {//this config necessary to display chart in touch
+                            stroke: 'red',
+                            fill: 'pink'
+                        }
                     }
                 ],
                 axes: [
